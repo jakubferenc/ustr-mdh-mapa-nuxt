@@ -23,7 +23,11 @@ For more information, see [the project page](https://www.nm.cz/o-nas/odborna-cin
 Project is created with:
 * Lorem version: 12.3
 * Ipsum version: 2.33
-* Ament library version: 999
+* Nuxt Axios https://axios.nuxtjs.org/ | Axios https://axios-http.com/ | Promise based HTTP client for the browser and node.js
+* Nuxt Sentry https://sentry.nuxtjs.org/
+* Nuxt Style Resources https://github.com/nuxt-community/style-resources-module
+* Nuxt SVG Loader https://github.com/nuxt-community/svg-module
+
 	
 ## Getting started
 To run this project, clone it first from GitHub:
