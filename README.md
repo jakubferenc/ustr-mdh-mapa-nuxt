@@ -36,13 +36,14 @@ $ yarn dev
 ```
 
 ## Contribution
-* [Visual design by Daniel Vojtíšek](www.danvojtisek.cz)
-* [UX design, front-end, back-end by Jakub Ferenc](www.jakubferenc.cz)
-* [Content by Bohumil Melichar, Čeněk Pýcha]()
-* [The project led by Čeněk Pýcha]()
+* Visual design by Daniel Vojtíšek
+* UX design, front-end, back-end by Jakub Ferenc
+* Content by Bohumil Melichar, Čeněk Pýcha
+* The project led by Čeněk Pýcha
 
 
 ## Inspiration
 * [Readme driven development](https://tom.preston-werner.com/2010/08/23/readme-driven-development.html)
+* [Yarn lockfiles](https://classic.yarnpkg.com/blog/2016/11/24/lockfiles-for-all/)
 
 ## Licensing
