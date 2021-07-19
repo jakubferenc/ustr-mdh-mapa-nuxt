@@ -1,0 +1,13 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": false
+    },
+    "extends" : ["plugin:you-dont-need-lodash-underscore/compatible"]
+  },
+  "rules": {
+      "semi": "error"
+  }
+}

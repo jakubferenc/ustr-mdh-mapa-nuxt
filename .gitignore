@@ -1,0 +1,63 @@
+# Common #
+**/node_modules
+**/tmp
+**/dist
+**/local
+**/npm-debug.log
+**/reports
+**/bower_components
+**/asset_manifest.json
+**/package-lock.json
+
+
+# Logs and databases #
+*.log
+
+
+# OS generated files #
+**/DS_Store
+**/.DS_Store
+**/.DS_Store?
+# ._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+**/Thumbs.db
+
+
+# Packages #
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+# Development #
+**/coverage
+**/.idea
+**/design
+**/.sass-cache
+/.sass-cache/
+*.pdf
+*.mindnode
+**/*.codekit
+
+# Data
+data/data_merged.json
+
+# MDH specific
+data-maps
+!src/data-maps
+
+# Wordpress #
+wordpress
+
+# Nuxt
+.nuxt
+dist
