@@ -1,0 +1,89 @@
+.header-main {
+  height: $header-main-height;
+  background-color: #fff;
+  color: $active-gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: $base-mobile-side-margin;
+  padding-right: $base-mobile-side-margin;
+  font-size: 0.875rem;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+  position: relative;
+  z-index: 10;
+}
+
+.logo-nav {
+  width: 450px;
+  .item {
+    color: $active-gray;
+  }
+}
+
+.toggle-mobile-menu {
+
+  @include until($widescreen) {
+    display: block;
+    font-size: 16px;
+
+  }
+  @include from($widescreen) {
+    display: none;
+
+  }
+
+}
+
+.main-nav {
+
+  display: none;
+
+  @include from($widescreen) {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+  }
+
+  text-transform: uppercase;
+
+  .item {
+    margin-left: 40px;
+    color: $active-gray;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+
+  .item:first-child {
+    margin-left: 0;
+  }
+}
+
+
+.user-actions-nav {
+
+  display: none;
+
+  @include from($widescreen) {
+    display: block;
+    width: 450px;
+  }
+
+  text-align: right;
+  text-transform: uppercase;
+
+
+  .item {
+    border-left: 1px solid $passive-gray;
+    padding-left: 20px;
+    margin-left: 20px;
+    color: $active-gray;
+
+    &:first-child {
+      border: none;
+      padding-left: 0;
+      margin-left: 0;
+    }
+  }
+}

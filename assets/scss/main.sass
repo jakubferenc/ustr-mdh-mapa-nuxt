@@ -1,0 +1,359 @@
+@charset "utf-8"
+
+// bulma
+// Import only what you need from Bulma
+@import "bulma"
+
+// fonts
+
+// custom library
+@import "lib/all"
+
+// typography
+@import "typography"
+
+div, textarea
+  box-sizing: border-box
+
+html
+
+  font-size: 12px
+
+  +tablet
+    font-size: 14px
+
+  +desktop
+
+  +widescreen
+    font-size: 16px
+
+body
+  font-family: 'Roboto Condensed', sans-serif
+  font-weight: 400
+  color: $primary-color
+  line-height: 1.7
+  margin: 0
+
+
+strong
+  font-weight: 400
+
+
+a
+
+  color: #000
+  text-decoration: none
+
+
+h1, h2, h3
+
+  font-weight: 400
+
+
+p
+  line-height: $base-line-height
+  font-weight: 400
+
+/* :CUSTOM CLASSES: */
+.home-info em
+
+  font-style: normal
+  border-bottom: 1px solid black
+  padding-bottom: 0px
+
+
+.main-container
+
+  position: relative
+  z-index: 2
+
+
+/* Removes the forced telephone styling on mobile phones */
+a[href^="tel"]
+
+  color: inherit /* Inherit text color of parent element. */
+  text-decoration: none /* Remove underline. */
+  /* Additional css `propery: value` pairs here */
+
+
+[data-rel]
+
+  cursor: pointer
+
+
+/****************************************************/
+/* :DEBUG: */
+.debug-bar
+
+  position: fixed
+  bottom: 0
+  right: 0
+  width: 200px
+  height: 50px
+  background: #fff
+  text-align: center
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 20
+
+  &:after
+
+    content: "mobile"
+
+
+  +tablet
+
+    &:after
+
+      content: "tablet"
+
+
+
+  +desktop
+
+    &:after
+
+      content: "desktop"
+
+
+
+  +widescreen
+
+    &:after
+
+      content: "widescreen"
+
+
+
+  +fullhd
+
+    &:after
+
+      content: "fullhd"
+
+
+
+
+/****************************************************/
+
+
+/****************************************************/
+/* :FORMS: */
+@import "forms"
+/****************************************************/
+
+/****************************************************/
+/* :ICONS: */
+.icon.icon-action
+  cursor: pointer
+.text-icon
+
+  font-weight: 700
+
+/****************************************************/
+
+/* :GRID: */
+
+/****************************************************/
+/* :LAYOUT: */
+
+.container
+
+  max-width: none
+
+  padding-left: 0
+  padding-right: 0
+
+  +widescreen
+
+    padding-left: $base-widescreen-side-margin
+    padding-right: $base-widescreen-side-margin
+
+
+
+
+
+/****************************************************/
+
+
+
+/****************************************************/
+/* :HEADER: */
+@import "partials/header"
+
+/****************************************************/
+
+
+/****************************************************/
+/* :MAIN: */
+@import "partials/sections"
+
+/****************************************************/
+
+/****************************************************/
+/* :COMPONENTS: */
+
+.banner.banner-about
+
+  .typo-section-title,
+  .typo-subtitle
+    text-align: left
+    margin-left: 0
+
+  +until($widescreen)
+
+    .banner-text
+
+      margin-bottom: 2rem
+
+
+
+.banner
+
+
+  padding: $base-mobile-side-margin*2
+
+
+  +tablet
+
+
+  +desktop
+
+    padding: 0
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+  +widescreen
+
+
+  +fullhd
+
+
+  .banner-image
+
+
+
+    text-align: center
+
+    +desktop
+
+
+      width: 45%
+      display: flex
+      justify-content: center
+
+
+
+
+
+  .banner-text
+
+
+    text-align: left
+
+    +desktop
+
+
+      width: 45%
+
+
+
+
+
+
+
+
+.banner.banner-large
+
+  min-height: 388px
+  border-radius: 44px
+  background-color: #fff
+
+
+  margin-top: 5rem
+  margin-bottom: 5rem
+
+  +until($tablet)
+
+
+
+
+  +tablet
+
+
+
+
+  +desktop
+
+
+    margin-top: 8rem
+    margin-bottom: 8rem
+
+
+
+  +widescreen
+
+
+
+
+  +fullhd
+
+
+
+
+
+/****************************************************/
+
+/****************************************************/
+/* :PAGES: */
+@import "pages/map-detail-homepage"
+
+/****************************************************/
+
+
+/****************************************************/
+/* :FOOTER: */
+@import "partials/footer"
+
+/****************************************************/
+
+/****************************************************/
+/* :MAP: */
+.leaflet-control-zoom
+
+  background-color: #fff
+  left: 30px
+  top: $base-mobile-side-margin * 2
+  box-shadow: 0 0.2em 0.5em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02)
+
+.leaflet-control-zoom, .leaflet-control-zoom a
+  border: none !important
+  border-radius: 10px !important
+.leaflet-control-zoom a
+
+  display: block
+  padding: 0 !important
+  height: 50px !important
+  width: 50px !important
+  line-height: 50px !important
+  text-align: center
+
+.leaflet-control-zoom a:hover
+  background-color: $passive-gray !important
+.leaflet-control-zoom a:first-child
+
+  border-bottom-left-radius: 0 !important
+  border-bottom-right-radius: 0 !important
+
+.leaflet-control-zoom a:last-child
+
+  border-top-left-radius: 0 !important
+  border-top-right-radius: 0 !important
+
+/****************************************************/
+
+// components
+@import "components/component-list-map"

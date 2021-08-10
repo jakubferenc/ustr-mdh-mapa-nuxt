@@ -1,6 +1,15 @@
 import axios from "axios";
 
-const apiURL = undefined;
+
+const projectConfig = {
+  name: 'MHD Mapa',
+  slug: 'mdh-mapa',
+  firebaseDatabase: {
+    'rootObject': 'maps'
+  },
+  apiURL: undefined
+};
+
 
 export default {
   /*env: {
@@ -11,10 +20,8 @@ export default {
     host: 'localhost',
     timing: false
   },*/
-
-
   publicRuntimeConfig: {
-    apiURL: apiURL
+    ...projectConfig
   },
   render: {
     static: {
@@ -40,16 +47,32 @@ export default {
   },
   buildModules: [
     "@nuxtjs/svg",
-    '@nuxtjs/style-resources',
+    '@nuxtjs/style-resources'
   ],
-  globalName: 'databaze-poslancu',
+  globalName: projectConfig.slug,
   target: 'static', // default is 'server'
   ssr: true,
   components: true,
-  publicRuntimeConfig: {
-    globalTitle: 'Databáze poslanců.cz'
-  },
-  modules: ['@nuxtjs/proxy',  '@nuxtjs/axios', '@nuxtjs/sentry'],
+  modules: [
+  '@nuxtjs/proxy',
+  '@nuxtjs/axios',
+  '@nuxtjs/sentry',
+  ['@nuxtjs/firebase', {
+    config: {
+      apiKey: "AIzaSyCHGOJyI-2-uRgnE3ujd3OLb-Vi4DPCWa0",
+      authDomain: "mdh-mapa-1605133107720.firebaseapp.com",
+      databaseURL: "https://mdh-mapa-1605133107720-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "mdh-mapa-1605133107720",
+      storageBucket: "mdh-mapa-1605133107720.appspot.com",
+      messagingSenderId: "843288321214",
+      appId: "1:843288321214:web:ae2deff05f6a3f83fdd2ef",
+      measurementId: "G-483TW6WQCJ"
+    },
+    services: {
+      database: true, // initializes Firebase real-time database
+    }
+  }],
+  ],
   sentry: {
     dsn: 'https://c7d5d20c4f9448c58b992c3d0dcd284d@o621712.ingest.sentry.io/5870935', // Enter your project's DSN here
     // Additional Module Options go here
@@ -63,10 +86,11 @@ export default {
     proxy: true
   },
   css: [
-
+    '@/assets/scss/main.sass'
   ],
   styleResources: {
-    sass: ['']
+    sass: ['~assets/scss/main.sass'],
+    hoistUseStatements: true
   },
   plugins: [
   ],

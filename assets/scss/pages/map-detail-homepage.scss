@@ -1,0 +1,348 @@
+.page-content-map-detail-homepage {
+
+  .header {
+
+    @include from($widescreen) {
+      display: flex;
+      height: calc(100vh - #{$header-main-height});
+    }
+
+  .header-figure,
+  .header-content {
+
+    @include from($widescreen) {
+      width: 50%;
+    }
+
+  }
+
+  .header-figure {
+
+    @include until($widescreen) {
+      height: 30vh;
+    }
+
+  }
+
+
+  .header-content {
+
+    @include until($widescreen) {
+      height: 70vh;
+    }
+
+  }
+
+
+
+  .header-figure {
+    position: relative;
+
+
+    .header-figure-types {
+      position: absolute;
+      display: flex;
+      top: $header-figure-v-padding;
+      left: $header-figure-h-padding;
+
+      li {
+        margin-right: 20px;
+      }
+
+
+      img {
+        $size: 44px;
+        min-width: 30px;
+        width: #{100/($base-viewport-width/$size)}vw;
+      }
+
+
+    }
+
+    .header-figure-actions {
+      position: absolute;
+      display: flex;
+      top: $header-figure-v-padding;
+      right: $header-figure-h-padding;
+
+      @include from($widescreen) {
+
+        top: #{100/($base-viewport-width/$header-figure-v-padding)}vw;
+        right: #{100/($base-viewport-width/$header-figure-h-padding)}vw;
+
+      }
+
+      .bookmark {
+
+        img {
+          $size: 44px;
+
+          min-width: 30px;
+          width: #{100/($base-viewport-width/$size)}vw;
+        }
+
+
+      }
+
+    }
+
+    .header-figure-image {
+
+      object-fit: cover;
+      object-position: center;
+
+      height: 100%;
+      width: 100%
+    }
+
+  }
+
+
+
+  .header-content {
+    background-color: #F2F2F2;
+    display: flex;
+    justify-content: space-between;
+
+    @include until($widescreen) {
+      padding: 20px;
+      flex-direction: column;
+    }
+
+    .header-content-text-container {
+
+      $size: $header-figure-v-padding;
+
+      @include from($widescreen) {
+        padding: #{100/($base-viewport-width/$size)}vw #{100/($base-viewport-width/($size*2))}vw;
+        max-width: calc(100% - 125px);
+      }
+
+    }
+
+    .main-title {
+
+
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: #{100/($base-viewport-width/30px)}vw;
+      font-family: 'Roboto Condensed', sans-serif;
+
+
+      @include from($widescreen) {
+        margin-bottom: 60px;
+
+      }
+
+
+    }
+
+    .section-content-text-title {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+
+    .section-content-text {
+      margin-bottom: #{100/($base-viewport-width/60px)}vw;
+
+      font-size: 1.4rem;
+
+      @include from($tablet) {
+
+      }
+
+      @include from($desktop) {
+
+      }
+
+      @include from($widescreen) {
+
+      }
+
+      @include from($fullhd) {
+
+      }
+
+    }
+
+
+    p.goals {
+
+      $font-size: 16px;
+
+      font-size: $font-size;
+
+      margin-top: #{100/($base-viewport-width/60px)}vw;
+
+
+      @include from($widescreen) {
+        font-size: #{100/($base-viewport-width/$font-size)}vw;
+        margin-top: 60px;
+      }
+
+    }
+
+
+
+  }
+
+  .header-button {
+
+    $base-size: 125px;
+
+    background-color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    text-align: center;
+    flex-direction: row;
+    width: 100%;
+
+    @include until($widescreen) {
+      height: 100px;
+    }
+
+    @include from($widescreen) {
+      width: #{100/($base-viewport-width/$base-size)}vw;
+      min-width: 110px;
+      height: calc(100vh - 42px);
+      flex-direction: column;
+    }
+
+    .icon-text {
+      @include until($widescreen) {
+        margin-left: 20px;
+      }
+      @include from($widescreen) {
+        width: 64px;
+        line-height: 1;
+      }
+
+    }
+
+    &:hover {
+      background-color: #000;
+      &, & a {
+        color: #fff;
+      }
+
+      svg * {fill: #fff !important}
+
+  }
+
+
+
+  }
+
+
+}
+
+  .section-container {
+
+    margin: 0 auto;
+
+    @include until($widescreen) {
+      padding-left: $header-figure-v-padding/2;
+      padding-right: $header-figure-v-padding/2;
+      margin-top: 40px;
+    }
+    @include from($widescreen) {
+      max-width: 1245px;
+      margin-top: 120px;
+    }
+
+  }
+
+  .section.section-text-info {
+    margin-bottom: 40px;
+
+    @include from($widescreen) {
+      display: flex;
+      margin-bottom: 80px;
+
+    }
+
+
+    h2 {font-size: 32px;}
+    .section-text-info-content p {font-size: 21px;}
+
+    @include from($widescreen) {
+      h2 {
+        width: 33%;
+      }
+
+      .section-text-info-content {
+        width: 66%;
+      }
+    }
+
+
+  }
+
+  .attachments {
+    display: flex;
+
+
+      margin-top: 40px;
+
+
+
+    .attachment {
+      margin-right: 24px;
+    }
+
+  }
+
+  .attachment {
+    display: inline-block;
+    width: 240px;
+    min-height: 100px;
+    border-radius: 12px;
+    background-color: #F8F8F8;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
+    display: flex;
+    padding: 12px;
+
+    .icon {margin-right: 12px;}
+
+  }
+
+  .layers-container {
+    margin-top: 20px;
+  }
+
+
+  .layer {
+
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    padding: 20px;
+    .title {font-size: 21px; line-height: 24px;}
+    .text {font-size: 13px; line-height: 16px;}
+
+    @include until($widescreen) {
+      .title {
+        margin-bottom: .5em;
+      }
+    }
+
+    @include from($widescreen) {
+      display: flex;
+      justify-content: space-between;
+      .title, .text {
+        width: 48%;
+      }
+    }
+
+
+  }
+
+  .section-text-info-content-footer {margin-top: 40px;}
+
+}
+

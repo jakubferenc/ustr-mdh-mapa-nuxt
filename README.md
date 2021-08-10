@@ -23,10 +23,20 @@ For more information, see [the project page](https://www.nm.cz/o-nas/odborna-cin
 Project is created with:
 * Lorem version: 12.3
 * Ipsum version: 2.33
+* Typescript for Nuxt yarn add --dev @nuxt/typescript-build @nuxt/types
+* Eslint config with typescript support yarn add -D @nuxtjs/eslint-config-typescript
 * Nuxt Axios https://axios.nuxtjs.org/ | Axios https://axios-http.com/ | Promise based HTTP client for the browser and node.js
 * Nuxt Sentry https://sentry.nuxtjs.org/
 * Nuxt Style Resources https://github.com/nuxt-community/style-resources-module
 * Nuxt SVG Loader https://github.com/nuxt-community/svg-module
+* Nuxt Eslint https://github.com/nuxt-community/eslint-module
+* Nuxt Firebase yarn add @nuxtjs/firebase
+
+## Useful commands
+```
+git clean -fdX
+```
+* It will remove all untrack files in your git. Useful for removing the node_modules and all corrupted build files
 
 	
 ## Getting started

@@ -1,0 +1,131 @@
+.list-in-section {
+
+  $margin-basic: 3rem;
+
+  margin-top: $margin-basic;
+
+  @include until($tablet) {
+
+  }
+
+  @include from($tablet) {
+
+  }
+
+  @include from($desktop) {
+
+    margin-top: 5rem;
+
+  }
+
+  @include from($widescreen) {
+
+  }
+
+  @include from($fullhd) {
+
+  }
+
+  .button-more {
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: $margin-basic;
+  }
+
+  .list-map-item-title {
+    margin-top: .25rem;
+  }
+
+}
+
+[data-component="list-map-item"] {
+
+  figure {
+    position: relative;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .list-map-nav {
+      display: flex;
+    }
+
+    .list-map-nav-symbols {
+      position: absolute; top: 10px; left:  20px;
+      .map-item-symbol {
+        margin-right: 1rem;
+      }
+    }
+
+
+    .map-item-symbol {
+
+      width: 5vw;
+
+      @include from($tablet) {
+
+        width: 3vw;
+
+      }
+
+      @include from($desktop) {
+
+        width: 2vw;
+
+      }
+
+      @include from($widescreen) {
+
+        width: 1.3vw;
+
+      }
+
+      @include from($fullhd) {
+
+      }
+
+      img, svg {
+        height: auto;
+        width: 100%;
+        object-fit: contain;
+      }
+
+    }
+
+    .list-map-nav-actions {
+      position: absolute; top: 10px; right:  20px;
+
+    }
+
+  }
+
+  .list-map-item-symbols {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @include until($tablet) {
+
+  }
+
+  @include from($tablet) {
+
+  }
+
+  @include from($desktop) {
+
+  }
+
+  @include from($widescreen) {
+
+  }
+
+  @include from($fullhd) {
+
+  }
+
+}
