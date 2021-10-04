@@ -56,7 +56,7 @@
 
 
 
-          MapThumb(v-for="key in Object.keys(maps)" :key="key" :Name="maps[key].name" :Slug="key" :Modes="maps[key].modes.split(', ')")
+          MapThumb(v-for="key in Object.keys(mapy)" :key="key" :Name="mapy[key].name" :Slug="key" :Modes="mapy[key].modes.split(', ')")
 
 
           //- each key in Object.keys(maps)
@@ -110,38 +110,24 @@
 
 export default {
 
-    async asyncData({ params, $config, $fire }) {
 
-      const getDatabaseData = async () => {
+    async asyncData ({store}) {
 
-        return new Promise((resolve, reject) => {
+      await store.dispatch("getMapy");
 
-          const dbInstance = $fire.database.ref(`${$config.firebaseDatabase.rootObject}`);
+    },
 
-          dbInstance.once('value', (snapshot) => {
+    computed: {
 
-            const data = snapshot.val();
-
-            resolve(data);
-
-          });
-
-        });
-
-      };
-
-      const maps = await getDatabaseData();
-
-      return {
-        maps: maps,
-      }
+      mapy() {
+        return this.$store.state.mapy;
+      },
 
     },
 
     mounted() {
 
-          console.log("from mounted", this.maps);
-
+          console.log("from mounted", this.mapy);
 
     },
 

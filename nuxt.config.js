@@ -1,27 +1,27 @@
 import axios from "axios";
+// import apiFactory from './factories';
+import projectConfig from './project.config';
 
+const dev = process.env.NODE_ENV !== 'production';
 
-const projectConfig = {
-  name: 'MHD Mapa',
-  slug: 'mdh-mapa',
-  firebaseDatabase: {
-    'rootObject': 'maps'
-  },
-  apiURL: undefined
-};
+const $config = {dev, ...projectConfig};
 
 
 export default {
-  /*env: {
-    baseUrl: process.env.BASE_URL || 'https://localhost:8000'
-  },
+  globalName: $config.appSlug,
+  target: 'static', // default is 'server'
+  ssr: true,
+  components: true,
+  publicRuntimeConfig: {...$config},
   server: {
-    port: 8000,
-    host: 'localhost',
-    timing: false
-  },*/
-  publicRuntimeConfig: {
-    ...projectConfig
+    port: 8000, // default: 3000
+    host: '0.0.0.0', // default: localhost
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://localhost:3000'
+  },
+  router: {
+    trailingSlash: true,
   },
   render: {
     static: {
@@ -49,10 +49,6 @@ export default {
     "@nuxtjs/svg",
     '@nuxtjs/style-resources'
   ],
-  globalName: projectConfig.slug,
-  target: 'static', // default is 'server'
-  ssr: true,
-  components: true,
   modules: [
   '@nuxtjs/proxy',
   '@nuxtjs/axios',
