@@ -1,7 +1,6 @@
 <template lang="pug">
  main
 
-
     article.section.section-padding.alt-bg(data-component="article-detail")
 
       h1.typo-section-title.is-section-title O projektu MDH

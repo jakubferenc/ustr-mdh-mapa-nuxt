@@ -10,7 +10,7 @@
           h1.typo-main-title Aplikace MDH Mapa
           p.typo-subtitle Zde bude krátké a jasné představení aplikace,pro koho aplikace je určena a co uživatelé v aplikaci najdou. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
 
-          a.button(href="about-us.html") Více o projektu
+          NuxtLink.button(to="/o-projektu") Více o projektu
 
 
       .footer-container

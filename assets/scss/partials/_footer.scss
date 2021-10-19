@@ -14,7 +14,7 @@
 
   .footer-subsection {
     @include until($widescreen) {
-      padding: $header-figure-v-padding/2;
+      padding: math.div($header-figure-v-padding, 2);
     }
   }
 

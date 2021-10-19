@@ -48,7 +48,7 @@
                     .what-they-did {{author.desc}}
                     .institution {{author.institution}}
 
-          a.header-button(href="detail.html")
+          NuxtLink.header-button(to="detail/")
 
             .icon
 

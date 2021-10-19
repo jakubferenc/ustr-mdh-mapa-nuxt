@@ -7,7 +7,7 @@ const fullhd = 1344 + 2 * gap;
 const mobile = tablet-1;
 
 export default {
-  appName: 'MHD Mapa',
+  globalTitle: 'MHD Mapa',
   appSlug: 'mdh-mapa',
   firebaseDatabase: {
     'rootObject': 'maps'

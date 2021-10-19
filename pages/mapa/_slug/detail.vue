@@ -9,20 +9,20 @@
       .main-content(data-component="list-objects-container")
 
         .main-content-top-bar
-          a.icon-container.icon-back(href="index.html")
+          NuxtLink.icon-container.icon-back(:to="`/mapa/${mapa.slug}/`")
             <svg xmlns="http://www.w3.org/2000/svg" width="19.245" height="28" viewBox="0 0 19.245 28"><defs><style>.a{fill:#1a1818;}</style></defs><g transform="translate(-634.499 -538.828)"><path class="a" d="M645.238,566.828l-10.739-14,10.739-14"/><rect class="a" width="10.158" height="10.158" transform="translate(643.586 547.749)"/></g></svg>
             span.icon-text Zpět
 
-        //- each object in features
-
-        //-   +object-detail(object, {safeSlug, mapSettings})
 
 
         div(data-component="list-objects")
 
-          //- h1.title #{name}
+          h1.title {{mapa.name}}
 
-          //- .cards-container
+          .cards-container
+
+            <ObjectThumb v-for="(thisObject, index) in mapa.objects.filter(item => item.name)" :key="index" :ThisObject="thisObject" :Map="mapa"/>
+
 
           //-   each mapLayer in Object.keys(mapSettings.layers)
 

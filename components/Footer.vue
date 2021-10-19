@@ -3,7 +3,7 @@
 
     .footer-section.footer-section-social
 
-      .footer-subsection.section-newsletter
+      .footer-subsection.section-newsletter.is-hidden
 
         h2.section-title Odebírejte náš newsletter
 
