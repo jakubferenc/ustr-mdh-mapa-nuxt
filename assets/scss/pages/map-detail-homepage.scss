@@ -145,7 +145,7 @@
     }
 
     .section-content-text {
-      margin-bottom: #{math.div($base-viewport-width, 60px)}vw;
+      margin-bottom: 5rem;
 
       font-size: 1.4rem;
 
@@ -154,7 +154,7 @@
       }
 
       @include from($desktop) {
-
+        margin-bottom: 5rem;
       }
 
       @include from($widescreen) {
