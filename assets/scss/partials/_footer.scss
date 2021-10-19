@@ -22,7 +22,7 @@
   .footer-section-social {
     background-color: #F8F8F8;
     min-height: $height-footer-social;
-    justify-content: space-between;
+    justify-content: center;
 
     @include from($widescreen) {
       padding: 0 100px;

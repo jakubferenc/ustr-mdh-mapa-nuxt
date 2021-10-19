@@ -1,3 +1,5 @@
+@use "sass:math";
+
 [data-component="section"] {
 
   &.alt-bg {
@@ -335,12 +337,12 @@
   }
   .icon-container {
     .icon-text {
-      margin-left: $base-mobile-side-margin / 2;
+      margin-left: math.div($base-mobile-side-margin, 2);
     }
   }
 
   .card {
-    margin-right: $base-mobile-side-margin / 2; /*:TODO:*/
+    margin-right: math.div($base-mobile-side-margin, 2); /*:TODO:*/
   }
 }
 
@@ -425,7 +427,7 @@
   .gallery {
     overflow: hidden;
     position: relative;
-    margin-bottom: $base-mobile-side-margin / 2;
+    margin-bottom: math.div($base-mobile-side-margin, 2);
 
     img {
         object-fit: cover;
@@ -449,7 +451,7 @@
       position: absolute;
       z-index: 9;
       width: 100%;
-      padding: 0 $base-mobile-side-margin / 2;
+      padding: 0 math.div($base-mobile-side-margin, 2);
 
       .prev,
       .next {
@@ -581,7 +583,7 @@
 
   .text-icon {
     font-size: 26px;
-    margin-right: $base-mobile-side-margin / 2;
+    margin-right: math.div($base-mobile-side-margin, 2);
   }
 
   .layer-bar {
@@ -932,7 +934,7 @@
 
   .text-icon {
     font-size: 21px;
-    margin-right: $base-mobile-side-margin / 6;
+    margin-right: math.div($base-mobile-side-margin, 6);
   }
 
   .text-content {

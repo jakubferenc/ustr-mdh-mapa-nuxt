@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .page-content-map-detail-homepage {
 
   .header {
@@ -53,7 +55,7 @@
       img {
         $size: 44px;
         min-width: 30px;
-        width: #{100/($base-viewport-width/$size)}vw;
+        width: #{math.div(100, math.div($base-viewport-width,$size))}vw;
       }
 
 
@@ -67,8 +69,8 @@
 
       @include from($widescreen) {
 
-        top: #{100/($base-viewport-width/$header-figure-v-padding)}vw;
-        right: #{100/($base-viewport-width/$header-figure-h-padding)}vw;
+        top: #{math.div(100, math.div($base-viewport-width, $header-figure-v-padding))}vw;
+        right: #{math.div(100, math.div($base-viewport-width, $header-figure-h-padding))}vw;
 
       }
 
@@ -78,7 +80,7 @@
           $size: 44px;
 
           min-width: 30px;
-          width: #{100/($base-viewport-width/$size)}vw;
+          width: #{math.div(100,math.div($base-viewport-width,$size))}vw;
         }
 
 
@@ -114,7 +116,7 @@
       $size: $header-figure-v-padding;
 
       @include from($widescreen) {
-        padding: #{100/($base-viewport-width/$size)}vw #{100/($base-viewport-width/($size*2))}vw;
+        padding: #{math.div(100, math.div($base-viewport-width, $size))}vw #{math.div(100, math.div($base-viewport-width, ($size*2)))}vw;
         max-width: calc(100% - 125px);
       }
 
@@ -125,7 +127,7 @@
 
       font-weight: 400;
       line-height: 1.1;
-      margin-bottom: #{100/($base-viewport-width/30px)}vw;
+      margin-bottom: #{math.div(100, math.div($base-viewport-width, 30px))}vw;
       font-family: 'Roboto Condensed', sans-serif;
 
 
@@ -143,7 +145,7 @@
     }
 
     .section-content-text {
-      margin-bottom: #{100/($base-viewport-width/60px)}vw;
+      margin-bottom: #{math.div($base-viewport-width, 60px)}vw;
 
       font-size: 1.4rem;
 
@@ -172,11 +174,11 @@
 
       font-size: $font-size;
 
-      margin-top: #{100/($base-viewport-width/60px)}vw;
+      margin-top: #{math.div(100, math.div($base-viewport-width, 60px))}vw;
 
 
       @include from($widescreen) {
-        font-size: #{100/($base-viewport-width/$font-size)}vw;
+        font-size: #{math.div(100, math.div($base-viewport-width, $font-size))}vw;
         margin-top: 60px;
       }
 
@@ -206,7 +208,7 @@
     }
 
     @include from($widescreen) {
-      width: #{100/($base-viewport-width/$base-size)}vw;
+      width: #{math.div(100, math.div($base-viewport-width, $base-size))}vw;
       min-width: 110px;
       height: calc(100vh - 42px);
       flex-direction: column;
@@ -245,8 +247,8 @@
     margin: 0 auto;
 
     @include until($widescreen) {
-      padding-left: $header-figure-v-padding/2;
-      padding-right: $header-figure-v-padding/2;
+      padding-left: math.div($header-figure-v-padding, 2);
+      padding-right: math.div($header-figure-v-padding, 2);
       margin-top: 40px;
     }
     @include from($widescreen) {

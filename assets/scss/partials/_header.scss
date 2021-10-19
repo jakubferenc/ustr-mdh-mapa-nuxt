@@ -55,6 +55,10 @@
     }
   }
 
+  .nuxt-link-exact-active {
+    text-decoration: underline;
+  }
+
   .item:first-child {
     margin-left: 0;
   }
