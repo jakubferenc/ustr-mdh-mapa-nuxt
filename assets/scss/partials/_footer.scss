@@ -1,5 +1,9 @@
 .main-footer {
 
+  @at-root html.no-footer & {
+    display: none;
+  }
+
   $height-footer-social: 300px;
 
   min-height: 100vh;

@@ -83,6 +83,8 @@ a[href^="tel"]
   cursor: pointer
 
 
+
+
 /****************************************************/
 /* :DEBUG: */
 .debug-bar
@@ -147,6 +149,9 @@ a[href^="tel"]
 
 /****************************************************/
 /* :ICONS: */
+
+@import "icons"
+
 .icon.icon-action
   cursor: pointer
 .text-icon
@@ -324,12 +329,17 @@ a[href^="tel"]
 
 /****************************************************/
 /* :MAP: */
+
+
+.map-thumb-icon
+  box-shadow: 0 0.2em 0.5em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%)
+
 .leaflet-control-zoom
 
   background-color: #fff
   left: 30px
   top: $base-mobile-side-margin * 2
-  box-shadow: 0 0.2em 0.5em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02)
+  box-shadow: 0 0.2em 0.5em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02) !important
 
 .leaflet-control-zoom, .leaflet-control-zoom a
   border: none !important
@@ -359,3 +369,5 @@ a[href^="tel"]
 
 // components
 @import "components/component-list-map"
+
+

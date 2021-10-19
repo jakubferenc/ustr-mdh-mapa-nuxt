@@ -3,8 +3,8 @@
 
   article.card.card-thumb(:data-object-name="ThisObject.name" data-component="card" :data-object-layer="ThisObject.layer" :data-object-type="ThisObject.type")
 
-    .layer-bar(style=`background-color: ${thisObjectCategoryColor}`)
-      .meta.meta-category {{thisObjectCategoryName}}
+    .layer-bar(:style="`background-color: ${ThisObject.categoryColor}`")
+      .meta.meta-category {{ ThisObject.layer }}
 
     .card-content-container
       //-     .gallery
@@ -30,40 +30,20 @@
             div(v-else)
               | GPS: {{ThisObject.y}}, {{ThisObject.x}}
           .icons
-
-  //-           if (ThisObject.properties.type)
-  //-             img(src=`/assets/images/icons/icon-object-${ThisObject.properties.type}.svg`)
+            .icon(:title="ThisObject.type" v-if="ThisObject.type" :data-icon-type="ThisObject.type")
 
 </template>
 <script>
 export default {
-  props: ['ThisObject', 'Map'],
+  props: ['ThisObject'],
 
   computed: {
 
-    thisObjectCategoryObject() {
-
-      return this.Map.categories[Object.keys(this.Map.categories).filter(key => this.Map.categories[key].name == "Památníky a muzea revolučního hnutí")]
-
-    },
-
-    thisObjectCategoryName() {
-
-      return this.thisObjectCategoryObject.name;
-
-    },
-
-    thisObjectCategoryColor() {
-
-      return this.thisObjectCategoryObject.color;
-
-    }
 
   },
 
 
   mounted() {
-
 
   },
 

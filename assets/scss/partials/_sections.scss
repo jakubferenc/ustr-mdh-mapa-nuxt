@@ -390,7 +390,6 @@
   box-shadow: none;
 
   .layer-bar {
-    background: #48d0b0;
     height: 33px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -522,8 +521,10 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    .icons img {
+    .icons .icon {
       height: 20px;
+      width: 20px;
+
       vertical-align: middle;
     }
     .meta {
@@ -534,7 +535,7 @@
 
 .card.card-thumb {
   .card-title {
-    height: 120px;
+    min-height: 120px;
     overflow: hidden;
   }
 }
@@ -976,29 +977,6 @@
   background-size: 15px auto;
   transition: width, heigh, border-radius 0.25s ease-in-out;
 
-  &.ulice {
-    background-image: url(../images/icons/icon-object-ulice.svg);
-  }
-
-  &.budova {
-    background-image: url(../images/icons/icon-object-budova.svg);
-  }
-
-  &.pamatnik {
-    background-image: url(../images/icons/icon-object-pamatnik.svg);
-  }
-
-  &.publikace {
-    background-image: url(../images/icons/icon-object-publikace.svg);
-  }
-
-  &.dokument {
-    background-image: url(../images/icons/icon-object-dokument.svg);
-  }
-
-  &.muzeum {
-    background-image: url(../images/icons/icon-object-muzeum.svg);
-  }
 }
 
 .hero-box {

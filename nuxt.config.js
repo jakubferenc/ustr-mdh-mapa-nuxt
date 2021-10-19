@@ -82,13 +82,16 @@ export default {
     proxy: true
   },
   css: [
-    '@/assets/scss/main.sass'
+    '@/assets/scss/main.sass',
+    { src: 'leaflet.markercluster/dist/MarkerCluster.css', lang: 'css' },
+    { src: 'leaflet.markercluster/dist/MarkerCluster.Default.css', lang: 'css' }
   ],
   styleResources: {
     sass: ['~assets/scss/main.sass'],
     hoistUseStatements: true
   },
   plugins: [
+    { src: '~plugins/vue-leaflet.js', ssr: false },
   ],
   proxy: {
   },
@@ -106,7 +109,14 @@ export default {
         content: 'my website description'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{
+      rel:'stylesheet',
+      href:'//unpkg.com/leaflet/dist/leaflet.css'
+    },
+    {
+      rel:'stylesheet',
+      href:'//api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css'
+    }],
   },
 
 };

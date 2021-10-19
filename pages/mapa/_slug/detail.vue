@@ -21,7 +21,7 @@
 
           .cards-container
 
-            <ObjectThumb v-for="(thisObject, index) in mapa.objects.filter(item => item.name)" :key="index" :ThisObject="thisObject" :Map="mapa"/>
+            <ObjectThumb v-for="(thisObject, index) in mapa.objects" :key="index" :ThisObject="thisObject" />
 
 
           //-   each mapLayer in Object.keys(mapSettings.layers)
@@ -34,7 +34,75 @@
           //-       +object-card(object, {safeSlug, mapSettings})
 
 
-      .map(id="mapbox" data-component="mapbox" data-slug=`${safeSlug}`)
+
+      .mapbox(id="mapbox"  data-component="mapbox")
+
+          <l-map ref="mapbox" :options="{scrollWheelZoom: false}" :zoom="7" :center="[50.08804,14.42076]">
+            l-tile-layer(
+              id='',
+              accessToken='pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw',
+              attribution="Mapová data ÚSTR | Podkladová mapa &copy; <a href='//www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='//creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
+              url="https://api.mapbox.com/styles/v1/jakubferenc/ckfnqth7411u319o31xieiy4n/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw"
+            )
+            <v-marker-cluster ref="clusterRef" :options="{showCoverageOnHover: false, zoomToBoundsOnClick: true, removeOutsideVisibleBounds: true}">
+              <l-marker v-for="item in mapa.objects" :key="item.id" :lat-lng="item.LatLng">
+                <l-popup>
+                  <NuxtLink to="">
+                    div(v-html="item.PopupHTML")
+                  </NuxtLink>
+                </l-popup>
+                <l-icon :icon-anchor="[0,0]" :icon-size="[40, 40]">
+                  <div aria-label="" class="mdh-map-icon map-thumb-icon" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-id="item.id" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `">
+                    <NuxtLink :to="`/objekt/${item.id}`">
+                      <div class="is-hidden headline">test content</div>
+                      //- span(v-if="item.Soubory.length > 0")
+                      //-   img(:src="item.Soubory[0].URLNahled" class="map-person-thumb-head-icon-image")
+                    </NuxtLink>
+                  </div>
+                </l-icon>
+              </l-marker>
+            </v-marker-cluster>
+
+          //- pointToLayer: function (feature, latlng) {
+
+          //-     let classNamesArray = ['mdh-map-icon'];
+          //-     classNamesArray = [...classNamesArray, feature.properties.type]; // the type comes form the GeoJSON of places
+
+
+          //-     thisMarker.on('mouseover', (e) => {
+
+          //-       thisMarker.openPopup();
+
+          //-     });
+
+          //-     thisMarker.on('mouseout', (e) => {
+
+          //-       thisMarker.closePopup();
+
+          //-     });
+
+          //-     thisMarker.on('contextmenu', () => {return false;});
+
+          //-     thisMarker.on('click', (e) => {
+
+          //-       cardDetailOpen({objectId: e.target.feature.properties.name});
+
+          //-       thisMarker.setZIndexOffset(30);
+          //-       thisMarker.openPopup();
+          //-       e.preventDefault();
+          //-       e.stopImmediatePropagation();
+
+          //-     });
+
+          //-     store.markers[feature.properties.name] = thisMarker;
+
+          //-     //markerClusters.addLayer( thisMarker );
+
+          //-     return thisMarker;
+
+          //- },
+
+          </l-map>
 
       .view-switch(data-component="view-switch")
         .heading.is-sr-only Zobrazení mapy
@@ -109,6 +177,11 @@
 
 </template>
 
+<style lang="sass">
+
+
+</style>
+
 <script>
 export default {
 
@@ -140,12 +213,6 @@ export default {
 
     computed: {
 
-      kategorie() {
-        const categoriesEdited = Object.keys(this.mapa.categories).map(key => this.mapa.categories[key]);
-
-
-        return categoriesEdited;
-      },
 
       autori() {
 
@@ -161,6 +228,236 @@ export default {
 
       console.log(this.mapa);
 
+
+      // functions
+      ////////////////////////////////////////////////////////////
+
+      const enableAllInactiveMarkers = () => {
+
+        const $markers = document.querySelectorAll('.mdh-map-icon');
+        Array.from($markers).forEach( ($marker) => {
+
+          __removeClass($marker.parentElement, 'inactive');
+
+        });
+
+      };
+
+      const disableAllInactiveMarkers = () => {
+
+        const $markers = document.querySelectorAll('.mdh-map-icon');
+        Array.from($markers).forEach( ($marker) => {
+
+          __addClass($marker.parentElement, 'inactive');
+
+        });
+
+      };
+
+      const disableAllActiveMarkers = () => {
+
+        const $markers = document.querySelectorAll('.leaflet-marker-icon.active');
+        Array.from($markers).forEach( ($marker) => {
+
+          __removeClass($marker, 'active');
+
+        });
+
+      };
+
+      const closeAllLeafletTooltips = () => {
+
+        const $tooltips = document.querySelectorAll('.leaflet-popup');
+        Array.from($tooltips).forEach( ($item) => {
+          $item.remove();
+        });
+
+      };
+
+      const cardDetailOpen = (cardProperties, fromMarker = false) => {
+
+        const $activeCardDetail = document.querySelector(`[data-object-detail-id]:not(.is-hidden)`);
+
+        if ($activeCardDetail) {
+          __addClass($activeCardDetail, 'is-hidden');
+        }
+
+        const $cardDetail = document.querySelector(`[data-object-detail-id="${cardProperties.objectId}"]`);
+
+        previousPage = window.location;
+        history.replaceState(null, cardProperties.objectId, `?objekt=${cardProperties.objectId}`);
+
+        /// save scroll position so that we can return back to it once detail is closed
+        store.page.scrollTopPositionBeforeDetailOpen = $listViewContainer.scrollTop;
+        $listViewContainer.scrollTop = 0;
+
+        // prepare list view container for showing the object detail
+        __addClass($listViewContainer, 'inactive');
+
+
+        // open leafLeft marker popup
+        disableAllInactiveMarkers();
+
+        const $activeMarker = document.querySelector(`[data-marker-id="${cardProperties.objectId}"]`).parentElement;
+        __removeClass($activeMarker, 'inactive');
+        __addClass($activeMarker, 'active');
+
+
+        //store.markers[cardProperties.objectId].openPopup();
+        store.map.setView(store.markers[cardProperties.objectId].getLatLng(), 7);
+
+        // close btn handler
+        if (!__hasClass($cardDetail, 'has-handler-close')) {
+
+          const $closeBtn = $cardDetail.querySelector('[data-component="close"]');
+          $closeBtn.addEventListener('click', (e) => {
+
+            e.stopPropagation();
+            e.preventDefault();
+
+            cardDetailClose($cardDetail);
+
+            return false;
+          });
+          __addClass($cardDetail, 'has-handler-close');
+
+        }
+
+
+        __removeClass($cardDetail, 'is-hidden');
+
+
+        // active gallery
+
+        if (!__hasClass($cardDetail, 'has-gallery-init')) {
+
+          const $thisCardMainGallery = $cardDetail.querySelector('[data-component="gallery-detail"]');
+
+          if ($thisCardMainGallery) {
+
+            // the object has images
+
+            const glide = new Glide($thisCardMainGallery, {
+              type: 'carousel',
+              startAt: 0,
+              perView: 1
+            }).mount({ Controls });
+
+            // init gallery
+            const lightbox = GLightbox({
+              touchNavigation: true,
+              loop: true,
+              autoplayVideos: false
+            });
+
+
+            __addClass($cardDetail, 'has-gallery-init');
+
+          }
+
+        }
+
+      };
+
+      const cardDetailClose = ($cardDetailObj) => {
+
+        closeAllLeafletTooltips();
+
+        history.replaceState(null, '', previousPage);
+
+        __removeClass($listViewContainer, 'inactive');
+
+        $listViewContainer.scrollTop = store.page.scrollTopPositionBeforeDetailOpen;
+        console.log("after close, scroll position", store.page.scrollTopPositionBeforeDetailOpen);
+
+        __toggleClass($cardDetailObj, 'is-hidden');
+
+        enableAllInactiveMarkers();
+        disableAllActiveMarkers();
+
+      };
+
+      const getHTMLforLeafletPopup = (feature) => {
+
+        let html = '';
+
+        if (feature.images.length > 0) {
+
+          html = `
+            <div id="popup-${feature.properties.name}" class="map-popup">
+            <div class="popup-layer-image">
+              <img src="/assets/data-maps/topografie-pameti-julius-fucik/images/${feature.properties.slug}/${feature.images[0].thumbnail}" alt="">
+            </div>
+            <h1 class="popup-layer-title">${feature.properties.name}</h1>
+            <div class="popup-layer-tag">
+              <div class="meta meta-category">
+                <span class="text-icon">#</span>
+                <span class="text-content">${feature.properties.layer}</span>
+              </div>
+            </div>
+          `;
+
+        } else {
+
+          html = `
+            <div id="popup-${feature.properties.name}" class="map-popup">
+            <div class="popup-layer-image"></div>
+            <h1 class="popup-layer-title">${feature.properties.name}</h1>
+            <div class="popup-layer-tag">
+              <div class="meta meta-category">
+                <span class="text-icon">#</span>
+                <span class="text-content">${feature.properties.layer}</span>
+              </div>
+            </div>
+          `;
+
+        }
+
+
+
+        return html;
+
+      };
+
+
+      ////////////////////////////////////////////////////////////
+
+      const $mapDetailView = document.querySelector('[data-component="map-detail-view"]');
+      const $mapDetailFilter = document.querySelector('[data-component="filter"]');
+      const $mapDetailFilterSwitch = document.querySelector('.filter-button-switch');
+
+      // map view switch
+      const $mapViewSwitch = document.querySelector('[data-component="view-switch"]');
+      const $mapViewSwitchLinks = $mapViewSwitch.querySelectorAll('.item');
+
+
+      const $mapbox = document.querySelector('[data-component="mapbox"]'); /*:TODO: currently working with only one mapbox per page */
+      const $listViewContainer = document.querySelector('[data-component="list-objects-container"]');
+      const $listView = document.querySelector('[data-component="list-objects"]');
+
+      // we have mapbox item, initialize Leafleft and Mapbox
+      // find map DOM objects and initialize them through Leaflet
+      ////////////////////////////////////////////////////////////
+      if ($mapbox) {
+
+
+
+        //const markerClusters = L.markerClusterGroup();
+
+
+        //   //vytvoří skupinu s vrstvou  bez klastrů
+        // let vrstvaPlaces = L.geoJSON(places, {
+        //   onEachFeature: function (feature, layer) {
+        //     layer.bindPopup(getHTMLforLeafletPopup(feature));
+        //   },
+
+      // });
+
+
+      }
+      ////////////////////////////////////////////////////////////
+
+
     },
 
     data() {
@@ -174,7 +471,7 @@ export default {
       return {
         title: `${this.title} — ${this.$config.globalTitle}`,
         htmlAttrs: {
-          class: ''
+          class: 'no-footer'
         }
       }
     }
