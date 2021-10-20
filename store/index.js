@@ -1,9 +1,17 @@
 export const state = () => ({
   mapy: [],
+  aktualniFiltrPolozky: [],
 });
 
 
 export const mutations = {
+
+
+  updateAktualniFiltrPolozky: (state, aktualniFiltrPolozky) => {
+
+    state.aktualniFiltrPolozky = aktualniFiltrPolozky;
+
+  },
 
 
   updateMapy: (state, mapy) => {
@@ -14,6 +22,15 @@ export const mutations = {
 
 export const actions = {
 
+  setAktualniFiltrPolozky ({ state, commit }, aktualniFiltrPolozky) {
+    try {
+
+      commit("updateAktualniFiltrPolozky", aktualniFiltrPolozky);
+
+    } catch (err) {
+      console.warn(err);
+    }
+  },
 
   async getMapy ({ state, commit, $fire }) {
 
@@ -44,6 +61,11 @@ export const actions = {
         let modifiedObjects = Object.values(maps[key].objects).map((objekt) => {
 
           const categoryObject = maps[key].categories.filter(category => category.name === objekt.layer)[0];
+
+
+          if (objekt.type && objekt.type !== undefined) {
+            objekt.type = objekt.type.toLowerCase();
+          }
 
           objekt.LatLng = [parseFloat(objekt.y), parseFloat(objekt.x)];
           objekt.categoryColor = categoryObject.color;

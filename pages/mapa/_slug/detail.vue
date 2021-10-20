@@ -4,7 +4,7 @@
 
     .main-container(data-component="map-detail-view")
 
-      <FilterObjects :Typy="mapa.types.split(',')" :Kategorie="mapa.categories" />
+      <FilterObjects :Typy="mapa.types.split(',')" :Kategorie="[...mapa.categories]" />
 
       .main-content(data-component="list-objects-container")
 
@@ -21,7 +21,7 @@
 
           .cards-container
 
-            <ObjectThumb v-for="(thisObject, index) in mapa.objects" :key="index" :ThisObject="thisObject" />
+            <ObjectThumb v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" />
 
 
           //-   each mapLayer in Object.keys(mapSettings.layers)
@@ -37,72 +37,36 @@
 
       .mapbox(id="mapbox"  data-component="mapbox")
 
-          <l-map ref="mapbox" :options="{scrollWheelZoom: false}" :zoom="7" :center="[50.08804,14.42076]">
+          l-map(ref="mapbox" :options="{scrollWheelZoom: false}" :zoom="7" :center="[50.08804,14.42076]")
             l-tile-layer(
               id='',
               accessToken='pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw',
               attribution="Mapová data ÚSTR | Podkladová mapa &copy; <a href='//www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='//creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
               url="https://api.mapbox.com/styles/v1/jakubferenc/ckfnqth7411u319o31xieiy4n/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw"
             )
-            <v-marker-cluster ref="clusterRef" :options="{showCoverageOnHover: false, zoomToBoundsOnClick: true, removeOutsideVisibleBounds: true}">
-              <l-marker v-for="item in mapa.objects" :key="item.id" :lat-lng="item.LatLng">
-                <l-popup>
-                  <NuxtLink to="">
-                    div(v-html="item.PopupHTML")
-                  </NuxtLink>
-                </l-popup>
-                <l-icon :icon-anchor="[0,0]" :icon-size="[40, 40]">
-                  <div aria-label="" class="mdh-map-icon map-thumb-icon" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-id="item.id" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `">
-                    <NuxtLink :to="`/objekt/${item.id}`">
-                      <div class="is-hidden headline">test content</div>
-                      //- span(v-if="item.Soubory.length > 0")
-                      //-   img(:src="item.Soubory[0].URLNahled" class="map-person-thumb-head-icon-image")
-                    </NuxtLink>
-                  </div>
-                </l-icon>
-              </l-marker>
-            </v-marker-cluster>
+            v-marker-cluster(ref="clusterRef" :options="{showCoverageOnHover: false, zoomToBoundsOnClick: true, removeOutsideVisibleBounds: true}")
+              l-marker(v-for="item in objektyPresFiltr" :ref="`marker-${item.id}`" :key="item.id" :lat-lng="item.LatLng" @click="markerClickHandler(item, $event)")
 
-          //- pointToLayer: function (feature, latlng) {
+                l-icon(:icon-anchor="[0,0]" :icon-size="[40, 40]" )
+                  .map-thumb-icon-container()
+                    .marker-popup(:style="`background-color: ${item.categoryColor} `")
+                      .layer-bar
+                        .meta.meta-category {{ item.layer }}
+                      .card-content
+                        .title-bar
+                          h1.card-title.marker-popup-title {{item.name}}
 
-          //-     let classNamesArray = ['mdh-map-icon'];
-          //-     classNamesArray = [...classNamesArray, feature.properties.type]; // the type comes form the GeoJSON of places
+                        .footer-bar
+                          .meta.meta-address
+                            div(v-if="item.exists === false")
+                              s GPS: {{item.y}}, {{item.x}}
+                            div(v-else)
+                              | GPS: {{item.y}}, {{item.x}}
+
+                    .mdh-map-icon.map-thumb-icon(aria-label="" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-id="item.id" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `")
 
 
-          //-     thisMarker.on('mouseover', (e) => {
 
-          //-       thisMarker.openPopup();
-
-          //-     });
-
-          //-     thisMarker.on('mouseout', (e) => {
-
-          //-       thisMarker.closePopup();
-
-          //-     });
-
-          //-     thisMarker.on('contextmenu', () => {return false;});
-
-          //-     thisMarker.on('click', (e) => {
-
-          //-       cardDetailOpen({objectId: e.target.feature.properties.name});
-
-          //-       thisMarker.setZIndexOffset(30);
-          //-       thisMarker.openPopup();
-          //-       e.preventDefault();
-          //-       e.stopImmediatePropagation();
-
-          //-     });
-
-          //-     store.markers[feature.properties.name] = thisMarker;
-
-          //-     //markerClusters.addLayer( thisMarker );
-
-          //-     return thisMarker;
-
-          //- },
-
-          </l-map>
 
       .view-switch(data-component="view-switch")
         .heading.is-sr-only Zobrazení mapy
@@ -180,6 +144,63 @@
 <style lang="sass">
 
 
+  .map-thumb-icon
+    box-shadow: 0 0.2em 0.5em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%)
+
+
+  .leaflet-marker-icon,
+  .leaflet-marker-icon[style]
+
+    &:hover
+      z-index: 9999 !important
+
+  .map-thumb-icon-container
+    position: relative
+    z-index: 99
+
+    &:hover
+
+      &::before
+        content: ""
+        position: absolute
+        width: 218px
+        height: 300px
+        background: none
+        bottom: 0
+        z-index: -1
+
+      .marker-popup
+        display: block
+
+  .marker-popup
+    box-shadow: 0 0.2em 0.5em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%)
+    display: none
+    position: absolute
+    bottom: calc(40px + 1rem)
+    width: 218px
+    min-height: 50px
+    border-radius: 10px
+    padding: 15px 10px
+
+    font-family: "Roboto Condensed", sans-serif
+
+    font-size: 13px
+
+
+
+    .layer-bar
+      margin-bottom: 1rem
+
+
+    .footer-bar
+      margin-top: 1rem
+
+    .marker-popup-title
+      font-weight: bold
+
+
+
+
 </style>
 
 <script>
@@ -213,6 +234,19 @@ export default {
 
     computed: {
 
+      objektyPresFiltr() {
+
+        let objekty = this.mapa.objects;
+
+        const activeCategories = this.$store.state.aktualniFiltrPolozky;
+
+        // do filtering
+
+        objekty = objekty.filter(item => activeCategories.includes(item.layer));
+
+        return objekty;
+
+      },
 
       autori() {
 
@@ -224,9 +258,18 @@ export default {
 
     },
 
-    mounted() {
 
-      console.log(this.mapa);
+    methods: {
+
+      markerClickHandler(thisObject, action) {
+
+        console.log("clicked: ", thisObject);
+
+      }
+
+    },
+
+    mounted() {
 
 
       // functions
@@ -376,86 +419,6 @@ export default {
         disableAllActiveMarkers();
 
       };
-
-      const getHTMLforLeafletPopup = (feature) => {
-
-        let html = '';
-
-        if (feature.images.length > 0) {
-
-          html = `
-            <div id="popup-${feature.properties.name}" class="map-popup">
-            <div class="popup-layer-image">
-              <img src="/assets/data-maps/topografie-pameti-julius-fucik/images/${feature.properties.slug}/${feature.images[0].thumbnail}" alt="">
-            </div>
-            <h1 class="popup-layer-title">${feature.properties.name}</h1>
-            <div class="popup-layer-tag">
-              <div class="meta meta-category">
-                <span class="text-icon">#</span>
-                <span class="text-content">${feature.properties.layer}</span>
-              </div>
-            </div>
-          `;
-
-        } else {
-
-          html = `
-            <div id="popup-${feature.properties.name}" class="map-popup">
-            <div class="popup-layer-image"></div>
-            <h1 class="popup-layer-title">${feature.properties.name}</h1>
-            <div class="popup-layer-tag">
-              <div class="meta meta-category">
-                <span class="text-icon">#</span>
-                <span class="text-content">${feature.properties.layer}</span>
-              </div>
-            </div>
-          `;
-
-        }
-
-
-
-        return html;
-
-      };
-
-
-      ////////////////////////////////////////////////////////////
-
-      const $mapDetailView = document.querySelector('[data-component="map-detail-view"]');
-      const $mapDetailFilter = document.querySelector('[data-component="filter"]');
-      const $mapDetailFilterSwitch = document.querySelector('.filter-button-switch');
-
-      // map view switch
-      const $mapViewSwitch = document.querySelector('[data-component="view-switch"]');
-      const $mapViewSwitchLinks = $mapViewSwitch.querySelectorAll('.item');
-
-
-      const $mapbox = document.querySelector('[data-component="mapbox"]'); /*:TODO: currently working with only one mapbox per page */
-      const $listViewContainer = document.querySelector('[data-component="list-objects-container"]');
-      const $listView = document.querySelector('[data-component="list-objects"]');
-
-      // we have mapbox item, initialize Leafleft and Mapbox
-      // find map DOM objects and initialize them through Leaflet
-      ////////////////////////////////////////////////////////////
-      if ($mapbox) {
-
-
-
-        //const markerClusters = L.markerClusterGroup();
-
-
-        //   //vytvoří skupinu s vrstvou  bez klastrů
-        // let vrstvaPlaces = L.geoJSON(places, {
-        //   onEachFeature: function (feature, layer) {
-        //     layer.bindPopup(getHTMLforLeafletPopup(feature));
-        //   },
-
-      // });
-
-
-      }
-      ////////////////////////////////////////////////////////////
 
 
     },

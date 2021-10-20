@@ -47,7 +47,14 @@ export default {
   },
   buildModules: [
     "@nuxtjs/svg",
-    '@nuxtjs/style-resources'
+    ['@nuxtjs/style-resources', {
+      // your settings here
+      sass: [
+        '~assets/scss/defs/_all.sass',
+      ],
+      scss: [],
+      hoistUseStatements: true  // Hoists the "@use" imports. Applies only to "sass", "scss" and "less". Default: false.
+    }],
   ],
   modules: [
   '@nuxtjs/proxy',
@@ -86,10 +93,6 @@ export default {
     { src: 'leaflet.markercluster/dist/MarkerCluster.css', lang: 'css' },
     { src: 'leaflet.markercluster/dist/MarkerCluster.Default.css', lang: 'css' }
   ],
-  styleResources: {
-    sass: ['~assets/scss/main.sass'],
-    hoistUseStatements: true
-  },
   plugins: [
     { src: '~plugins/vue-leaflet.js', ssr: false },
   ],

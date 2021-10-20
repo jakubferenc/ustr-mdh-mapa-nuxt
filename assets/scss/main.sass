@@ -1,15 +1,9 @@
 @charset "utf-8"
-
-@use "sass:math"
-
+@use 'sass:math'
 // bulma
 // Import only what you need from Bulma
 @import "bulma"
-
 // fonts
-
-// custom library
-@import "lib/all"
 
 // typography
 @import "typography"
@@ -208,7 +202,7 @@ a[href^="tel"]
     text-align: left
     margin-left: 0
 
-  +until($widescreen)
+  +until-widescreen
 
     .banner-text
 
@@ -283,7 +277,7 @@ a[href^="tel"]
   margin-top: 5rem
   margin-bottom: 5rem
 
-  +until($tablet)
+  +mobile
 
 
 
@@ -330,9 +324,6 @@ a[href^="tel"]
 /****************************************************/
 /* :MAP: */
 
-
-.map-thumb-icon
-  box-shadow: 0 0.2em 0.5em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%)
 
 .leaflet-control-zoom
 
