@@ -19,38 +19,59 @@ export default {
         types: {
           1: {
             "label": "Památníky",
-            "slug": "pamatnik",
-            "icon": "icon-object-pamatnik"
+            "slug": "památníky",
+            "safeSlug": "pamatnik",
+            "icon": "icon-object-pamatnik",
+            "component": "IconObjectPamatnik",
           },
           2: {
             "label": "Ulice",
             "slug": "ulice",
-            "icon": "icon-object-ulice"
+            "safeSlug": "ulice",
+            "icon": "icon-object-ulice",
+            "component": "IconObjectUlice",
           },
           3: {
             "label": "Muzea",
-            "slug": "muzeum",
-            "icon": "icon-object-muzeum"
+            "slug": "muzea",
+            "safeSlug": "muzeum",
+            "icon": "icon-object-muzeum",
+            "component": "IconObjectMuzeum",
           },
           4: {
             "label": "Dokumenty",
-            "slug": "dokument",
-            "icon": "icon-object-dokument"
+            "slug": "dokumenty",
+            "safeSlug": "dokument",
+            "icon": "icon-object-dokument",
+            "component": "IconObjectDokument",
           },
           5: {
             "label": "Budovy",
-            "slug": "budova",
-            "icon": "icon-object-budova"
+            "slug": "budovy",
+            "safeSlug": "budova",
+            "icon": "icon-object-budova",
+            "component": "IconObjectBudova",
           },
           6: {
             "label": "Místa",
-            "slug": "misto",
-            "icon": "icon-object-misto"
+            "slug": "místa",
+            "safeSlug": "misto",
+            "icon": "icon-object-misto",
+            "component": "IconObjectMisto",
           },
           7: {
             "label": "Umělecká díla",
-            "slug": "artefakt",
-            "icon": "icon-object-dokument"
+            "slug": "umělecká díla",
+            "safeSlug": "artefakt",
+            "icon": "icon-object-dokument",
+            "component": "IconObjectUmeleckeDilo",
+          },
+          8: {
+            "label": "Události",
+            "slug": "události",
+            "safeSlug": "udalost",
+            "icon": "icon-object-udalost",
+            "component": "IconObjectUdalost",
           }
         }
       }

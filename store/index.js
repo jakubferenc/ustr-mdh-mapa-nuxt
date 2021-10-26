@@ -1,18 +1,26 @@
+import projectConfig from '../project.config';
+
 export const state = () => ({
   mapy: [],
   aktualniFiltrPolozky: [],
+  aktualniFiltrTypPolozky: [],
 });
 
 
 export const mutations = {
 
 
-  updateAktualniFiltrPolozky: (state, aktualniFiltrPolozky) => {
+  updateAktualniFiltrPolozky: (state, polozky) => {
 
-    state.aktualniFiltrPolozky = aktualniFiltrPolozky;
+    state.aktualniFiltrPolozky = polozky;
 
   },
 
+  updateAktualniFiltrTypPolozky: (state, polozky) => {
+
+    state.aktualniFiltrTypPolozky = polozky;
+
+  },
 
   updateMapy: (state, mapy) => {
     state.mapy = mapy;
@@ -22,10 +30,20 @@ export const mutations = {
 
 export const actions = {
 
-  setAktualniFiltrPolozky ({ state, commit }, aktualniFiltrPolozky) {
+  setAktualniFiltrPolozky ({ state, commit }, polozky) {
     try {
 
-      commit("updateAktualniFiltrPolozky", aktualniFiltrPolozky);
+      commit("updateAktualniFiltrPolozky", polozky);
+
+    } catch (err) {
+      console.warn(err);
+    }
+  },
+
+  setAktualniFiltrTypPolozky ({ state, commit }, newActiveTypes) {
+    try {
+
+      commit("updateAktualniFiltrTypPolozky", newActiveTypes);
 
     } catch (err) {
       console.warn(err);
@@ -57,6 +75,12 @@ export const actions = {
         // transform object of objects into array of objects
         maps[key].categories = Object.values(maps[key].categories);
 
+        // transform string ids from Firebase/Google Sheet into objects from project config
+        maps[key].types = maps[key].types
+        .split(',')
+        .map(itemId => itemId.trim())
+        .map(itemId => projectConfig.appConfig.mdh.object.types[itemId]);
+
         // because the data structure is an object of objects, we need to transform it into an array of objects
         let modifiedObjects = Object.values(maps[key].objects).map((objekt) => {
 
@@ -77,7 +101,7 @@ export const actions = {
         maps[key].objects = modifiedObjects;
 
 
-        // sort objects based on the order of categories
+        // sort objects based on the order of categories defined via Firebase/Google Sheets
         const defaultCategoryNames = maps[key].categories.map(category => category.name);
 
         let categoriesToSortBy = defaultCategoryNames;

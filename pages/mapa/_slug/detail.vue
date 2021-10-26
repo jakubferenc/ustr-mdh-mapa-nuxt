@@ -4,7 +4,7 @@
 
     .main-container(data-component="map-detail-view")
 
-      <FilterObjects :Typy="mapa.types.split(',')" :Kategorie="[...mapa.categories]" />
+      <FilterObjects :Typy="[...mapa.types]" :Kategorie="[...mapa.categories]" />
 
       .main-content(data-component="list-objects-container")
 
@@ -51,7 +51,7 @@
                   .map-thumb-icon-container()
                     .marker-popup(:style="`background-color: ${item.categoryColor} `")
                       .layer-bar
-                        .meta.meta-category {{ item.layer }}
+                        .meta.meta-category Kategorie: {{ item.layer }}
                       .card-content
                         .title-bar
                           h1.card-title.marker-popup-title {{item.name}}
@@ -240,9 +240,13 @@ export default {
 
         const activeCategories = this.$store.state.aktualniFiltrPolozky;
 
+        const activeTypes = this.$store.state.aktualniFiltrTypPolozky;
+
         // do filtering
 
         objekty = objekty.filter(item => activeCategories.includes(item.layer));
+
+        objekty = objekty.filter(item => activeTypes.includes(item.type));
 
         return objekty;
 
@@ -271,6 +275,7 @@ export default {
 
     mounted() {
 
+      console.log("this.mapa", this.mapa);
 
       // functions
       ////////////////////////////////////////////////////////////

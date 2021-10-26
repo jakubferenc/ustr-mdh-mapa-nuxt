@@ -17,11 +17,16 @@
         .filter-section-title Typ objektu
         .filter-section-list.filter-section-list--icons
 
-          a(v-for="type in Typy" :class="`filter-item filter-item--${$config.appConfig.mdh.object.types[type].label}`" :data-filter-type="`${$config.appConfig.mdh.object.types[type].slug}`" href="#")
+          a.filter-item(href="#" v-for="item in Typy" :class="{[`filter-item--${item.slug}`]: true, active: activeFilterTypes.includes(item.slug)}" :data-filter-type="`${item.slug}`" @click="toggleFilterTypeItem(item.slug)")
             .icon
-              img(:src="require(`/assets/images/icons/${$config.appConfig.mdh.object.types[type].icon}.svg`)")
+              <IconObjectBudova v-if="item.component === 'IconObjectBudova' " />
+              <IconObjectDokument v-if="item.component === 'IconObjectDokument' " />
+              <IconObjectMisto v-if="item.component === 'IconObjectMisto' " />
+              <IconObjectMuzeum v-if="item.component === 'IconObjectMuzeum' " />
+              <IconObjectPamatnik v-if="item.component === 'IconObjectPamatnik' " />
+              <IconObjectUlice v-if="item.component === 'IconObjectUlice' " />
 
-            .text {{$config.appConfig.mdh.object.types[type].label}}
+            .text {{item.label}}
 
     .filter-button-switch(@click="toggleFilter()")
       .filter-button-switch-icon-container
@@ -159,6 +164,11 @@
           width: 100%
 
 
+
+        &.active:hover
+
+
+
     .filter-section-list.filter-section-list--icons
       flex-wrap: wrap
       flex-direction: row
@@ -246,8 +256,19 @@
 
 </style>
 <script>
+
+import IconObjectBudova from "~/assets/images/icons/icon-object-budova.svg?inline";
+import IconObjectDokument from "~/assets/images/icons/icon-object-dokument.svg?inline";
+import IconObjectMisto from "~/assets/images/icons/icon-object-dokument.svg?inline";
+import IconObjectMuzeum from "~/assets/images/icons/icon-object-muzeum.svg?inline";
+import IconObjectPamatnik from "~/assets/images/icons/icon-object-pamatnik.svg?inline";
+import IconObjectUlice from "~/assets/images/icons/icon-object-ulice.svg?inline";
+
+
 export default {
   props: ["Typy", "Kategorie"],
+
+   components: { IconObjectBudova, IconObjectDokument, IconObjectMisto,  IconObjectMuzeum, IconObjectPamatnik, IconObjectUlice },
 
 
   async asyncData({params, error, payload, store}) {
@@ -258,6 +279,7 @@ export default {
   created() {
 
     this.$store.dispatch("setAktualniFiltrPolozky", this.activeFilterCategories);
+    this.$store.dispatch("setAktualniFiltrTypPolozky", this.activeFilterTypes);
 
   },
 
@@ -276,6 +298,25 @@ export default {
       }
 
       this.$store.dispatch("setAktualniFiltrPolozky", this.activeFilterCategories);
+
+
+    },
+
+    toggleFilterTypeItem(filterItemTypeSlug) {
+
+      const idx = this.activeFilterTypes.indexOf(filterItemTypeSlug);
+
+      let activeFilterTypesCopy = [...this.activeFilterTypes];
+
+      if (idx > -1 ) {
+
+        this.activeFilterTypes = activeFilterTypesCopy.filter(activeItemSlug => activeItemSlug !== filterItemTypeSlug);
+
+      } else {
+        this.activeFilterTypes = [...activeFilterTypesCopy, filterItemTypeSlug];
+      }
+
+      this.$store.dispatch("setAktualniFiltrTypPolozky", this.activeFilterTypes);
 
     },
 
@@ -304,8 +345,8 @@ export default {
     return {
       thisComponentStyles: {},
       showFilter: false,
-      activeFilterCategories: [...this.Kategorie].map(kategorie => kategorie.name),
-      activeFilterTypes: []
+      activeFilterCategories: this.Kategorie.map(kategorie => kategorie.name),
+      activeFilterTypes: this.Typy.map(item => item.slug),
     }
   },
 
