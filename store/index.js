@@ -1,4 +1,7 @@
 import projectConfig from '../project.config';
+import { truncate } from '../utils/functions';
+import { fixTypos } from 'typopo';
+
 
 export const state = () => ({
   mapy: [],
@@ -70,6 +73,9 @@ export const actions = {
 
       });
 
+      // Modify individual objects of a given map
+      // trim IDs to erase incidental white spaces left in google sheet source DB
+
       Object.keys(maps).forEach(key => {
 
         // transform object of objects into array of objects
@@ -90,6 +96,20 @@ export const actions = {
           if (objekt.type && objekt.type !== undefined) {
             objekt.type = objekt.type.toLowerCase();
           }
+
+          objekt.name = fixTypos(objekt.name);
+
+          if (objekt.description && objekt.description !== '') {
+
+            objekt.description = fixTypos(objekt.description);
+
+          }
+
+
+
+          objekt.nameShort = truncate(objekt.name, 100, '...');
+
+          objekt.mapSlug = maps[key].slug;
 
           objekt.LatLng = [parseFloat(objekt.y), parseFloat(objekt.x)];
           objekt.categoryColor = categoryObject.color;

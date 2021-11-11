@@ -14,6 +14,8 @@
             span.icon-text Zpět
 
 
+        <ObjectDetail v-if="isShowDetail" v-on:card-detail-close="cardDetailClose()" :ThisObject="activeObjectData" />
+
 
         div(data-component="list-objects")
 
@@ -21,18 +23,7 @@
 
           .cards-container
 
-            <ObjectThumb v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" />
-
-
-          //-   each mapLayer in Object.keys(mapSettings.layers)
-
-          //-     - let thisFeaturesSet = features.filter(item => item.properties.layer === mapLayer)
-          //-     - thisFeaturesSet.map(item => { if (item.images.length == 0) {thisFeaturesSet.push(thisFeaturesSet.shift())} })
-
-          //-     each object in thisFeaturesSet
-
-          //-       +object-card(object, {safeSlug, mapSettings})
-
+            <ObjectThumb v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" @click.native="cardDetailOpen(thisObject)"  />
 
 
       .mapbox(id="mapbox"  data-component="mapbox")
@@ -48,7 +39,7 @@
               l-marker(v-for="item in objektyPresFiltr" :ref="`marker-${item.id}`" :key="item.id" :lat-lng="item.LatLng" @click="markerClickHandler(item, $event)")
 
                 l-icon(:icon-anchor="[0,0]" :icon-size="[40, 40]" )
-                  .map-thumb-icon-container()
+                  .map-thumb-icon-container(:data-marker-id="item.id" :data-coords="item.LatLng")
                     .marker-popup(:style="`background-color: ${item.categoryColor} `")
                       .layer-bar
                         .meta.meta-category Kategorie: {{ item.layer }}
@@ -63,7 +54,7 @@
                             div(v-else)
                               | GPS: {{item.y}}, {{item.x}}
 
-                    .mdh-map-icon.map-thumb-icon(aria-label="" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-id="item.id" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `")
+                    .mdh-map-icon.map-thumb-icon(aria-label="" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `")
 
 
 
@@ -147,6 +138,47 @@
   .map-thumb-icon
     box-shadow: 0 0.2em 0.5em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%)
 
+    $iconSize: 40px
+
+    background-color: #fff
+    width: $iconSize
+    height: $iconSize
+    border-radius: $iconSize
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 15px auto
+    transition: width, heigh, border-radius 0.25s ease-in-out
+
+
+
+  .leaflet-marker-icon
+
+    &.inactive
+
+      pointer-events: none
+      opacity: 0.4
+
+  .map-thumb-icon-container
+
+    &.active
+      z-index: 999 !important
+
+      .marker-popup
+        display: block
+
+      .map-thumb-icon
+
+        opacity: 1
+
+    &.inactive
+
+      pointer-events: none
+
+      .map-thumb-icon
+        opacity: 0.4
+
+
+
 
   .leaflet-marker-icon,
   .leaflet-marker-icon[style]
@@ -157,6 +189,7 @@
   .map-thumb-icon-container
     position: relative
     z-index: 99
+
 
     &:hover
 
@@ -234,6 +267,12 @@ export default {
 
     computed: {
 
+      getMapaNazev() {
+
+        return this.mapa.name;
+
+      },
+
       objektyPresFiltr() {
 
         let objekty = this.mapa.objects;
@@ -265,9 +304,150 @@ export default {
 
     methods: {
 
+      enableAllInactiveMarkers() {
+
+        const $markers = document.querySelectorAll('.map-thumb-icon-container, .marker-cluster.inactive');
+        Array.from($markers).forEach( ($marker) => {
+
+          $marker.classList.remove('inactive');
+          $marker.classList.remove('active');
+
+        });
+
+      },
+
+      disableAllInactiveMarkers(markerOfObjectID) {
+
+        const $markers = document.querySelectorAll('.map-thumb-icon-container, .marker-cluster');
+        Array.from($markers).forEach( ($marker) => {
+
+          const $markerReal = $marker.querySelector('.map-thumb-icon');
+
+
+          if (markerOfObjectID != $marker.dataset.markerId) {
+            $marker.classList.add('inactive');
+          } else {
+
+            $marker.classList.add('active');
+
+          }
+
+
+
+        });
+
+      },
+
+      cardDetailClose() {
+
+        this.isShowDetail = false;
+        this.activeObjectData = {};
+
+        this.enableAllInactiveMarkers();
+
+
+        const $listViewContainer = document.querySelector('[data-component="list-objects-container"]');
+
+        $listViewContainer.classList.remove('inactive');
+
+        //closeAllLeafletTooltips();
+
+        //history.replaceState(null, '', previousPage);
+
+        $listViewContainer.scrollTop = this.scrollTopPositionBeforeDetailOpen;
+
+
+        // enableAllInactiveMarkers();
+        // disableAllActiveMarkers();
+
+      },
+
+      cardDetailOpen(thisObject, fromMarker = false) {
+
+        this.isShowDetail = true;
+        this.activeObjectData = thisObject;
+
+        this.disableAllInactiveMarkers(thisObject.id);
+
+        const $listViewContainer = document.querySelector('[data-component="list-objects-container"]');
+
+        /// save scroll position so that we can return back to it once detail is closed
+        this.scrollTopPositionBeforeDetailOpen = $listViewContainer.scrollTop;
+        $listViewContainer.scrollTop = 0;
+
+        // prepare list view container for showing the object detail
+        $listViewContainer.classList.add('inactive');
+
+        console.log(thisObject);
+
+        this.$refs.mapbox.mapObject.flyTo([parseFloat(thisObject.y), parseFloat(thisObject.x)], 15);
+
+      //   // open leafLeft marker popup
+
+      //   const $activeMarker = document.querySelector(`[data-marker-id="${cardProperties.objectId}"]`).parentElement;
+      //   __removeClass($activeMarker, 'inactive');
+      //   __addClass($activeMarker, 'active');
+
+
+      //   //store.markers[cardProperties.objectId].openPopup();
+      //   store.map.setView(store.markers[cardProperties.objectId].getLatLng(), 7);
+
+      //   // close btn handler
+      //   if (!__hasClass($cardDetail, 'has-handler-close')) {
+
+      //     const $closeBtn = $cardDetail.querySelector('[data-component="close"]');
+      //     $closeBtn.addEventListener('click', (e) => {
+
+      //       e.stopPropagation();
+      //       e.preventDefault();
+
+      //       cardDetailClose($cardDetail);
+
+      //       return false;
+      //     });
+      //     __addClass($cardDetail, 'has-handler-close');
+
+      //   }
+
+
+      //   __removeClass($cardDetail, 'is-hidden');
+
+
+      //   // active gallery
+
+      //   if (!__hasClass($cardDetail, 'has-gallery-init')) {
+
+      //     const $thisCardMainGallery = $cardDetail.querySelector('[data-component="gallery-detail"]');
+
+      //     if ($thisCardMainGallery) {
+
+      //       // the object has images
+
+      //       const glide = new Glide($thisCardMainGallery, {
+      //         type: 'carousel',
+      //         startAt: 0,
+      //         perView: 1
+      //       }).mount({ Controls });
+
+      //       // init gallery
+      //       const lightbox = GLightbox({
+      //         touchNavigation: true,
+      //         loop: true,
+      //         autoplayVideos: false
+      //       });
+
+
+      //       __addClass($cardDetail, 'has-gallery-init');
+
+      //     }
+
+      //   }
+
+      },
+
       markerClickHandler(thisObject, action) {
 
-        console.log("clicked: ", thisObject);
+       this.cardDetailOpen(thisObject, true);
 
       }
 
@@ -275,43 +455,10 @@ export default {
 
     mounted() {
 
-      console.log("this.mapa", this.mapa);
 
       // functions
       ////////////////////////////////////////////////////////////
 
-      const enableAllInactiveMarkers = () => {
-
-        const $markers = document.querySelectorAll('.mdh-map-icon');
-        Array.from($markers).forEach( ($marker) => {
-
-          __removeClass($marker.parentElement, 'inactive');
-
-        });
-
-      };
-
-      const disableAllInactiveMarkers = () => {
-
-        const $markers = document.querySelectorAll('.mdh-map-icon');
-        Array.from($markers).forEach( ($marker) => {
-
-          __addClass($marker.parentElement, 'inactive');
-
-        });
-
-      };
-
-      const disableAllActiveMarkers = () => {
-
-        const $markers = document.querySelectorAll('.leaflet-marker-icon.active');
-        Array.from($markers).forEach( ($marker) => {
-
-          __removeClass($marker, 'active');
-
-        });
-
-      };
 
       const closeAllLeafletTooltips = () => {
 
@@ -322,115 +469,16 @@ export default {
 
       };
 
-      const cardDetailOpen = (cardProperties, fromMarker = false) => {
-
-        const $activeCardDetail = document.querySelector(`[data-object-detail-id]:not(.is-hidden)`);
-
-        if ($activeCardDetail) {
-          __addClass($activeCardDetail, 'is-hidden');
-        }
-
-        const $cardDetail = document.querySelector(`[data-object-detail-id="${cardProperties.objectId}"]`);
-
-        previousPage = window.location;
-        history.replaceState(null, cardProperties.objectId, `?objekt=${cardProperties.objectId}`);
-
-        /// save scroll position so that we can return back to it once detail is closed
-        store.page.scrollTopPositionBeforeDetailOpen = $listViewContainer.scrollTop;
-        $listViewContainer.scrollTop = 0;
-
-        // prepare list view container for showing the object detail
-        __addClass($listViewContainer, 'inactive');
-
-
-        // open leafLeft marker popup
-        disableAllInactiveMarkers();
-
-        const $activeMarker = document.querySelector(`[data-marker-id="${cardProperties.objectId}"]`).parentElement;
-        __removeClass($activeMarker, 'inactive');
-        __addClass($activeMarker, 'active');
-
-
-        //store.markers[cardProperties.objectId].openPopup();
-        store.map.setView(store.markers[cardProperties.objectId].getLatLng(), 7);
-
-        // close btn handler
-        if (!__hasClass($cardDetail, 'has-handler-close')) {
-
-          const $closeBtn = $cardDetail.querySelector('[data-component="close"]');
-          $closeBtn.addEventListener('click', (e) => {
-
-            e.stopPropagation();
-            e.preventDefault();
-
-            cardDetailClose($cardDetail);
-
-            return false;
-          });
-          __addClass($cardDetail, 'has-handler-close');
-
-        }
-
-
-        __removeClass($cardDetail, 'is-hidden');
-
-
-        // active gallery
-
-        if (!__hasClass($cardDetail, 'has-gallery-init')) {
-
-          const $thisCardMainGallery = $cardDetail.querySelector('[data-component="gallery-detail"]');
-
-          if ($thisCardMainGallery) {
-
-            // the object has images
-
-            const glide = new Glide($thisCardMainGallery, {
-              type: 'carousel',
-              startAt: 0,
-              perView: 1
-            }).mount({ Controls });
-
-            // init gallery
-            const lightbox = GLightbox({
-              touchNavigation: true,
-              loop: true,
-              autoplayVideos: false
-            });
-
-
-            __addClass($cardDetail, 'has-gallery-init');
-
-          }
-
-        }
-
-      };
-
-      const cardDetailClose = ($cardDetailObj) => {
-
-        closeAllLeafletTooltips();
-
-        history.replaceState(null, '', previousPage);
-
-        __removeClass($listViewContainer, 'inactive');
-
-        $listViewContainer.scrollTop = store.page.scrollTopPositionBeforeDetailOpen;
-        console.log("after close, scroll position", store.page.scrollTopPositionBeforeDetailOpen);
-
-        __toggleClass($cardDetailObj, 'is-hidden');
-
-        enableAllInactiveMarkers();
-        disableAllActiveMarkers();
-
-      };
-
 
     },
 
     data() {
       return {
-        title: `DOPLNIT`,
+        vm: this,
+        scrollTopPositionBeforeDetailOpen: null,
+        activeObjectData: null,
+        isShowDetail: false,
+        title: '',
 
       }
     },

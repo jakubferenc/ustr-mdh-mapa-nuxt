@@ -52,7 +52,8 @@ ehthumbs.db
 data/data_merged.json
 
 # MDH specific
-data-maps
+static
+**/data-maps
 !src/data-maps
 
 # Wordpress #

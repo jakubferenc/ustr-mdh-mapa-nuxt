@@ -25,6 +25,8 @@
               <IconObjectMuzeum v-if="item.component === 'IconObjectMuzeum' " />
               <IconObjectPamatnik v-if="item.component === 'IconObjectPamatnik' " />
               <IconObjectUlice v-if="item.component === 'IconObjectUlice' " />
+              <IconObjectUmeleckeDilo v-if="item.component === 'IconObjectUmeleckeDilo' " />
+              <IconObjectUdalost v-if="item.component === 'IconObjectUdalost' " />
 
             .text {{item.label}}
 
@@ -42,7 +44,16 @@
 </template>
 <style lang="sass">
 
+
+
 [data-component='filter']
+
+  .filter-item
+    .icon
+      svg[height]
+        width: 18px
+        height: auto
+
   height: calc(100vh - #{$header-main-height})
   display: flex
   align-items: flex-start
@@ -259,16 +270,27 @@
 
 import IconObjectBudova from "~/assets/images/icons/icon-object-budova.svg?inline";
 import IconObjectDokument from "~/assets/images/icons/icon-object-dokument.svg?inline";
-import IconObjectMisto from "~/assets/images/icons/icon-object-dokument.svg?inline";
+import IconObjectMisto from "~/assets/images/icons/icon-object-misto.svg?inline";
 import IconObjectMuzeum from "~/assets/images/icons/icon-object-muzeum.svg?inline";
 import IconObjectPamatnik from "~/assets/images/icons/icon-object-pamatnik.svg?inline";
 import IconObjectUlice from "~/assets/images/icons/icon-object-ulice.svg?inline";
+import IconObjectUmeleckeDilo from "~/assets/images/icons/icon-object-umelecke-dilo.svg?inline";
+import IconObjectUdalost from "~/assets/images/icons/icon-object-udalost.svg?inline";
 
 
 export default {
   props: ["Typy", "Kategorie"],
 
-   components: { IconObjectBudova, IconObjectDokument, IconObjectMisto,  IconObjectMuzeum, IconObjectPamatnik, IconObjectUlice },
+  components: {
+    IconObjectUdalost,
+    IconObjectUmeleckeDilo,
+    IconObjectBudova,
+    IconObjectDokument,
+    IconObjectMisto,
+    IconObjectMuzeum,
+    IconObjectPamatnik,
+    IconObjectUlice
+  },
 
 
   async asyncData({params, error, payload, store}) {

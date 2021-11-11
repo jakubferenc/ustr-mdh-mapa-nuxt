@@ -23,14 +23,6 @@
             .content
               p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-          .footer-container-section.column.is-one-quarter-desktop
-            h2.typo-hero-box-subtitle Funkcionality
-
-            .content
-              ul
-                li Interaktivní prohlížení objektů v časovém i geografickém kontext
-                li Tvorba vlastních map pomocí našich datových informací
-                li Přehledný seznam map a objektů ze sbírky Muzea dělnického hnutí
 
           .footer-container-section.column.is-one-quarter-desktop
             h2.typo-hero-box-subtitle Autoři
@@ -75,15 +67,15 @@
         a.button.button-more(href="list-maps.html") Všechny mapy
 
 
-    section.section.section-padding.alt-bg(data-component="section")
+    //- section.section.section-padding.alt-bg(data-component="section")
 
-      h1.typo-section-title.is-section-title podívejte se na objekty sbírky mdh
+    //-   h1.typo-section-title.is-section-title podívejte se na objekty sbírky mdh
 
-      h2.typo-subtitle.is-section-title Zde bude text, který stručně a jasně poskytne shrnutí toho, co uživatelé na jednotlivých mapách najdou a co s nimi mohou dělat. Nejde o to zde popsat technické aspekty map, ale právě ony uživatelské úkony, jenž mohou být pro uživatele zajímavé.
+    //-   h2.typo-subtitle.is-section-title Zde bude text, který stručně a jasně poskytne shrnutí toho, co uživatelé na jednotlivých mapách najdou a co s nimi mohou dělat. Nejde o to zde popsat technické aspekty map, ale právě ony uživatelské úkony, jenž mohou být pro uživatele zajímavé.
 
-      .list-in-section(data-component="list-objects")
+    //-   .list-in-section(data-component="list-objects")
 
-        .cards-container
+    //-     .cards-container
 
           //- - let objects = []
 

@@ -9,8 +9,8 @@
     nav.main-nav
       NuxtLink(to="/").item Domů
       NuxtLink(to="/mapy/").item Mapy
-      NuxtLink(to="/objekty/" ).item Objekty
-      NuxtLink(to="/blog/" ).item Blog
+      //- NuxtLink(to="/objekty/" ).item Objekty
+      //- NuxtLink(to="/blog/" ).item Blog
       NuxtLink(to="/o-projektu/" ).item O projektu
 
     nav.user-actions-nav

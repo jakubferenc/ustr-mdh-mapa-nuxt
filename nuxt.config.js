@@ -4,15 +4,15 @@ import projectConfig from './project.config';
 
 const dev = process.env.NODE_ENV !== 'production';
 
-const $config = {dev, ...projectConfig};
+const config = {dev, ...projectConfig};
 
 
 export default {
-  globalName: $config.appSlug,
+  globalName: config.appSlug,
   target: 'static', // default is 'server'
   ssr: true,
   components: true,
-  publicRuntimeConfig: {...$config},
+  publicRuntimeConfig: {...config},
   server: {
     port: 8000, // default: 3000
     host: '0.0.0.0', // default: localhost
@@ -46,6 +46,11 @@ export default {
     }
   },
   buildModules: [
+    ['@nuxt/image', {
+      // The screen sizes predefined by `@nuxt/image`:
+      provider: 'static',
+      screens: config.responsive.breakpoints,
+    }],
     "@nuxtjs/svg",
     ['@nuxtjs/style-resources', {
       // your settings here
