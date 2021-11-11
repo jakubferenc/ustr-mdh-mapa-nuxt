@@ -8,14 +8,17 @@
         .header-figure
 
           ul.header-figure-types
-            li.objects(v-if="mapa.modes.includes('objects')")
-               img(src="~assets/images/icons/icon-view-switch-objects-large.svg")
+
             li.map(v-if="mapa.modes.includes('map')")
                img(src="~assets/images/icons/icon-view-switch-map-large.svg")
+
+            li.objects(v-if="mapa.modes.includes('objects')")
+               img(src="~assets/images/icons/icon-view-switch-objects-large.svg")
+
             li.timeline(v-if="mapa.modes.includes('timeline')")
               img(src="~assets/images/icons/icon-view-switch-timeline-large.svg")
 
-          ul.header-figure-actions
+          ul.header-figure-actions.is-hidden
             li.bookmark
               img(src="~assets/images/icons/icon-bookmark-large.svg")
 
@@ -60,6 +63,11 @@
             .icon-text SPUSTIT MAPU
 
       .section-container
+
+        .section.section-text-info(v-if="mapa.goals && mapa.goals.length && mapa.goals.length > 0")
+          h2 Cíle mapy
+          .section-text-info-content
+            p {{mapa.goals}}
 
 
         .section.section-text-info
@@ -159,26 +167,31 @@ export default {
 
 
         return authorsEdited;
-      }
+      },
+
+      mapaNazev() {
+
+        return this.mapa.name;
+
+      },
+
 
     },
 
     mounted() {
 
 
-
     },
 
     data() {
       return {
-        title: `DOPLNIT`,
 
       }
     },
 
     head () {
       return {
-        title: `${this.title} — ${this.$config.globalTitle}`,
+        title: `${this.mapaNazev} — ${this.$config.globalTitle}`,
         htmlAttrs: {
           class: ''
         }

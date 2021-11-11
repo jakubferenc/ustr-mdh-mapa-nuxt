@@ -43,9 +43,10 @@
 
         .col
 
-          .title Cíl aplikace MDH Mapa
+          .title O projektu
           .content
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            p Mapa vznikla v rámci projektu Ministerstva kultury ČR NAKI II (DG18P02OVV045) – Muzeum dělnického hnutí v 21. století. Prezentace práce s muzejní sbírkou doby státního socialismu a způsoby užití jejího materiálu k potřebám odborné a široké veřejnosti.
+
 
         .col
 
@@ -56,24 +57,32 @@
 
               .logo
                 .image
-                  img(src="~/assets/images/icons/logo-ustr.svg" alt="")
-                .text Ústav pro studium totalitních režimů
+                  <a href="https://nm.cz">
+                    img(src="~/assets/images/icons/logo-nm.svg" alt="Logo Národního muzeua")
+                  </a>
+                .text <a href="https://nm.cz">Národní muzeum</a>
 
               .logo
                 .image
-                  img(src="~/assets/images/icons/logo-nm.svg" alt="")
-                .text Národní muzeum v Praze
+                  <a href="https://ustrcr.cz">
+                    img(src="~/assets/images/icons/logo-ustr.svg" alt="Logo Ústavu pro studium totalitních režim")
+                  </a>
+                .text <a href="https://ustrcr.cz">Ústav pro studium totalitních režimů</a>
+
 
         .col
+          .col-important-links
 
-          .title Důležité odkazy
-          .content
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-
-      .footer-section.footer-claim
-        p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-
+            .title Důležité odkazy
+            .content
+              p.item <a href="https://mdh21.cz">Muzeum dělnického hnutí v 21. století</a>
+              p.item <a href="https://nm.cz">Národní muzeum</a>
+              p.item <a href="https://ustrcr.cz">Ústav pro studium totalitních režimů</a>
 
 
 </template>
+<style lang="sass">
+  .col-important-links
+    .item
+      margin-bottom: .5em
+</style>

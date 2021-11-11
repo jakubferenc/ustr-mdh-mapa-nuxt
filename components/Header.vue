@@ -4,7 +4,7 @@
     .logo-nav
       .logo
       nav.breadcrumbs
-        NuxtLink(to="/").item MDH Mapa
+        NuxtLink(to="/").item Mapa Muzea dělnického hnutí v 21. století
 
     nav.main-nav
       NuxtLink(to="/").item Domů

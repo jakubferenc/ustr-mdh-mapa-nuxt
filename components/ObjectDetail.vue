@@ -44,7 +44,7 @@
 
 
             .card-content--description
-              p {{ThisObject.description}}
+              p(v-html="ThisObject.description")
 
 
         .gallery.gallery-card-detail

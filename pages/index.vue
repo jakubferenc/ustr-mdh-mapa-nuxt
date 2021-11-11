@@ -7,64 +7,42 @@
       .title-container.columns
 
         .column.is-half-desktop
-          h1.typo-main-title Aplikace MDH Mapa
-          p.typo-subtitle Zde bude krátké a jasné představení aplikace,pro koho aplikace je určena a co uživatelé v aplikaci najdou. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+          h1.app-title Mapa
+          p.app-subtitle Muzea dělnického hnutí v 21. století
 
-          NuxtLink.button(to="/o-projektu") Více o projektu
-
+        .column.is-half-desktop
+          p.typo-subtitle Tato sada interaktivních map je výsledkem bádání ve fondech tzv. muzea dělnického hnutí a v dalších archivních fondech. Jednotlivé mapy vizualizují dějinná témata, jež byla podstatná pro kulturní politiku v Československu v období 1948-1989. Kromě jednotlivých muzeí, památníků a artefaktů mapy zachycují i dynamiku našeho vzpomínání. Objevujte s námi místa paměti, na která postupně zapomínáme.
 
       .footer-container
 
         .columns.is-mutiline-mobile.is-desktop
 
           .footer-container-section.footer-container-section-goals.column.is-half-desktop
-            h2.typo-hero-box-subtitle Cíl Aplikace
+            h2.typo-hero-box-subtitle O projektu
 
             .content
-              p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              p Mapa vznikla v rámci projektu Ministerstva kultury ČR NAKI II (DG18P02OVV045) – Muzeum dělnického hnutí v 21. století. Prezentace práce s muzejní sbírkou doby státního socialismu a způsoby užití jejího materiálu k potřebám odborné a široké veřejnosti.
 
 
-          .footer-container-section.column.is-one-quarter-desktop
-            h2.typo-hero-box-subtitle Autoři
-
-            .content
-              ul
-                li Interaktivní prohlížení objektů v časovém i geografickém kontext
-                li Tvorba vlastních map pomocí našich datových informací
-                li Přehledný seznam map a objektů ze sbírky Muzea dělnického hnutí
 
 
       .background
 
     section.section.section-padding(data-component="section")
 
-      h1.typo-section-title.is-section-title Interaktivní historie na mapách [{{maps.length}}]
+      h1.typo-section-title.is-section-title Interaktivní historie na mapách
 
-      h2.typo-subtitle.is-section-title Zde bude text, který stručně a jasně poskytne shrnutí toho, co uživatelé na jednotlivých mapách najdou a co s nimi mohou dělat. Nejde o to zde popsat technické aspekty map, ale právě ony uživatelské úkony, jenž mohou být pro uživatele zajímavé.
+      h2.typo-subtitle.is-section-title {{$config.obsah.mapy.sectionTitle}}
 
       .list-in-section(data-component="list-map")
 
         .container-items.columns.is-multiline
 
 
-
           MapThumb(v-for="key in Object.keys(mapy)" :key="key" :Name="mapy[key].name" :Slug="key" :Modes="mapy[key].modes.split(', ')")
 
 
-          //- each key in Object.keys(maps)
-
-          //-   - const {name, safeSlug, slug, thumbPhoto, mapSettings} = maps[key]
-
-          //-   +list-map-item({
-          //-     class: 'is-one-quarter-widescreen is-one-third-desktop is-half',
-          //-     name,
-          //-     thumbPhoto,
-          //-     safeSlug,
-          //-     slug,
-          //-     mapSettings,
-          //-   })
-
-        a.button.button-more(href="list-maps.html") Všechny mapy
+        NuxtLink.button.button-more(to="/mapy/") Zobrazit všechny mapy
 
 
     //- section.section.section-padding.alt-bg(data-component="section")
@@ -98,6 +76,16 @@
       <FooterAside />
 
 </template>
+
+<style lang="sass">
+  .app-title
+    @extend %typo-app-title
+
+  .app-subtitle
+    @extend %typo-subtitle
+    margin-top: -.5em
+
+</style>
 <script>
 
 export default {
@@ -119,7 +107,6 @@ export default {
 
     mounted() {
 
-          console.log("from mounted", this.mapy);
 
     },
 

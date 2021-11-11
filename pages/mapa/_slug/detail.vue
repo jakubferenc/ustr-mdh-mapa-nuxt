@@ -134,6 +134,72 @@
 
 <style lang="sass">
 
+  [data-component='view-switch']
+    position: absolute
+    top: $base-mobile-side-margin * 2 /* the same as .list-objects-detail button back margin top */
+    right: 60px
+    z-index: 9
+    width: auto
+    padding: 0 $base-mobile-side-margin
+    height: 60px
+    background-color: #fff
+    border-radius: 10px
+    box-shadow: 0 0.2em 0.5em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02)
+
+    .view-switch-nav
+      display: flex
+      justify-content: center
+      align-items: center
+      height: 100%
+
+    .item
+      margin-top: 7px /* :TODO: */
+      margin-right: 10px
+      position: relative
+      display: flex
+      justify-content: center
+
+      .icon-text
+        font-size: 12px
+        margin-left: 1em
+        margin-top: .25em
+        color: $active-gray
+
+      &:last-of-type
+        margin-right: 0
+        &::after
+          content: none
+
+      &:after
+        content: ''
+        width: 1px
+        height: 30px
+        background: $passive-gray
+        margin-left: 10px
+        display: inline-block
+        position: relative
+        top: -3px
+
+      &
+        svg *
+          fill: $active-gray
+
+
+      &.active,
+      &:hover
+        svg *
+          fill: #000
+
+        .icon-text
+          color: #000
+
+
+    .item[rel="default"]
+
+      display: none
+
+      @include from($widescreen)
+        display: flex
 
   .map-thumb-icon
     box-shadow: 0 0.2em 0.5em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%)
@@ -267,7 +333,7 @@ export default {
 
     computed: {
 
-      getMapaNazev() {
+      mapaNazev() {
 
         return this.mapa.name;
 
@@ -297,7 +363,8 @@ export default {
 
 
         return authorsEdited;
-      }
+      },
+
 
     },
 
@@ -380,7 +447,7 @@ export default {
 
         console.log(thisObject);
 
-        this.$refs.mapbox.mapObject.flyTo([parseFloat(thisObject.y), parseFloat(thisObject.x)], 15);
+        this.$refs.mapbox.mapObject.flyTo([parseFloat(thisObject.y), parseFloat(thisObject.x)], this.$config.appConfig.mapbox.zoomNumberOnDetail);
 
       //   // open leafLeft marker popup
 
@@ -455,6 +522,47 @@ export default {
 
     mounted() {
 
+      const $mapDetailView = document.querySelector('[data-component="map-detail-view"]');
+
+      // map view switch
+      const $mapViewSwitch = document.querySelector('[data-component="view-switch"]');
+      const $mapViewSwitchLinks = $mapViewSwitch.querySelectorAll('.item');
+
+
+      if ($mapViewSwitchLinks) {
+        Array.from($mapViewSwitchLinks).forEach($item => {
+
+          $item.addEventListener('click', (e) => {
+
+            const viewSwitchAction = e.currentTarget.getAttribute('rel');
+
+            $mapDetailView.setAttribute('data-mode', `${viewSwitchAction}`);
+
+            if (viewSwitchAction === 'default') {
+
+              this.$refs.mapbox.mapObject.invalidateSize();
+
+            }
+
+            if (viewSwitchAction === 'map') {
+
+              this.$refs.mapbox.mapObject.invalidateSize();
+
+            }
+
+            Array.from($mapViewSwitchLinks).forEach($item => {
+
+              $item.classList.remove('active');
+
+            });
+
+            e.currentTarget.classList.add('active');
+
+
+          });
+
+        });
+      }
 
       // functions
       ////////////////////////////////////////////////////////////
@@ -478,14 +586,12 @@ export default {
         scrollTopPositionBeforeDetailOpen: null,
         activeObjectData: null,
         isShowDetail: false,
-        title: '',
-
       }
     },
 
     head () {
       return {
-        title: `${this.title} — ${this.$config.globalTitle}`,
+        title: `${this.mapaNazev} — ${this.$config.globalTitle}`,
         htmlAttrs: {
           class: 'no-footer'
         }

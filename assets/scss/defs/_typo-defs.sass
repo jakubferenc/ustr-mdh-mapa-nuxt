@@ -1,29 +1,39 @@
-.typo-main-title
+%typo-main-title
 
   font-size: 3rem
   font-family: 'Robot Condensed', sans-serif
-
+  line-height: 1.1
 
   +from($desktop)
 
     font-size: 3rem
 
+%typo-app-title
+
+  @extend %typo-main-title
+  text-transform: uppercase
+  margin-left: -.08em
+  margin-top: -.08em
+  line-height: 1
+  letter-spacing: -.05em
+
+  +from($desktop)
+
+    font-size: 10vw
 
 
-  line-height: 1.1
 
-
-.typo-subtitle
+%typo-subtitle
 
   font-size: $subtitleFontSize
 
 
 
-.typo-hero-box-subtitle
+%typo-hero-box-subtitle
 
   font-size: 1.75rem
 
-.typo-section-title
+%typo-section-title
 
   font-size: 3rem
   letter-spacing: 0.1em
@@ -55,7 +65,7 @@
       margin-top: 5rem
 
 
-.typo-subtitle
+%typo-subtitle
 
   font-size: 1.375rem
   line-height: 1.4
@@ -72,7 +82,7 @@
 
 
 
-.typo-text
+%typo-text
   font-size: 1.375rem
 
 

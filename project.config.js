@@ -13,6 +13,11 @@ export default {
     'rootObject': 'maps'
   },
   apiURL: undefined,
+  obsah: {
+    mapy: {
+      sectionTitle: 'Zde bude text, který stručně a jasně poskytne shrnutí toho, co uživatelé na jednotlivých mapách najdou a co s nimi mohou dělat. Nejde o to zde popsat technické aspekty map, ale právě ony uživatelské úkony, jenž mohou být pro uživatele zajímavé.',
+    },
+  },
   appConfig: {
     mdh: {
       object: {
@@ -96,7 +101,8 @@ export default {
       widescreen: 1216
     },
     mapbox: {
-      accessToken: "pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw"
+      accessToken: "pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw",
+      zoomNumberOnDetail: 16,
     }
   },
   wordpressAPIURLWebsite: '',

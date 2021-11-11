@@ -180,7 +180,7 @@
     align-items: flex-start;
 
     @include from($widescreen) {
-      justify-content: space-around;
+      justify-content: space-between;
     }
 
     .logo {

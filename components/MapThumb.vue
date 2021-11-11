@@ -17,7 +17,7 @@
           .map-item-symbol.timeline(v-if="Modes.includes('timeline')")
             img(src="~/assets/images/icons/icon-view-switch-timeline-large.svg")
 
-      nav.list-map-nav.list-map-nav-actions
+      nav.list-map-nav.list-map-nav-actions.is-hidden
         .map-item-symbol
           img(src="~/assets/images/icons/icon-bookmark-large.svg")
 

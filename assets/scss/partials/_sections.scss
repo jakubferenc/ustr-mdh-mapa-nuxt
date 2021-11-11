@@ -165,15 +165,16 @@
   box-shadow: none;
 
   .layer-bar {
-    height: 33px;
+    display: flex;
+    align-items: center;
+    min-height: 1em;
+    max-height: 6em;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     position: relative;
     z-index: 0;
-    padding-left: $base-mobile-side-margin;
-    padding-right: $base-mobile-side-margin;
+    padding: $base-mobile-side-margin;
     font-size: 12px;
-    line-height: 33px;
   }
 
   &:hover .card-content-container {
@@ -324,80 +325,7 @@
   max-width: 50%;
 }
 
-[data-component='view-switch'] {
-  position: absolute;
-  top: $base-mobile-side-margin * 2; /* the same as .list-objects-detail button back margin top */
-  right: 60px;
-  z-index: 9;
-  width: auto;
-  padding: 0 $base-mobile-side-margin;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0.2em 0.5em -0.125em rgba(10, 10, 10, 0.1),
-    0 0px 0 1px rgba(10, 10, 10, 0.02);
 
-  .view-switch-nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-  .item {
-    margin-top: 7px; /* :TODO: */
-    margin-right: 10px;
-    position: relative;
-
-    .icon-text {
-      font-size: 12px;
-      display: none; /* :TODO: :IDEA: */
-    }
-
-    &:last-of-type {
-      margin-right: 0;
-      &::after {
-        content: none;
-      }
-    }
-
-    &:after {
-      content: '';
-      width: 1px;
-      height: 20px;
-      background: $passive-gray;
-      margin-left: 10px;
-      display: inline-block;
-      position: relative;
-      top: -3px;
-    }
-
-    & {
-      svg * {
-        fill: $active-gray;
-      }
-    }
-
-    &.active,
-    &:hover {
-      svg * {
-        fill: #000;
-      }
-    }
-  }
-
-  .item[rel="default"] {
-
-    display: none;
-
-
-    @include from($widescreen) {
-      display: block;
-    }
-
-  }
-
-
-}
 
 .related-maps {
   .title {
@@ -465,7 +393,7 @@
     background-size: cover;
 
     @include from($tablet) {
-      padding: $base-mobile-side-margin*4;
+      padding: $base-mobile-side-margin $base-mobile-side-margin*2;
 
       display: flex;
       justify-content: space-between;
@@ -507,9 +435,6 @@
       }
     }
 
-    .typo-subtitle {
-      margin-top: 2rem;
-    }
 
   }
 

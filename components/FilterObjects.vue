@@ -174,12 +174,6 @@
           display: block
           width: 100%
 
-
-
-        &.active:hover
-
-
-
     .filter-section-list.filter-section-list--icons
       flex-wrap: wrap
       flex-direction: row
