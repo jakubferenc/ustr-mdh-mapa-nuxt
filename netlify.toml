@@ -1,0 +1,28 @@
+# docs: https://www.netlify.com/docs/headers-and-basic-auth/#multi-key-header-rules
+
+[build.environment]
+  NODE_VERSION="15.8.0"
+
+[[headers]]
+  for = "/_nuxt/*"
+  [headers.values]
+    Cache-Control = "max-age=31536000"
+
+[[headers]]
+  for = "*.js" # js files should be set this way
+  [headers.values]
+    Cache-Control = "max-age=31536000"
+[[headers]]
+  for = "*.css" # css files too
+  [headers.values]
+    Cache-Control = "max-age=31536000"
+
+[[headers]]
+  for = "*.webp" # webp files too
+  [headers.values]
+    Cache-Control = "max-age=31536000"
+
+[[headers]]
+  for = "*.woff2" # woff2 files too
+  [headers.values]
+    Cache-Control = "max-age=31536000"
