@@ -21,12 +21,12 @@
 
           h1.title {{mapa.name}}
 
-          .cards-container
+          .cards-container(v-if="objektyPresFiltr && objektyPresFiltr.length")
 
             <ObjectThumb v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" @click.native="cardDetailOpen(thisObject)"  />
 
 
-      .mapbox(id="mapbox"  data-component="mapbox")
+      .mapbox(v-if="objektyPresFiltr && objektyPresFiltr.length" id="mapbox"  data-component="mapbox")
 
           l-map(ref="mapbox" :options="{scrollWheelZoom: false}" :zoom="7" :center="[50.08804,14.42076]")
             l-tile-layer(
@@ -349,9 +349,14 @@ export default {
 
         // do filtering
 
-        objekty = objekty.filter(item => activeCategories.includes(item.layer));
+        if (objekty && objekty.length && objekty.length > 0) {
 
-        objekty = objekty.filter(item => activeTypes.includes(item.type));
+          objekty = objekty.filter(item => activeCategories.includes(item.layer));
+
+          objekty = objekty.filter(item => activeTypes.includes(item.type));
+
+
+        }
 
         return objekty;
 

@@ -9,6 +9,21 @@ const mobile = tablet-1;
 export default {
   globalTitle: 'MHD Mapa',
   appSlug: 'mdh-mapa',
+  firebaseConfig: {
+    config: {
+      apiKey: "AIzaSyCHGOJyI-2-uRgnE3ujd3OLb-Vi4DPCWa0",
+      authDomain: "mdh-mapa-1605133107720.firebaseapp.com",
+      databaseURL: "https://mdh-mapa-1605133107720-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "mdh-mapa-1605133107720",
+      storageBucket: "mdh-mapa-1605133107720.appspot.com",
+      messagingSenderId: "843288321214",
+      appId: "1:843288321214:web:ae2deff05f6a3f83fdd2ef",
+      measurementId: "G-483TW6WQCJ"
+    },
+    services: {
+      database: true, // initializes Firebase real-time database
+    }
+  },
   firebaseDatabase: {
     'rootObject': 'maps'
   },

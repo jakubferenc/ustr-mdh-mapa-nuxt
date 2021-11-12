@@ -45,35 +45,9 @@
         NuxtLink.button.button-more(to="/mapy/") Zobrazit všechny mapy
 
 
-    //- section.section.section-padding.alt-bg(data-component="section")
-
-    //-   h1.typo-section-title.is-section-title podívejte se na objekty sbírky mdh
-
-    //-   h2.typo-subtitle.is-section-title Zde bude text, který stručně a jasně poskytne shrnutí toho, co uživatelé na jednotlivých mapách najdou a co s nimi mohou dělat. Nejde o to zde popsat technické aspekty map, ale právě ony uživatelské úkony, jenž mohou být pro uživatele zajímavé.
-
-    //-   .list-in-section(data-component="list-objects")
-
-    //-     .cards-container
-
-          //- - let objects = []
-
-          //- each key in Object.keys(maps)
-
-          //-   - let thisMapObjects = maps[key].features.filter(item => item.images.length > 0 && item.properties.description != '')
-          //-   - thisMapObjects = thisMapObjects.map((item) => {item.mapSafeSlug = maps[key].safeSlug; item.mapSettings = maps[key].mapSettings; return item;})
-
-          //-   - objects = [...objects, ...thisMapObjects]
-
-          //- each object in objects
-
-          //-   +object-card(object, {safeSlug: object.mapSafeSlug, mapSettings: object.mapSettings})
 
 
-
-        a.button.button-more(href="list-objects.html") Všechny objekty
-
-
-      <FooterAside />
+    <FooterAside />
 
 </template>
 

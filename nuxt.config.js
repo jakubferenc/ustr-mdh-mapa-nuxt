@@ -1,11 +1,13 @@
 import axios from "axios";
-// import apiFactory from './factories';
 import projectConfig from './project.config';
+import apiFactory from "./utils/factories";
+
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 const dev = process.env.NODE_ENV !== 'production';
 
 const config = {dev, ...projectConfig};
-
 
 export default {
   globalName: config.appSlug,
@@ -36,6 +38,37 @@ export default {
   generate: {
     async routes() {
 
+      let routes = [];
+
+      try {
+
+        const firebaseApp = firebase.initializeApp(projectConfig.firebaseConfig.config);
+        const db = firebaseApp.database();
+
+        let mapsRes = await apiFactory.getAllMapsFactory(db); // @return object of objects, not array!
+
+        const mapsRoutes = Object.keys(mapsRes).map(mapaSafeSlug => {
+
+          const mapa = mapsRes[mapaSafeSlug];
+          // load maps
+
+          return {
+            route: `/mapa/${mapa.slug}/`,
+            payload: mapa // thanks to the payload, we are caching results for the subpage here
+          };
+
+        });
+
+        routes = [...mapsRoutes];
+
+        return routes;
+
+
+
+      } catch (err) {
+        console.warn(err);
+      }
+
 
     }
   },
@@ -46,6 +79,7 @@ export default {
     }
   },
   buildModules: [
+    ['@nuxtjs/firebase', projectConfig.firebaseConfig],
     ['@nuxt/image', {
       // The screen sizes predefined by `@nuxt/image`:
       provider: 'static',
@@ -65,21 +99,6 @@ export default {
   '@nuxtjs/proxy',
   '@nuxtjs/axios',
   '@nuxtjs/sentry',
-  ['@nuxtjs/firebase', {
-    config: {
-      apiKey: "AIzaSyCHGOJyI-2-uRgnE3ujd3OLb-Vi4DPCWa0",
-      authDomain: "mdh-mapa-1605133107720.firebaseapp.com",
-      databaseURL: "https://mdh-mapa-1605133107720-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "mdh-mapa-1605133107720",
-      storageBucket: "mdh-mapa-1605133107720.appspot.com",
-      messagingSenderId: "843288321214",
-      appId: "1:843288321214:web:ae2deff05f6a3f83fdd2ef",
-      measurementId: "G-483TW6WQCJ"
-    },
-    services: {
-      database: true, // initializes Firebase real-time database
-    }
-  }],
   ],
   sentry: {
     dsn: 'https://c7d5d20c4f9448c58b992c3d0dcd284d@o621712.ingest.sentry.io/5870935', // Enter your project's DSN here
