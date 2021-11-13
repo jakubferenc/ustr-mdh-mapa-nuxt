@@ -61,7 +61,7 @@
               //-   :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc"
               //-   sizes="mobile:100vw tablet:100vw desktop:100vw widescreen:100vw fullhd:100vw"
               //- )
-              img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${ThisObject.images.image1.name}`" :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1")
+              img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.slug}/${ThisObject.images.image1.thumbnail}`" :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc")
           .gallery-image-container
 
 
@@ -69,45 +69,10 @@
 
               .gallery-image-item(v-for="(imageObject, index) in ThisObject.images" :key="index")
 
-                //- nuxt-picture.gallery-detail-thumb.gallery-detail-thumb-main(
-
-                //-   quality="80"
-                //-   loading="lazy"
-                //-   format="webp"
-                //-   :src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${imageObject.name}`"
-                //-   alt=""
-                //-   sizes="mobile:100vw tablet:100vw desktop:50vw widescreen:50vw fullhd:50vw"
-                //- )
-
-                img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${imageObject.name}`")
-
+                img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.slug}/${imageObject.galleryThumbnail}`")
 
             .gallery-image(v-else)
               img(src=`/object-default-image.png`)
-
-
-            //- .gallery.gallery-card-detail(data-component="gallery-detail")
-
-            //-   .gallery-nav(data-glide-el="controls")
-            //-     a.prev(href="#" data-glide-dir="<")
-            //-     a.next(href="#" data-glide-dir=">")
-
-            //-   .gallery-image-container.glide__track(data-glide-el="track")
-
-            //-       ul.glide__slides
-
-            //-         each image in object.images
-
-            //-           li.gallery-image.glide__slide
-            //-             a.glightbox(data-gallery=`gallery-${object.properties.slug}` href=`/assets/data-maps/${map.safeSlug}/images/${object.properties.slug}/${image.name}`)
-
-            //-               span.button.button-open-gallery Zvětšit fotografii
-
-            //-               img(src=`/assets/data-maps/${map.safeSlug}/images/${object.properties.slug}/${image.galleryThumbnail}`)
-
-            //-             if (image.description)
-            //-               .gallery-description #{image.description}
-
 
         .related-maps.is-hidden
 
