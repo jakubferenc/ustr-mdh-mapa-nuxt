@@ -3,8 +3,8 @@
   article.column(data-component="list-map-item" :class="thisComponentStyles")
 
     figure
-      a(:href="`/mapa/${Slug.replace(/_/g,'-')}/`")
-        <img :src="require(`@/assets/data-maps/${Slug}/thumb.jpg`)" :alt="Name" />
+      a(:href="`/mapa/${Slug}/`")
+        <img :src="require(`~/assets/data-maps/${Slug}/thumb.jpg`)" :alt="Name" />
       nav.list-map-nav.list-map-nav-symbols
 
 
@@ -22,12 +22,12 @@
           img(src="~/assets/images/icons/icon-bookmark-large.svg")
 
     h3.typo-subtitle.list-map-item-title
-      a(:href="`/mapa/${Slug.replace(/_/g,'-')}/`") {{Name}}
+      a(:href="`/mapa/${Slug}/`") {{Name}}
 
 </template>
 <script>
 export default {
-  props: ["Slug", "Name", "Modes"],
+  props: ["MapKey", "Slug", "Name", "Modes"],
 
 
   async asyncData({params, error, payload, store}) {

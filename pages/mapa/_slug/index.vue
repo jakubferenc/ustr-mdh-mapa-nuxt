@@ -22,7 +22,7 @@
             li.bookmark
               img(src="~assets/images/icons/icon-bookmark-large.svg")
 
-          img.header-figure-image(:src="require(`~/assets/data-maps/${mapa.id}/hlavni.jpg`)")
+          img.header-figure-image(:src="require(`~/assets/data-maps/${mapa.slug}/hlavni.jpg`)")
 
         .header-content
 
