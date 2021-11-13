@@ -10,15 +10,9 @@
       .gallery
         .gallery-image(v-if="ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.name && ThisObject.mapSlug")
 
-            nuxt-picture(
+            //img(:src="`https://res.cloudinary.com/assemblage-cz/image/upload/v1636708334/mdh-mapa/${ThisObject.mapSlug}/${ThisObject.name}/${ThisObject.images.image1.name}`" :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc")
+            img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.slug}/${ThisObject.images.image1.thumbnail}`" :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc")
 
-              quality="80"
-              loading="lazy"
-              format="webp"
-              :src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${ThisObject.images.image1.name}`"
-              :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc"
-              sizes="mobile:100vw tablet:100vw desktop:250px widescreen:250px fullhd:250px"
-            )
 
         .gallery-image(v-else)
           img(src=`/object-default-image.png`)

@@ -80,11 +80,12 @@ export default {
   },
   buildModules: [
     ['@nuxtjs/firebase', projectConfig.firebaseConfig],
-    ['@nuxt/image', {
-      // The screen sizes predefined by `@nuxt/image`:
-      provider: 'static',
-      screens: config.responsive.breakpoints,
-    }],
+    // ['@nuxt/image', {
+    //   // The screen sizes predefined by `@nuxt/image`:
+    //   provider: 'cloudinary',
+    //   screens: config.responsive.breakpoints,
+    //   baseURL: 'https://res.cloudinary.com/assemblage-cz/image/upload/'
+    // }],
     "@nuxtjs/svg",
     ['@nuxtjs/style-resources', {
       // your settings here
@@ -95,9 +96,16 @@ export default {
       hoistUseStatements: true  // Hoists the "@use" imports. Applies only to "sass", "scss" and "less". Default: false.
     }],
   ],
+  cloudinary: {
+    cloudName: 'assemblage-cz',
+    apiKey: '941334191397495',
+    apiSecret: 'CqpgLculo-290li5M5k-5jASFrk',
+    secure: false,
+    useComponent: true,
+    privateCDN: false,
+  },
   modules: [
-  '@nuxtjs/proxy',
-  '@nuxtjs/axios',
+  ['@nuxtjs/cloudinary'],
   '@nuxtjs/sentry',
   ],
   sentry: {

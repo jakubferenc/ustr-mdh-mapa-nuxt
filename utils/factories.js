@@ -1,7 +1,16 @@
 import projectConfig from '../project.config';
 import { truncate } from './functions';
 import { fixTypos } from 'typopo';
+import slugify from 'slugify';
+import latinize from 'latinize';
 
+const slugifyCustomDefaultSettings = {
+  replacement: '-',  // replace spaces with replacement character, defaults to `-`
+  remove: /[*+~.()'"!:@]/g, // remove characters that match regex, defaults to `undefined`
+  lower: true,      // convert to lower case, defaults to `false`
+  strict: true,     // strip special characters except replacement, defaults to `false`
+  locale: 'cs'       // language code of the locale to use
+};
 
 const getAllMapsFactory = async ($firebaseDb) => {
 
@@ -44,7 +53,7 @@ const getAllMapsFactory = async ($firebaseDb) => {
         objekt.type = objekt.type.toLowerCase();
       }
 
-      objekt.name = fixTypos(objekt.name);
+      objekt.slug = latinize(slugify(objekt.name.normalize('NFC'), slugifyCustomDefaultSettings)).toLowerCase();
 
       if (objekt.description && objekt.description !== '') {
 
@@ -52,11 +61,37 @@ const getAllMapsFactory = async ($firebaseDb) => {
 
       }
 
-
+      objekt.name = fixTypos(objekt.name);
 
       objekt.nameShort = truncate(objekt.name, 100, '...');
 
       objekt.mapSlug = maps[key].slug;
+
+      if (objekt.images && Object.values(objekt.images).length) {
+
+        // images
+        Object.values(objekt.images).map((imageObj) => {
+
+          if (imageObj.name) {
+
+            const fileNameWithoutExt = imageObj.name.split('.')[0];
+            const fileNameNormalize = latinize(slugify(`${fileNameWithoutExt}`).toLowerCase());
+
+            imageObj.full = `${fileNameNormalize}-full.webp`;
+            imageObj.galleryThumbnail = `${fileNameNormalize}-gallery.webp`;
+            imageObj.thumbnail = `${fileNameNormalize}-thumb.webp`;
+
+
+
+          }
+
+          return imageObj;
+
+        });
+
+
+      }
+
 
       objekt.LatLng = [parseFloat(objekt.y), parseFloat(objekt.x)];
       objekt.categoryColor = categoryObject.color;

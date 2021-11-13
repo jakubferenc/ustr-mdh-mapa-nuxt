@@ -53,15 +53,15 @@
           .gallery-images-full-size-container.is-hidden
 
             .gallery-detail-full(v-if="ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.name && ThisObject.mapSlug")
-              nuxt-picture(
-                quality="80"
-                loading="lazy"
-                format="webp"
-                :src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${ThisObject.images.image1.name}`"
-                :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc"
-                sizes="mobile:100vw tablet:100vw desktop:100vw widescreen:100vw fullhd:100vw"
-              )
-
+              //- nuxt-picture(
+              //-   quality="80"
+              //-   loading="lazy"
+              //-   format="webp"
+              //-   :src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${ThisObject.images.image1.name}`"
+              //-   :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc"
+              //-   sizes="mobile:100vw tablet:100vw desktop:100vw widescreen:100vw fullhd:100vw"
+              //- )
+              img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${ThisObject.images.image1.name}`" :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1")
           .gallery-image-container
 
 
@@ -69,15 +69,17 @@
 
               .gallery-image-item(v-for="(imageObject, index) in ThisObject.images" :key="index")
 
-                nuxt-picture.gallery-detail-thumb.gallery-detail-thumb-main(
+                //- nuxt-picture.gallery-detail-thumb.gallery-detail-thumb-main(
 
-                  quality="80"
-                  loading="lazy"
-                  format="webp"
-                  :src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${imageObject.name}`"
-                  alt=""
-                  sizes="mobile:100vw tablet:100vw desktop:50vw widescreen:50vw fullhd:50vw"
-                )
+                //-   quality="80"
+                //-   loading="lazy"
+                //-   format="webp"
+                //-   :src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${imageObject.name}`"
+                //-   alt=""
+                //-   sizes="mobile:100vw tablet:100vw desktop:50vw widescreen:50vw fullhd:50vw"
+                //- )
+
+                img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${imageObject.name}`")
 
 
             .gallery-image(v-else)
