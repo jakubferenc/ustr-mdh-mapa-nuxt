@@ -1,94 +1,84 @@
 <template lang="pug">
+      article.card.card-detail(:data-object-detail-id="ThisObject.id" data-component="card-detail")
 
-
-
-    article.card.card-detail(:data-object-detail-id="ThisObject.id" data-component="card-detail")
-
-      .layer-bar(:style="`background-color: ${ThisObject.categoryColor}`")
-        .meta.meta-category {{ThisObject.layer}}
-        .actions
-          a(href="#" data-component="close" @click="$emit('card-detail-close')").item Zavřít
-
-      .card-content-container
-
-        .subheader-bar
-          .submetas
-            .meta.meta-address
-
+        .layer-bar(:style="`background-color: ${ThisObject.categoryColor}`")
+          .meta.meta-category {{ThisObject.layer}}
           .actions
-            a(href=`/objekt/{object.properties.slug}/`).item.item-link
-              <svg xmlns="http://www.w3.org/2000/svg" width="14.941" height="23.98" viewBox="0 0 14.941 23.98">
-                <g id="icon_link" data-name="icon link" transform="translate(0 0)">
-                  <path id="Path_340" data-name="Path 340" d="M1229.615,200.784v2.142a3.82,3.82,0,0,1,3.683,3.813v4.843a3.815,3.815,0,0,1-7.63,0v-4.843a3.818,3.818,0,0,1,.122-.954c-.01-.052-.019-.1-.029-.156s-.02-.1-.028-.154c-.013-.075-.022-.15-.032-.225-.007-.049-.014-.1-.019-.147-.009-.083-.015-.166-.022-.249,0-.041-.007-.083-.01-.124q-.01-.187-.011-.373v-2.168a5.918,5.918,0,0,0-2.112,4.55v4.843a5.956,5.956,0,1,0,11.912,0v-4.843a5.969,5.969,0,0,0-.153-1.337h0A5.922,5.922,0,0,0,1229.615,200.784Z" transform="translate(-1223.527 -193.558)"/>
-                  <path id="Path_341" data-name="Path 341" d="M1249.163,170.282V168.14a3.819,3.819,0,0,1-3.683-3.813v-4.843a3.815,3.815,0,1,1,7.63,0v4.843a3.82,3.82,0,0,1-.122.954c.011.052.019.1.029.156s.02.1.028.153c.013.077.023.153.033.23.006.048.013.1.019.143.009.085.016.169.022.254,0,.04.007.08.01.12q.01.187.01.373v2.168a5.917,5.917,0,0,0,2.112-4.55v-4.843a5.956,5.956,0,1,0-11.912,0v4.843a5.959,5.959,0,0,0,5.824,5.955Z" transform="translate(-1240.309 -153.528)"/>
-                </g>
-              </svg>
+            a(href="#" data-component="close" @click="$emit('card-detail-close')").item Zavřít
 
-        .title-bar
-          .card-title {{ThisObject.name}}
+        .card-content-container
 
-        .card-content-in
+          .subheader-bar
+            .submetas
+              .meta.meta-address
 
-          .card-content
+            .actions
+              a(href=`/objekt/{object.properties.slug}/`).item.item-link
+                <svg xmlns="http://www.w3.org/2000/svg" width="14.941" height="23.98" viewBox="0 0 14.941 23.98">
+                  <g id="icon_link" data-name="icon link" transform="translate(0 0)">
+                    <path id="Path_340" data-name="Path 340" d="M1229.615,200.784v2.142a3.82,3.82,0,0,1,3.683,3.813v4.843a3.815,3.815,0,0,1-7.63,0v-4.843a3.818,3.818,0,0,1,.122-.954c-.01-.052-.019-.1-.029-.156s-.02-.1-.028-.154c-.013-.075-.022-.15-.032-.225-.007-.049-.014-.1-.019-.147-.009-.083-.015-.166-.022-.249,0-.041-.007-.083-.01-.124q-.01-.187-.011-.373v-2.168a5.918,5.918,0,0,0-2.112,4.55v4.843a5.956,5.956,0,1,0,11.912,0v-4.843a5.969,5.969,0,0,0-.153-1.337h0A5.922,5.922,0,0,0,1229.615,200.784Z" transform="translate(-1223.527 -193.558)"/>
+                    <path id="Path_341" data-name="Path 341" d="M1249.163,170.282V168.14a3.819,3.819,0,0,1-3.683-3.813v-4.843a3.815,3.815,0,1,1,7.63,0v4.843a3.82,3.82,0,0,1-.122.954c.011.052.019.1.029.156s.02.1.028.153c.013.077.023.153.033.23.006.048.013.1.019.143.009.085.016.169.022.254,0,.04.007.08.01.12q.01.187.01.373v2.168a5.917,5.917,0,0,0,2.112-4.55v-4.843a5.956,5.956,0,1,0-11.912,0v4.843a5.959,5.959,0,0,0,5.824,5.955Z" transform="translate(-1240.309 -153.528)"/>
+                  </g>
+                </svg>
 
-            .card-content--meta
-              .item-meta(v-if="ThisObject.exists === false")
-                .item-meta--heading
-                  s GPS souřadnice
-                .item-meta--content
-                  s y: {{ThisObject.y}}, x: {{ThisObject.x}}
-              .item-meta(v-else)
-                .item-meta--heading
-                  | GPS souřadnice
-                .item-meta--content y: {{ThisObject.y}}, x: {{ThisObject.x}}
+          .title-bar
+            .card-title {{ThisObject.name}}
 
+          .card-content-in
 
-            .card-content--description
-              p(v-html="ThisObject.description")
+            .card-content
 
-
-        .gallery.gallery-card-detail
-
-
-          .gallery-images-full-size-container.is-hidden
-
-            .gallery-detail-full(v-if="ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.name && ThisObject.mapSlug")
-              //- nuxt-picture(
-              //-   quality="80"
-              //-   loading="lazy"
-              //-   format="webp"
-              //-   :src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.name}/${ThisObject.images.image1.name}`"
-              //-   :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc"
-              //-   sizes="mobile:100vw tablet:100vw desktop:100vw widescreen:100vw fullhd:100vw"
-              //- )
-              img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.slug}/${ThisObject.images.image1.thumbnail}`" :alt="ThisObject.images && ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.desc")
-          .gallery-image-container
+              .card-content--meta
+                .item-meta(v-if="ThisObject.exists === false")
+                  .item-meta--heading
+                    s GPS souřadnice
+                  .item-meta--content
+                    s y: {{ThisObject.y}}, x: {{ThisObject.x}}
+                .item-meta(v-else)
+                  .item-meta--heading
+                    | GPS souřadnice
+                  .item-meta--content y: {{ThisObject.y}}, x: {{ThisObject.x}}
 
 
-            .gallery-image(v-if="ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.name && ThisObject.mapSlug")
+              .card-content--description
+                p(v-html="ThisObject.description")
 
-              .gallery-image-item(v-for="(imageObject, index) in ThisObject.images" :key="index")
 
-                img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.slug}/${imageObject.galleryThumbnail}`")
+          .gallery.gallery-card-detail()
 
-            .gallery-image(v-else)
-              img(src=`/object-default-image.png`)
+            .gallery-image-container(v-if="ThisObject.images && ThisObject.images.image1 && ThisObject.images.image1.name && ThisObject.mapSlug")
 
-        .related-maps.is-hidden
+              .gallery-image(v-for="(imageObject, index) in ThisObject.images" :key="index")
 
-          .title Objevuje se na těchto mapách
+                .gallery-image-item
 
-          .list-maps
+                  img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.slug}/${imageObject.galleryThumbnail}`")
 
-            .item-map-thumb
+                .desc(v-if="imageObject.desc") {{imageObject.desc}}
+                .source(v-if="imageObject.source")
+                  i Zdroj: {{imageObject.source}}
 
-              img.image-bg(src="/assets/images/dummy/map-dummy-image-02.jpg" alt="")
-              .item-map-thumb--title Julius Fučík - místa paměti Praha 2
+            .gallery-image-container(v-else)
 
-            .item-map-thumb
+              .gallery-image
+                .gallery-image-item
+                  img(src=`/object-default-image.png`)
 
-              img.image-bg(src="/assets/images/dummy/map-dummy-image-02.jpg" alt="")
-              .item-map-thumb--title Julius Fučík - další mapa o Fučíkovi
+          .related-maps.is-hidden
+
+            .title Objevuje se na těchto mapách
+
+            .list-maps
+
+              .item-map-thumb
+
+                img.image-bg(src="/assets/images/dummy/map-dummy-image-02.jpg" alt="")
+                .item-map-thumb--title Julius Fučík - místa paměti Praha 2
+
+              .item-map-thumb
+
+                img.image-bg(src="/assets/images/dummy/map-dummy-image-02.jpg" alt="")
+                .item-map-thumb--title Julius Fučík - další mapa o Fučíkovi
 
 
 
@@ -219,7 +209,7 @@
 
     .card-content--description
 
-      font-size: 16px
+      font-size: 20px
       word-wrap: break-word
 
 
@@ -251,12 +241,16 @@
       margin-bottom: 0 /* :NOTE: overriding the .card .gallery margin bottom */
 
       .gallery-image
+        height: auto
+        background: none
+        margin-bottom: 1.5em
+
+      .gallery-image-item
         height: $gallery-height
         overflow: hidden
         width: 100%
         background: transparent
         text-align: center
-        height: auto
         position: relative
 
         .button-open-gallery

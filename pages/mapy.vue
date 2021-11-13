@@ -12,7 +12,7 @@
 
         .container-items.columns.is-multiline
 
-          MapThumb(v-for="key in Object.keys(mapy)" :key="key" :Name="mapy[key].name" :Slug="key" :Modes="mapy[key].modes.split(', ')")
+          MapThumb(v-for="key in Object.keys(mapy)" :key="key" :Name="mapy[key].name" :Slug="mapy[key].slug" :Modes="mapy[key].modes.split(', ')")
 
 
       <FooterAside />

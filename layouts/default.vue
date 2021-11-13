@@ -9,7 +9,7 @@
 
     <Footer />
 
-    .debug-bar
+    .debug-bar(v-show="this.$config.dev")
 
 </template>
 

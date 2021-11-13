@@ -422,9 +422,7 @@ export default {
 
         $listViewContainer.classList.remove('inactive');
 
-        //closeAllLeafletTooltips();
 
-        //history.replaceState(null, '', previousPage);
 
         $listViewContainer.scrollTop = this.scrollTopPositionBeforeDetailOpen;
 
@@ -450,70 +448,10 @@ export default {
         // prepare list view container for showing the object detail
         $listViewContainer.classList.add('inactive');
 
-        console.log(thisObject);
 
         this.$refs.mapbox.mapObject.flyTo([parseFloat(thisObject.y), parseFloat(thisObject.x)], this.$config.appConfig.mapbox.zoomNumberOnDetail);
 
-      //   // open leafLeft marker popup
 
-      //   const $activeMarker = document.querySelector(`[data-marker-id="${cardProperties.objectId}"]`).parentElement;
-      //   __removeClass($activeMarker, 'inactive');
-      //   __addClass($activeMarker, 'active');
-
-
-      //   //store.markers[cardProperties.objectId].openPopup();
-      //   store.map.setView(store.markers[cardProperties.objectId].getLatLng(), 7);
-
-      //   // close btn handler
-      //   if (!__hasClass($cardDetail, 'has-handler-close')) {
-
-      //     const $closeBtn = $cardDetail.querySelector('[data-component="close"]');
-      //     $closeBtn.addEventListener('click', (e) => {
-
-      //       e.stopPropagation();
-      //       e.preventDefault();
-
-      //       cardDetailClose($cardDetail);
-
-      //       return false;
-      //     });
-      //     __addClass($cardDetail, 'has-handler-close');
-
-      //   }
-
-
-      //   __removeClass($cardDetail, 'is-hidden');
-
-
-      //   // active gallery
-
-      //   if (!__hasClass($cardDetail, 'has-gallery-init')) {
-
-      //     const $thisCardMainGallery = $cardDetail.querySelector('[data-component="gallery-detail"]');
-
-      //     if ($thisCardMainGallery) {
-
-      //       // the object has images
-
-      //       const glide = new Glide($thisCardMainGallery, {
-      //         type: 'carousel',
-      //         startAt: 0,
-      //         perView: 1
-      //       }).mount({ Controls });
-
-      //       // init gallery
-      //       const lightbox = GLightbox({
-      //         touchNavigation: true,
-      //         loop: true,
-      //         autoplayVideos: false
-      //       });
-
-
-      //       __addClass($cardDetail, 'has-gallery-init');
-
-      //     }
-
-      //   }
 
       },
 
