@@ -118,13 +118,17 @@
               a.button.button-with-icon.button-send(href="#")
                 .button-text Napište nám
                 .button-icon
-                  img(src="~assets/images/icons/icon-button-send.svg" alt="Zaslat zprávu")
+                  <IconSendButton />
 
 
 </template>
 
 <script>
+import IconSendButton from "~/assets/images/icons/icon-button-send.svg?inline";
+
 export default {
+
+    components: {IconSendButton},
 
     async asyncData({params, error, payload, store, $axios}) {
 
