@@ -1,6 +1,6 @@
 <template lang="pug">
 
-  .filter(data-component="filter")
+  .filter(data-component="filter" :class="{open: showFilter}")
 
     .filter-section-container(v-show="showFilter")
 
@@ -48,12 +48,6 @@
 
 [data-component='filter']
 
-  .filter-item
-    .icon
-      svg[height]
-        width: 18px
-        height: auto
-
   height: calc(100vh - #{$header-main-height})
   display: flex
   align-items: flex-start
@@ -73,7 +67,6 @@
       align-items: flex-start
 
 
-
     .filter-button-switch
 
       background: #fff
@@ -83,6 +76,13 @@
   +from($desktop)
     background: #fff
 
+
+
+  .filter-item
+  .icon
+    svg[height]
+      width: 18px
+      height: auto
 
   .filter-section-container
 
