@@ -5,6 +5,7 @@ export const state = () => ({
   mapy: [],
   aktualniFiltrPolozky: [],
   aktualniFiltrTypPolozky: [],
+  aktualniImagePopUp: {},
 });
 
 
@@ -25,7 +26,14 @@ export const mutations = {
 
   updateMapy: (state, mapy) => {
     state.mapy = mapy;
+  },
+
+  updateAktualniImagePopUp: (state, data) => {
+    state.aktualniImagePopUp = data;
   }
+
+
+
 
 };
 
@@ -50,6 +58,18 @@ export const actions = {
       console.warn(err);
     }
   },
+
+  setAktualniImagePopUp ({ state, commit }, data) {
+    try {
+
+      commit("updateAktualniImagePopUp", data);
+
+    } catch (err) {
+      console.warn(err);
+    }
+  },
+
+
 
   async getMapy ({ state, commit, $fire }) {
 

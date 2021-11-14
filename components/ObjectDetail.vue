@@ -50,7 +50,7 @@
 
               .gallery-image(v-for="(imageObject, index) in ThisObject.images" :key="index")
 
-                .gallery-image-item
+                .gallery-image-item(@click="openImagePopUp(Object.keys(ThisObject.images).indexOf(index), ThisObject)")
 
                   img(:src="`/data-maps/${ThisObject.mapSlug}/${ThisObject.slug}/${imageObject.galleryThumbnail}`")
 
@@ -253,6 +253,8 @@
         text-align: center
         position: relative
 
+        cursor: pointer
+
         .button-open-gallery
           display: inline-block
           background: #fff
@@ -332,6 +334,16 @@ export default {
 
   computed: {
 
+
+  },
+
+  methods: {
+
+    openImagePopUp(index, thisObject) {
+
+      this.$store.dispatch("setAktualniImagePopUp", {index, thisObject});
+
+    },
 
   },
 

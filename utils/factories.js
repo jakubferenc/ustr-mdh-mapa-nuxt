@@ -82,6 +82,11 @@ const getAllMapsFactory = async ($firebaseDb) => {
             imageObj.thumbnail = `${fileNameNormalize}-thumb.webp`;
 
 
+          }
+
+          if (imageObj.desc) {
+
+            imageObj.desc = fixTypos(imageObj.desc);
 
           }
 
