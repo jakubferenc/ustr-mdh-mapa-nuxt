@@ -32,6 +32,6 @@
     "@nuxt/typescript-build": "^2.1.0",
     "@nuxtjs/svg": "^0.1.12",
     "eslint": "^7.31.0",
-    "pug": "^3.0.2",
+    "pug": "^3.0.2"
   }
 }
