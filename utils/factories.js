@@ -29,6 +29,9 @@ const getAllMapsFactory = async ($firebaseDb) => {
 
   });
 
+  console.log("from factories", maps);
+  return;
+
   // Modify individual objects of a given map
   // trim IDs to erase incidental white spaces left in google sheet source DB
 

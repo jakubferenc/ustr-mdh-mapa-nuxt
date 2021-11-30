@@ -29,15 +29,29 @@
             .card-content
 
               .card-content--meta
+
                 .item-meta(v-if="ThisObject.exists === false")
-                  .item-meta--heading
-                    s GPS souřadnice
-                  .item-meta--content
-                    s y: {{ThisObject.y}}, x: {{ThisObject.x}}
+
+                    .item-meta--heading
+                      s GPS souřadnice
+                    .item-meta--content
+                      s y: {{ThisObject.y}}, x: {{ThisObject.x}}
                 .item-meta(v-else)
-                  .item-meta--heading
-                    | GPS souřadnice
-                  .item-meta--content y: {{ThisObject.y}}, x: {{ThisObject.x}}
+                  .item-meta-content
+                    .item-meta--heading
+                      | GPS souřadnice
+                    .item-meta--content y: {{ThisObject.y}}, x: {{ThisObject.x}}
+
+                .item-meta(v-if="ThisObject.type")
+
+                  .item-meta-content
+                    .item-meta--heading Typ objektu
+                    .item-meta--content
+
+                      .icon(:title="ThisObject.type" :data-icon-type="ThisObject.type")
+
+                      span {{ThisObject.type}}
+
 
 
               .card-content--description
@@ -87,6 +101,11 @@
 
 
   @use 'sass:math'
+
+  .icon
+    width: 30px
+    height: 30px
+    display: inline-block
 
   .card.card-detail
 
@@ -222,15 +241,30 @@
       padding-right: 5px
       margin-bottom: 1em
 
-      .item-meta--heading
-        font-weight: 700
-        margin-right: $base-mobile-side-margin * 2
-
       .item-meta
         display: flex
         justify-content: center
         font-size: 16px
         margin-bottom: 0.5rem
+
+
+      .item-meta-content
+        display: flex
+        justify-content: flex-start
+        width: 50%
+        align-items: center
+
+      .item-meta--heading
+        font-weight: 700
+        margin-right: $base-mobile-side-margin * 2
+        text-align: left
+        width: 30%
+
+      .item-meta--content
+        display: flex
+        align-item: center
+
+
 
 
     .gallery

@@ -11,7 +11,7 @@
           p.app-subtitle Muzea dělnického hnutí v 21. století
 
         .column.is-half-desktop
-          p.typo-subtitle Tato sada interaktivních map je výsledkem bádání ve fondech tzv. muzea dělnického hnutí a v dalších archivních fondech. Jednotlivé mapy vizualizují dějinná témata, jež byla podstatná pro kulturní politiku v Československu v období 1948-1989. Kromě jednotlivých muzeí, památníků a artefaktů mapy zachycují i dynamiku našeho vzpomínání. Objevujte s námi místa paměti, na která postupně zapomínáme.
+          p.typo-subtitle(v-html="$config.obsah.mapy.projectText")
 
       .footer-container
 
@@ -21,7 +21,7 @@
             h2.typo-hero-box-subtitle O projektu
 
             .content
-              p Mapa vznikla v rámci projektu Ministerstva kultury ČR NAKI II (DG18P02OVV045) – Muzeum dělnického hnutí v 21. století. Prezentace práce s muzejní sbírkou doby státního socialismu a způsoby užití jejího materiálu k potřebám odborné a široké veřejnosti.
+              p(v-html="$config.obsah.mapy.aboutText")
 
 
 

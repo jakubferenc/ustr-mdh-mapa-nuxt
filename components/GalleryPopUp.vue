@@ -34,9 +34,6 @@
                 .category(:style="`background-color: ${ThisObject.categoryColor}`") {{ThisObject.layer}}
 
 
-
-
-
 </template>
 <style lang="sass">
 
@@ -94,7 +91,8 @@
     &:not(.zoomed)
       img
         height: 100%
-        width: auto
+        width: 100%
+        object-fit: contain
         cursor: zoom-in
 
 
@@ -120,7 +118,7 @@
       position: absolute
       top: 30px
       left: 30px
-      width: 200px
+      width: 150px
 
       .navigation-item
         width: 100%
@@ -206,7 +204,6 @@ export default {
       return {
         isZoomed: false,
         selectedIndex: null,
-
       }
 
     },
@@ -248,7 +245,6 @@ export default {
     },
 
     mounted() {
-
 
     },
 

@@ -197,7 +197,7 @@ export default {
       return {
         title: `${this.mapaNazev} — ${this.$config.globalTitle}`,
         htmlAttrs: {
-          class: ''
+          class: 'page-mapy'
         }
       }
     }

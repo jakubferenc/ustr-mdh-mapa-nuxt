@@ -125,11 +125,16 @@
   .title {
     margin-top: $base-mobile-side-margin * 2;
     text-align: center;
-    font-size: 38px;
-    font-weight: normal;
     margin-bottom: $base-mobile-side-margin * 4;
     padding-left: $base-mobile-side-margin * 2;
     padding-right: $base-mobile-side-margin * 2;
+
+    font-size: 38px;
+    font-weight: normal;
+
+    @extend %typo-main-title;
+
+
   }
   .cards-container {
 
