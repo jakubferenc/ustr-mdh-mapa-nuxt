@@ -133,6 +133,8 @@ export default {
     async asyncData({params, error, payload, store, $axios}) {
 
       if (payload) {
+
+
         return {
           mapa: payload
         }

@@ -4,16 +4,16 @@
 
     .filter-section-container(v-show="showFilter")
 
-      .filter-section
+      .filter-section(v-if="activeFilterCategories")
         .filter-section-title Kategorie
         .filter-section-list.filter-section-list--full-width.filter-section-list--label
 
-          div(v-if="Kategorie")
+          div
             a.filter-item(v-for="(item, index) in Kategorie" :key="index" href="#" :data-filter-layer="item.name" :class="{active: activeFilterCategories.includes(item.name)}" @click="toggleFilterItem(item.name)")
               span.filter-item-text {{item.name}}
               span.color-indicator(:style="`background-color: ${item.color}`")
 
-      .filter-section
+      .filter-section(v-if="activeFilterTypes")
         .filter-section-title Typ objektu
         .filter-section-list.filter-section-list--icons
 
@@ -287,11 +287,6 @@ export default {
   },
 
 
-  async asyncData({params, error, payload, store}) {
-
-
-  },
-
   created() {
 
     this.$store.dispatch("setAktualniFiltrPolozky", this.activeFilterCategories);
@@ -345,15 +340,6 @@ export default {
   },
 
   computed: {
-
-
-  },
-
-
-
-  mounted() {
-
-
 
   },
 

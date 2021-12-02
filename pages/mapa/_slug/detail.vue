@@ -4,7 +4,7 @@
 
     .main-container(data-component="map-detail-view")
 
-      <FilterObjects :Typy="[...mapa.types]" :Kategorie="[...mapa.categories]" />
+      <FilterObjects v-if="mapa" :Typy="[...mapa.types]" :Kategorie="[...mapa.categories]" />
 
       .main-content(data-component="list-objects-container")
 
@@ -347,6 +347,9 @@ export default {
 
         const activeTypes = this.$store.state.aktualniFiltrTypPolozky;
 
+        console.log("activeCategories", activeCategories);
+        console.log("activeTypes", activeTypes);
+
         // do filtering
 
         if (objekty && objekty.length && objekty.length > 0) {
@@ -464,6 +467,8 @@ export default {
     },
 
     mounted() {
+
+      console.log("from detail", this.mapa);
 
 
       console.log("this.objektyPresFiltr", this.objektyPresFiltr);
