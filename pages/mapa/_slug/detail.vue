@@ -14,15 +14,15 @@
             span.icon-text Zpět
 
 
-      <ObjectDetail v-if="isShowDetail" v-on:card-detail-close="cardDetailClose()" :ThisObject="activeObjectData" />
+        <ObjectDetail v-if="isShowDetail" v-on:card-detail-close="cardDetailClose()" :ThisObject="activeObjectData" />
 
-      div(data-component="list-objects")
+        div(data-component="list-objects")
 
-        h1.title {{mapa.name}}
+          h1.title {{mapa.name}}
 
-        .cards-container
+          .cards-container
 
-          ObjectThumb(v-if="objektyPresFiltr && objektyPresFiltr.length" v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" @click.native="cardDetailOpen(thisObject)")
+            ObjectThumb(v-if="objektyPresFiltr && objektyPresFiltr.length" v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" @click.native="cardDetailOpen(thisObject)")
 
       client-only
         .mapbox(v-if="objektyPresFiltr && objektyPresFiltr.length" id="mapbox"  data-component="mapbox")
