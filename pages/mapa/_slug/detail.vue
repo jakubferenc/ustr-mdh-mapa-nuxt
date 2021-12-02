@@ -347,9 +347,6 @@ export default {
 
         const activeTypes = this.$store.state.aktualniFiltrTypPolozky;
 
-        console.log("activeCategories", activeCategories);
-        console.log("activeTypes", activeTypes);
-
         // do filtering
 
         if (objekty && objekty.length && objekty.length > 0) {
