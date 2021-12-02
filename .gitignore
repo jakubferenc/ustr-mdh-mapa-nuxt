@@ -38,7 +38,7 @@ ehthumbs.db
 *.zip
 
 
-# Development #
+# Development
 **/coverage
 **/.idea
 **/design
@@ -48,13 +48,15 @@ ehthumbs.db
 *.mindnode
 **/*.codekit
 
+# Resources
+./+resources
+./resources
+
 # Data
 data/data_merged.json
 
 # MDH specific
-static
-**/data-maps
-!src/data-maps
+
 
 # Wordpress #
 wordpress
