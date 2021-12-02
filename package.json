@@ -4,7 +4,7 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "analyze": "nuxt build --modern --analyze",
-    "generate": "nuxt generate --modern",
+    "generate": "nuxt generate",
     "start": "nuxt start"
   },
   "dependencies": {
