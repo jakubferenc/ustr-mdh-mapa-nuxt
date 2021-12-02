@@ -18,7 +18,7 @@
         .filter-section-list.filter-section-list--icons
 
           a.filter-item(href="#" v-for="item in Typy" :class="{[`filter-item--${item.slug}`]: true, active: activeFilterTypes.includes(item.slug)}" :data-filter-type="`${item.slug}`" @click="toggleFilterTypeItem(item.slug)")
-            .icon
+            span.icon
               <IconObjectBudova v-if="item.component === 'IconObjectBudova' " />
               <IconObjectDokument v-if="item.component === 'IconObjectDokument' " />
               <IconObjectMisto v-if="item.component === 'IconObjectMisto' " />
@@ -38,8 +38,6 @@
         .icon.icon-close
           <svg xmlns="http://www.w3.org/2000/svg" width="19.245" height="28" viewBox="0 0 19.245 28"><defs><style>.a{fill:#1a1818;}</style></defs><g transform="translate(-634.499 -538.828)"><path class="a" d="M645.238,566.828l-10.739-14,10.739-14"/><rect class="a" width="10.158" height="10.158" transform="translate(643.586 547.749)"/></g></svg>
           .icon-text Zavřít
-
-
 
 </template>
 <style lang="sass">
