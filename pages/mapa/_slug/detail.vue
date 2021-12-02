@@ -4,7 +4,7 @@
 
     .main-container(data-component="map-detail-view")
 
-      <FilterObjects v-if="mapa" :Typy="[...mapa.types]" :Kategorie="[...mapa.categories]" />
+      FilterObjects(:Typy="[...mapa.types]" :Kategorie="[...mapa.categories]")
 
       .main-content(data-component="list-objects-container")
 
@@ -14,50 +14,46 @@
             span.icon-text Zpět
 
 
-        <ObjectDetail v-if="isShowDetail" v-on:card-detail-close="cardDetailClose()" :ThisObject="activeObjectData" />
+      <ObjectDetail v-if="isShowDetail" v-on:card-detail-close="cardDetailClose()" :ThisObject="activeObjectData" />
 
+      div(data-component="list-objects")
 
-        div(data-component="list-objects")
+        h1.title {{mapa.name}}
 
-          h1.title {{mapa.name}}
+        .cards-container
 
-          .cards-container(v-if="objektyPresFiltr && objektyPresFiltr.length")
+          ObjectThumb(v-if="objektyPresFiltr && objektyPresFiltr.length" v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" @click.native="cardDetailOpen(thisObject)")
 
-            <ObjectThumb v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" @click.native="cardDetailOpen(thisObject)"  />
+      client-only
+        .mapbox(v-if="objektyPresFiltr && objektyPresFiltr.length" id="mapbox"  data-component="mapbox")
 
+            l-map(ref="mapbox" :options="{scrollWheelZoom: false}" :zoom="7" :center="[50.08804,14.42076]")
+              l-tile-layer(
+                id='',
+                accessToken='pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw',
+                attribution="Mapová data ÚSTR | Podkladová mapa &copy; <a href='//www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='//creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
+                url="https://api.mapbox.com/styles/v1/jakubferenc/ckfnqth7411u319o31xieiy4n/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw"
+              )
+              v-marker-cluster(ref="clusterRef" :options="{showCoverageOnHover: false, zoomToBoundsOnClick: true, maxClusterRadius:8, removeOutsideVisibleBounds: true}")
+                l-marker(v-for="item in objektyPresFiltr" :ref="`marker-${item.id}`" :key="item.id" :lat-lng="item.LatLng" @click="markerClickHandler(item, $event)")
 
-      .mapbox(v-if="objektyPresFiltr && objektyPresFiltr.length" id="mapbox"  data-component="mapbox")
+                  l-icon(:icon-anchor="[0,0]" :icon-size="[40, 40]" )
+                    .map-thumb-icon-container(:data-marker-id="item.id" :data-coords="item.LatLng")
+                      .marker-popup(:style="`background-color: ${item.categoryColor} `")
+                        .layer-bar
+                          .meta.meta-category Kategorie: {{ item.layer }}
+                        .card-content
+                          .title-bar
+                            h1.card-title.marker-popup-title {{item.name}}
 
-          l-map(ref="mapbox" :options="{scrollWheelZoom: false}" :zoom="7" :center="[50.08804,14.42076]")
-            l-tile-layer(
-              id='',
-              accessToken='pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw',
-              attribution="Mapová data ÚSTR | Podkladová mapa &copy; <a href='//www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='//creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
-              url="https://api.mapbox.com/styles/v1/jakubferenc/ckfnqth7411u319o31xieiy4n/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw"
-            )
-            v-marker-cluster(ref="clusterRef" :options="{showCoverageOnHover: false, zoomToBoundsOnClick: true, maxClusterRadius:8, removeOutsideVisibleBounds: true}")
-              l-marker(v-for="item in objektyPresFiltr" :ref="`marker-${item.id}`" :key="item.id" :lat-lng="item.LatLng" @click="markerClickHandler(item, $event)")
+                          .footer-bar
+                            .meta.meta-address
+                              div(v-if="item.exists === false")
+                                s GPS: {{item.y}}, {{item.x}}
+                              div(v-else)
+                                | GPS: {{item.y}}, {{item.x}}
 
-                l-icon(:icon-anchor="[0,0]" :icon-size="[40, 40]" )
-                  .map-thumb-icon-container(:data-marker-id="item.id" :data-coords="item.LatLng")
-                    .marker-popup(:style="`background-color: ${item.categoryColor} `")
-                      .layer-bar
-                        .meta.meta-category Kategorie: {{ item.layer }}
-                      .card-content
-                        .title-bar
-                          h1.card-title.marker-popup-title {{item.name}}
-
-                        .footer-bar
-                          .meta.meta-address
-                            div(v-if="item.exists === false")
-                              s GPS: {{item.y}}, {{item.x}}
-                            div(v-else)
-                              | GPS: {{item.y}}, {{item.x}}
-
-                    .mdh-map-icon.map-thumb-icon(aria-label="" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `")
-
-
-
+                      .mdh-map-icon.map-thumb-icon(aria-label="" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `")
 
       .view-switch(data-component="view-switch")
         .heading.is-sr-only Zobrazení mapy
