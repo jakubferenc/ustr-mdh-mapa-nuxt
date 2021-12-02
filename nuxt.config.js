@@ -1,6 +1,6 @@
 import axios from "axios";
 import projectConfig from './project.config';
-import apiFactory from "./utils/factories";
+import apiFactory from "./utils/factories.js";
 
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -8,6 +8,8 @@ import 'firebase/database';
 const dev = process.env.NODE_ENV !== 'production';
 
 const config = {dev, ...projectConfig};
+
+let firebaseApp = null;
 
 export default {
   globalName: config.appSlug,
@@ -35,6 +37,27 @@ export default {
       }
     }
   },
+
+  hooks: {
+    generate: {
+      // async done(builder) {
+      //   const appModule = await import('./.nuxt/firebase/app.js')
+      //   const { session } = await appModule.default(
+      //     projectConfig.firebaseConfig.config,
+      //     {
+      //       res: null,
+      //     }
+      //   )
+      //   try {
+      //     session.database().goOffline()
+      //   } catch (e) { }
+      //   try {
+      //     session.firestore().terminate()
+      //   } catch (e) { }
+      // },
+    },
+  },
+
   generate: {
     async routes() {
 
@@ -42,7 +65,7 @@ export default {
 
       try {
 
-        const firebaseApp = firebase.initializeApp(projectConfig.firebaseConfig.config);
+        firebaseApp = firebase.initializeApp(projectConfig.firebaseConfig.config);
         const db = firebaseApp.database();
 
         let mapsRes = await apiFactory.getAllMapsFactory(db); // @return object of objects, not array!
@@ -59,7 +82,20 @@ export default {
 
         });
 
-        routes = [...mapsRoutes];
+        const mapsRoutesDetail = Object.keys(mapsRes).map(mapaSafeSlug => {
+
+          const mapa = mapsRes[mapaSafeSlug];
+          // load maps
+
+          return {
+            route: `/mapa/${mapa.slug}/detail/`,
+            payload: mapa // thanks to the payload, we are caching results for the subpage here
+          };
+
+        });
+
+        routes = [...mapsRoutes, ...mapsRoutesDetail];
+
 
         return routes;
 
