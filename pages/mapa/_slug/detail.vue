@@ -465,11 +465,6 @@ export default {
 
     mounted() {
 
-      console.log("from detail", this.mapa);
-
-
-      console.log("this.objektyPresFiltr", this.objektyPresFiltr);
-
       const $mapDetailView = document.querySelector('[data-component="map-detail-view"]');
 
       // map view switch
