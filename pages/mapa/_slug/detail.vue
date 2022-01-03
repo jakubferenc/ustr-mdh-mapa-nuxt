@@ -4,7 +4,7 @@
 
     .main-container(data-component="map-detail-view")
 
-      FilterObjects(:Typy="[...mapa.types]" :Kategorie="[...mapa.categories]")
+      FilterObjects(:Typy="mapaTypy" :Kategorie="mapaKategorie" :TypyAktivni="mapaTypyAktivniPlainNameOnly" :KategorieAktivni="mapaKategorieAktivniPlainNameOnly")
 
       .main-content(data-component="list-objects-container")
 
@@ -313,14 +313,22 @@ export default {
 
         await store.dispatch("getMapy");
 
-        const mapa = Object.keys(store.state.mapy)
+        let mapa = Object.keys(store.state.mapy)
         .map(key => {
           return store.state.mapy[key];
         })
         .filter(mapa => mapa.slug == params.slug);
 
+        mapa = mapa[0];
+
+        const defaultActiveFilterCategories = mapa.categories.map(kategorie => kategorie.name);
+        const defaultActiveFilterTypes = mapa.types.map(item => item.slug);
+
+        store.dispatch("setAktualniFiltrPolozky", defaultActiveFilterCategories);
+        store.dispatch("setAktualniFiltrTypPolozky", defaultActiveFilterTypes);
+
         return {
-          mapa: mapa[0]
+          mapa,
         }
 
       }
@@ -329,26 +337,45 @@ export default {
 
     computed: {
 
+      objektyDefault() {
+        return this.mapa.objects;
+      },
+
       mapaNazev() {
 
         return this.mapa.name;
 
       },
 
+      mapaTypy() {
+        return this.mapa.types;
+      },
+
+      mapaKategorie() {
+        return this.mapa.categories;
+      },
+
+      mapaTypyAktivniPlainNameOnly() {
+        return [...this.$store.state.aktualniFiltrTypPolozky];
+      },
+
+      mapaKategorieAktivniPlainNameOnly() {
+        return [...this.$store.state.aktualniFiltrPolozky];
+      },
+
       objektyPresFiltr() {
 
-        let objekty = this.mapa.objects;
+        let objekty = [...this.mapa.objects];
 
-        const activeCategories = this.$store.state.aktualniFiltrPolozky;
+        const activeCategories = this.mapaKategorieAktivniPlainNameOnly;
 
-        const activeTypes = this.$store.state.aktualniFiltrTypPolozky;
+        const activeTypes = this.mapaTypyAktivniPlainNameOnly;
 
         // do filtering
 
         if (objekty && objekty.length && objekty.length > 0) {
 
           objekty = objekty.filter(item => activeCategories.includes(item.layer));
-
           objekty = objekty.filter(item => activeTypes.includes(item.type));
 
 
@@ -460,6 +487,13 @@ export default {
     },
 
     mounted() {
+
+
+    console.log("hello!");
+
+    console.log("mapa from async cats mounted", this.mapa.categories);
+    console.log("mapa from async types mounted", this.mapa.types);
+
 
       const $mapDetailView = document.querySelector('[data-component="map-detail-view"]');
 

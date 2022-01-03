@@ -13,7 +13,7 @@ let firebaseApp = null;
 
 export default {
   globalName: config.appSlug,
-  target: 'static', // default is 'server'
+  target: 'server', // default is 'server'
   ssr: true,
   components: true,
   publicRuntimeConfig: {...config},
