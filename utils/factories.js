@@ -38,7 +38,8 @@ const getAllMapsFactory = async ($firebaseDb) => {
     maps[key].categories = Object.values(maps[key].categories);
 
     // transform string ids from Firebase/Google Sheet into objects from project config
-    maps[key].types = maps[key].types
+    const types = maps[key].types.toString(); // force the value to be a string. It could cause issues with a single string number from Firebase being interpreted as a number
+    maps[key].types = types
     .split(',')
     .map(itemId => itemId.trim())
     .map(itemId => projectConfig.appConfig.mdh.object.types[itemId]);

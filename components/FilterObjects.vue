@@ -75,8 +75,6 @@
     background: #fff
 
 
-
-  .filter-item
   .icon
     svg[height]
       width: 18px
@@ -271,7 +269,7 @@ import IconObjectUdalost from "~/assets/images/icons/icon-object-udalost.svg?inl
 
 
 export default {
-  props: ["Typy", "Kategorie"],
+  props: ["Typy", "Kategorie", "TypyAktivni", "KategorieAktivni"],
 
   components: {
     IconObjectUdalost,
@@ -282,14 +280,6 @@ export default {
     IconObjectMuzeum,
     IconObjectPamatnik,
     IconObjectUlice
-  },
-
-
-  created() {
-
-    this.$store.dispatch("setAktualniFiltrPolozky", this.activeFilterCategories);
-    this.$store.dispatch("setAktualniFiltrTypPolozky", this.activeFilterTypes);
-
   },
 
   methods: {
@@ -337,16 +327,13 @@ export default {
 
   },
 
-  computed: {
-
-  },
 
   data() {
     return {
       thisComponentStyles: {},
-      showFilter: false,
-      activeFilterCategories: this.Kategorie.map(kategorie => kategorie.name),
-      activeFilterTypes: this.Typy.map(item => item.slug),
+      showFilter: true,
+      activeFilterCategories: [...this.KategorieAktivni],
+      activeFilterTypes: [...this.TypyAktivni],
     }
   },
 
