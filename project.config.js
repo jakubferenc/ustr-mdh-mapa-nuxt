@@ -6,7 +6,6 @@ const widescreen = 1152 + 2 * gap;
 const fullhd = 1344 + 2 * gap;
 const mobile = tablet-1;
 
-
 export default {
   globalTitle: 'MHD Mapa',
   appSlug: 'mdh-mapa',
