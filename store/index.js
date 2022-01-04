@@ -71,7 +71,7 @@ export const actions = {
 
 
 
-  async getMapy ({ state, commit, $fire }) {
+  async getMapy ({ state, commit, dispatch, $fire }) {
 
     if (state.mapy.length) return;
 

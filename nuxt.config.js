@@ -40,21 +40,13 @@ export default {
 
   hooks: {
     generate: {
-      // async done(builder) {
-      //   const appModule = await import('./.nuxt/firebase/app.js')
-      //   const { session } = await appModule.default(
-      //     projectConfig.firebaseConfig.config,
-      //     {
-      //       res: null,
-      //     }
-      //   )
-      //   try {
-      //     session.database().goOffline()
-      //   } catch (e) { }
-      //   try {
-      //     session.firestore().terminate()
-      //   } catch (e) { }
-      // },
+      async done(builder) {
+
+        firebaseApp = firebaseApp || firebase.initializeApp(projectConfig.firebaseConfig.config);
+        try {
+          firebaseApp.database().goOffline();
+        } catch (e) { }
+      },
     },
   },
 

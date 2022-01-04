@@ -304,9 +304,19 @@ export default {
     async asyncData({params, error, payload, store, $axios}) {
 
       if (payload) {
+
+        const mapa = payload;
+
+        const defaultActiveFilterCategories = mapa.categories.map(kategorie => kategorie.name);
+        const defaultActiveFilterTypes = mapa.types.map(item => item.slug);
+
+        await store.dispatch("setAktualniFiltrPolozky", defaultActiveFilterCategories);
+        await store.dispatch("setAktualniFiltrTypPolozky", defaultActiveFilterTypes);
+
         return {
-          mapa: payload
+          mapa,
         }
+
       } else {
 
         //:TODO: check if in store, it is cached, so that when we have results stored in the store, we just return the array of "stranka" items
@@ -324,8 +334,8 @@ export default {
         const defaultActiveFilterCategories = mapa.categories.map(kategorie => kategorie.name);
         const defaultActiveFilterTypes = mapa.types.map(item => item.slug);
 
-        store.dispatch("setAktualniFiltrPolozky", defaultActiveFilterCategories);
-        store.dispatch("setAktualniFiltrTypPolozky", defaultActiveFilterTypes);
+        await store.dispatch("setAktualniFiltrPolozky", defaultActiveFilterCategories);
+        await store.dispatch("setAktualniFiltrTypPolozky", defaultActiveFilterTypes);
 
         return {
           mapa,
