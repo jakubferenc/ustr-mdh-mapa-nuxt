@@ -498,13 +498,6 @@ export default {
 
     mounted() {
 
-
-    console.log("hello!");
-
-    console.log("mapa from async cats mounted", this.mapa.categories);
-    console.log("mapa from async types mounted", this.mapa.types);
-
-
       const $mapDetailView = document.querySelector('[data-component="map-detail-view"]');
 
       // map view switch

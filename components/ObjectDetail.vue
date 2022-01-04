@@ -384,7 +384,6 @@ export default {
 
   mounted() {
 
-    console.log("this.ThisObject", this.ThisObject);
 
   },
 
