@@ -26,6 +26,7 @@
 
             .metadata-content
               .object-title {{ThisObject.name}}
+              .object-image-desc(v-if="getCurrentImageObj.abstract") {{getCurrentImageObj.abstract}}
               .object-image-desc(v-if="getCurrentImageObj.desc") {{getCurrentImageObj.desc}}
               h2(v-if="getCurrentImageObj.source || ThisObject.source") Zdroj: {{getCurrentImageObj.source || ThisObject.source}}
 
@@ -119,6 +120,9 @@
       top: 30px
       left: 30px
       width: 150px
+      +desktop
+        height: calc(100vh - 60px)
+        overflow: scroll
 
       .navigation-item
         width: 100%
