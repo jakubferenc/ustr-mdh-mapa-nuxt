@@ -152,7 +152,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'Aplikace mapa projektu Muzea dělnického hnutí'
+        content: 'Aplikace Mapa projektu Muzea dělnického hnutí'
       }
     ],
     link: [{
