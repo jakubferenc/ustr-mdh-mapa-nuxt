@@ -35,21 +35,6 @@
                 p {{mapa.description}}
 
 
-            .authors
-
-              h2.section-content-text-title Mapu vytvořili
-
-              .authors-list.columns.is-multiline
-
-
-                .author.column.is-one-third-desktop.is-half(v-for="(author, index) in autori" :key="index")
-                  .author-image
-                    //- img(src=`${author.photo}` alt=`${author.name}`)
-                  .author-bio
-                    .name {{author.name}}
-                    .what-they-did {{author.desc}}
-                    .institution {{author.institution}}
-
           NuxtLink.header-button(to="detail/")
 
             .icon
@@ -63,6 +48,24 @@
             .icon-text SPUSTIT MAPU
 
       .section-container
+
+        .section.section-text-info(v-if="mapa.goals && mapa.goals.length && mapa.goals.length > 0")
+          h2 Mapu vytvořili
+          .section-text-info-content
+
+            .authors
+
+              .authors-list.columns.is-multiline
+
+                .author.column.is-one-third-tablet(v-for="(author, index) in autori" :key="index")
+                  .author-image
+                    //- img(src=`${author.photo}` alt=`${author.name}`)
+                  .author-bio
+                    .name {{author.name}}
+                    .what-they-did {{author.desc}}
+                    .institution {{author.institution}}
+
+
 
         .section.section-text-info(v-if="mapa.goals && mapa.goals.length && mapa.goals.length > 0")
           h2 Cíle mapy
@@ -122,6 +125,85 @@
 
 
 </template>
+
+<style lang="sass">
+
+
+  .attachments
+    display: flex
+    margin-top: 40px
+
+    .attachment
+      margin-right: 24px
+
+
+  .attachment
+    display: inline-block
+    width: 240px
+    min-height: 100px
+    border-radius: 12px
+    background-color: #F8F8F8
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16)
+
+    display: flex
+    padding: 12px
+
+    .icon
+      margin-right: 12px
+
+
+  .header-figure-image
+
+    object-fit: cover
+    object-position: top
+    height: 100%
+    width: 100%
+
+    +desktop
+      object-position: center
+
+
+  .authors
+    width: 100%
+
+    +until($widescreen)
+      margin-top: 40px
+
+    .authors-title
+      text-align: left
+
+
+    .authors-list
+      display: flex
+
+      justify-content: flex-start
+
+
+    .author
+
+      font-size: 1rem
+      line-height: 1.5
+      margin-bottom: 20px
+      .author-image
+        border-radius: 100%
+        height: 100px
+        width: 100px
+        background-color: red
+        overflow: hidden
+        margin-bottom: 1rem
+        img
+          width: 100%
+          margin-right: 20px
+      .name
+        font-weight: 700
+      .what-they-did
+        font-style: italic
+
+
+
+
+
+</style>
 
 <script>
 import IconSendButton from "~/assets/images/icons/icon-button-send.svg?inline";

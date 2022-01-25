@@ -88,14 +88,7 @@
 
     }
 
-    .header-figure-image {
 
-      object-fit: cover;
-      object-position: center;
-
-      height: 100%;
-      width: 100%
-    }
 
   }
 
@@ -147,14 +140,10 @@
     .section-content-text {
       margin-bottom: 5rem;
 
-      font-size: 1.4rem;
+      font-size: 1.3rem;
 
       @include from($tablet) {
 
-      }
-
-      @include from($desktop) {
-        margin-bottom: 5rem;
       }
 
       @include from($widescreen) {
@@ -284,34 +273,7 @@
 
   }
 
-  .attachments {
-    display: flex;
 
-
-      margin-top: 40px;
-
-
-
-    .attachment {
-      margin-right: 24px;
-    }
-
-  }
-
-  .attachment {
-    display: inline-block;
-    width: 240px;
-    min-height: 100px;
-    border-radius: 12px;
-    background-color: #F8F8F8;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-
-    display: flex;
-    padding: 12px;
-
-    .icon {margin-right: 12px;}
-
-  }
 
   .layers-container {
     margin-top: 20px;

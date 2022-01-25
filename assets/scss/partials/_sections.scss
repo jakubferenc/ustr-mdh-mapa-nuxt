@@ -660,22 +660,6 @@
     margin-top: 2rem;
   }
 
-  .authors {
-    margin-top: 4rem;
-    max-width: $maxWidthContent;
-    width: 100%;
-
-    .authors-title {
-      text-align: left;
-    }
-
-    .author {
-    }
-
-    .authors-list {}
-
-  }
-
 }
 
 .social-share-buttons {
@@ -689,40 +673,4 @@
   }
 }
 
-.authors {
 
-  .authors-list {
-    display: flex;
-    margin-top: 10px;
-
-    @include from($desktop) {
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-  }
-
-  &.is-article .authors-list {
-    justify-content: flex-start;
-    .author {
-      margin-right: 40px;
-    }
-  }
-
-
-  .author {
-
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    .author-image {
-      border-radius: 100%; height: 75px; width: 75px;  background-color: #fff; overflow: hidden;
-      margin-bottom: 1rem;
-      img {width: 100%}
-      margin-right: 20px; }
-    .name {font-weight: 700;}
-    .what-they-did  {font-style: italic;}
-  }
-
-}
