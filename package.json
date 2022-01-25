@@ -21,17 +21,17 @@
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/firebase": "^7.6.1",
     "@nuxtjs/svg": "^0.1.12",
     "eslint": "^7.31.0",
-    "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0",
-    "sass": "^1.35.2",
-    "sass-loader": "10",
     "fibers": "^5.0.0",
     "firebase": "^8.7.1",
     "latinize": "^0.5.0",
-    "@nuxtjs/firebase": "^7.6.1",
-    "slugify": "^1.6.2",
-    "typopo": "^2.5.2"
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
+    "sass": "^1.49.0",
+    "sass-loader": "10",
+    "slugify": "^1.6.5",
+    "typopo": "^2.5.3"
   }
 }
