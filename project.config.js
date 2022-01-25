@@ -7,7 +7,7 @@ const fullhd = 1344 + 2 * gap;
 const mobile = tablet-1;
 
 export default {
-  globalTitle: 'MHD Mapa',
+  globalTitle: 'Muzeum dělnického hnutí — Mapa',
   appSlug: 'mdh-mapa',
   firebaseConfig: {
     config: {
