@@ -49,7 +49,7 @@
 
       .section-container
 
-        .section.section-text-info(v-if="mapa.goals && mapa.goals.length && mapa.goals.length > 0")
+        .section.section-text-info(v-if="autori")
           h2 Mapu vytvořili
           .section-text-info-content
 
@@ -78,22 +78,16 @@
 
           .section-text-info-content
 
-            ul.attachments
-              li.attachment
+            .attachments
+              a.attachment(v-for="(file, index) in soubory" :key="index" href="#")
                 .icon
-                  img(src="~assets/images/icons/icon-file-type-docx.svg" alt="Microsoft Word Docx")
+                  img(src="~assets/images/icons/icon-file-type-pdf.svg" )
                 .text
-                  div.title Stáhnout
-                  div.text
-                    u Dokument Pracovní list
+                  div.cta-download Stáhnout
+                  div.title
+                    u {{file.name}}
 
-              li.attachment
-                .icon
-                  img(src="~assets/images/icons/icon-file-type-pdf.svg" alt="Adobe PDF")
-                .text
-                  div.title Stáhnout
-                  div.text
-                    u Příprava
+
 
         .section.section-text-info
 
@@ -129,6 +123,44 @@
 <style lang="sass">
 
 
+  .layers-container
+    margin-top: 20px
+
+
+
+  .layer
+
+    +desktop
+      transition: .1s transform ease-out
+      &:hover
+        transform: translateX(-2em)
+
+    border-radius: 8px
+    margin-bottom: 20px
+    font-family: 'Roboto', sans-serif
+    padding: 20px
+    .title
+      font-size: 1.3125rem
+      line-height: 1.3
+    .text
+      font-size: 1.125rem
+      line-height: 1.4
+
+    .title
+
+      +until($widescreen)
+
+        margin-bottom: .5em
+
+
+    +from($widescreen)
+      display: flex
+      justify-content: space-between
+      .title, .text
+        width: 48%
+
+
+
   .attachments
     display: flex
     margin-top: 40px
@@ -138,6 +170,10 @@
 
 
   .attachment
+
+    &:hover
+      box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.2)
+
     display: inline-block
     width: 240px
     min-height: 100px
@@ -147,6 +183,9 @@
 
     display: flex
     padding: 12px
+
+    .title
+      font-size: 1.3125rem
 
     .icon
       margin-right: 12px
@@ -247,6 +286,14 @@ export default {
 
 
         return categoriesEdited;
+      },
+
+      soubory() {
+
+        const filesEdited = Object.keys(this.mapa.files).map(key => this.mapa.files[key]);
+
+
+        return filesEdited;
       },
 
       autori() {

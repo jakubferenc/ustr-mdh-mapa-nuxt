@@ -87,8 +87,6 @@
     display: flex
     justify-content: center
 
-    img
-
     &:not(.zoomed)
       img
         height: 100%

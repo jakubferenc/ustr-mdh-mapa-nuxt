@@ -258,7 +258,7 @@
 
 
     h2 {font-size: 32px;}
-    .section-text-info-content p {font-size: 21px;}
+    .section-text-info-content p {font-size: 1.3125rem;}
 
     @include from($widescreen) {
       h2 {
@@ -273,38 +273,6 @@
 
   }
 
-
-
-  .layers-container {
-    margin-top: 20px;
-  }
-
-
-  .layer {
-
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-family: 'Roboto', sans-serif;
-    padding: 20px;
-    .title {font-size: 21px; line-height: 24px;}
-    .text {font-size: 13px; line-height: 16px;}
-
-    @include until($widescreen) {
-      .title {
-        margin-bottom: .5em;
-      }
-    }
-
-    @include from($widescreen) {
-      display: flex;
-      justify-content: space-between;
-      .title, .text {
-        width: 48%;
-      }
-    }
-
-
-  }
 
   .section-text-info-content-footer {margin-top: 40px;}
 
