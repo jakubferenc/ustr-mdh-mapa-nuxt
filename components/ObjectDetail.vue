@@ -52,6 +52,31 @@
 
                       span {{ThisObject.type}}
 
+                .item-meta(v-if="ThisObject.date_start || ThisObject.date_end")
+
+                  .item-meta-content
+                    .item-meta--heading Kdy?
+                    .item-meta--content
+
+                      span  {{ `od ${datumZacatek} do ${datumKonec}` }}
+
+
+
+                .item-meta(v-if="ThisObject.subtype")
+
+                  .item-meta-content
+                    .item-meta--heading Typ události
+                    .item-meta--content
+
+                      span {{ThisObject.subtype}}
+
+
+                .item-meta(v-if="ThisObject.id")
+
+                  .item-meta-content
+                    .item-meta--heading ID objektu
+                    .item-meta--content
+                      span {{ThisObject.id}}
 
 
               .card-content--description
@@ -248,6 +273,7 @@
         margin-bottom: 0.5rem
 
 
+
       .item-meta-content
         display: flex
         justify-content: flex-start
@@ -259,6 +285,7 @@
         margin-right: $base-mobile-side-margin * 2
         text-align: left
         width: 30%
+        min-width: 110px
 
       .item-meta--content
         display: flex
@@ -367,6 +394,19 @@ export default {
   props: ['ThisObject'],
 
   computed: {
+
+
+    datumZacatek() {
+
+      return (this.ThisObject.date_start && this.ThisObject.date_start !== undefined) ? this.ThisObject.date_start : '???';
+
+    },
+
+    datumKonec() {
+
+      return (this.ThisObject.date_end && this.ThisObject.date_end !== undefined) ? this.ThisObject.date_end : '???';
+
+    }
 
 
   },
