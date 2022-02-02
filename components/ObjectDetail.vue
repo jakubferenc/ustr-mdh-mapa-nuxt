@@ -137,8 +137,8 @@
 
     $card-detail-padding: 30px
 
-    margin-top: $base-mobile-side-margin * 2
-    margin-bottom: $base-mobile-side-margin * 2
+    padding-top: $base-mobile-side-margin * 2
+    padding-bottom: $base-mobile-side-margin * 2
 
     padding-left: $base-mobile-side-margin * 2
     padding-right: $base-mobile-side-margin * 2
