@@ -81,6 +81,7 @@
 
               .card-content--description
                 p(v-html="ThisObject.description")
+                p.source(v-if="ThisObject.source") Zdroje k textu: {{ThisObject.source}}
 
 
           .gallery.gallery-card-detail()
@@ -255,6 +256,11 @@
 
       font-size: 20px
       word-wrap: break-word
+
+      .source
+        font-style: italic
+        font-size: 1rem
+        margin-top: 1em
 
 
       @include until($widescreen)
