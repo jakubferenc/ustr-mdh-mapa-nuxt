@@ -133,7 +133,8 @@
     +desktop
       transition: .1s transform ease-out
       &:hover
-        transform: translateX(-2em)
+        transform: translateX(-2em) scale(1.1)
+        box-shadow: 0 2px 8px rgb(0 0 0 / 16%)
 
     border-radius: 8px
     margin-bottom: 20px
