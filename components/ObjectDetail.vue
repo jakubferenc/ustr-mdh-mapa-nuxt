@@ -80,7 +80,7 @@
 
 
               .card-content--description
-                p(v-html="ThisObject.description")
+                p.description(v-html="ThisObject.description")
                 p.source(v-if="ThisObject.source") Zdroje k textu: {{ThisObject.source}}
 
 
@@ -246,16 +246,19 @@
 
       height: auto
 
-
-
     .card-content-in
       margin: 0 auto
 
 
     .card-content--description
 
-      font-size: 20px
+      font-size: 1.25rem
       word-wrap: break-word
+
+      .description
+
+        line-height: 1.2
+
 
       .source
         font-style: italic
