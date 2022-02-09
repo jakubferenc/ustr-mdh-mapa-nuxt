@@ -5,7 +5,8 @@
     "build": "nuxt build",
     "analyze": "nuxt build --modern --analyze",
     "generate": "nuxt generate",
-    "start": "nuxt start"
+    "start": "nuxt start",
+    "vercel-build": "yarn global add node-gyp"
   },
   "dependencies": {
     "@nuxt/image": "^0.6.0",
