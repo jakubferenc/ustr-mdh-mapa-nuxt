@@ -6,7 +6,7 @@
     "analyze": "nuxt build --modern --analyze",
     "generate": "nuxt generate",
     "start": "nuxt start",
-    "vercel-build": "yarn global add node-gyp sharp"
+    "vercel-build": "yarn global add node-gyp sharp prebuild-install"
   },
   "dependencies": {
     "@nuxt/image": "^0.4.17e",
