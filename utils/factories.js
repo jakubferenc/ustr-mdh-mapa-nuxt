@@ -165,5 +165,5 @@ const getAllMapsFactory = async ($firebaseDb) => {
 
 
 export default {
-  getAllMapsFactory: getAllMapsFactory,
+  getAllMapsFactory,
 };
