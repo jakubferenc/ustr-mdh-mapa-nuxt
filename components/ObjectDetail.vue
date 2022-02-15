@@ -58,7 +58,9 @@
                     .item-meta--heading Kdy?
                     .item-meta--content
 
-                      span  {{ `od ${datumZacatek} do ${datumKonec}` }}
+                      span
+                        span(v-if="datumZacatek") od {{datumZacatek}}&nbsp;
+                        span(v-if="datumKonec") do {{datumKonec}}
 
 
 
@@ -407,13 +409,13 @@ export default {
 
     datumZacatek() {
 
-      return (this.ThisObject.date_start && this.ThisObject.date_start !== undefined) ? this.ThisObject.date_start : '???';
+      return (this.ThisObject.date_start && this.ThisObject.date_start !== undefined) ? this.ThisObject.date_start : false;
 
     },
 
     datumKonec() {
 
-      return (this.ThisObject.date_end && this.ThisObject.date_end !== undefined) ? this.ThisObject.date_end : '???';
+      return (this.ThisObject.date_end && this.ThisObject.date_end !== undefined) ? this.ThisObject.date_end : false;
 
     }
 
@@ -433,6 +435,7 @@ export default {
 
   mounted() {
 
+    console.log(this.ThisObject);
 
   },
 

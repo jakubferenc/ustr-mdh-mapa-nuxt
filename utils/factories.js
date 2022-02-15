@@ -69,16 +69,16 @@ const getAllMapsFactory = async ($firebaseDb) => {
       objekt.mapSlug = maps[key].slug;
 
 
-      if (objekt.date_start) {
-        const newDateStart = new Date(objekt.date_start);
-        objekt.date_start = `${newDateStart.getDate()}. ${newDateStart.getMonth() + 1}. ${newDateStart.getFullYear()}`;
+      // if (objekt.date_start) {
+      //   const newDateStart = new Date(objekt.date_start);
+      //   objekt.date_start = `${newDateStart.getDate()}. ${newDateStart.getMonth() + 1}. ${newDateStart.getFullYear()}`;
 
-      };
+      // };
 
-      if (objekt.date_end) {
-        const newDateEnd = new Date(objekt.date_end);
-        objekt.date_end = `${newDateEnd.getDate()}. ${newDateEnd.getMonth() + 1}. ${newDateEnd.getFullYear()}`;
-      };
+      // if (objekt.date_end) {
+      //   const newDateEnd = new Date(objekt.date_end);
+      //   objekt.date_end = `${newDateEnd.getDate()}. ${newDateEnd.getMonth() + 1}. ${newDateEnd.getFullYear()}`;
+      // };
 
 
       if (objekt.images && Object.values(objekt.images).length) {
