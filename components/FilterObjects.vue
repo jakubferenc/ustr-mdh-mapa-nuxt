@@ -325,6 +325,12 @@ export default {
 
     },
 
+    closeFilter() {
+
+      this.showFilter = false;
+
+    },
+
   },
 
 

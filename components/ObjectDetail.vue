@@ -4,7 +4,7 @@
         .layer-bar(:style="`background-color: ${ThisObject.categoryColor}`")
           .meta.meta-category {{ThisObject.layer}}
           .actions
-            a(href="#" data-component="close" @click="$emit('card-detail-close')").item Zavřít
+            a(href="#" data-component="close" @click.prevent="$emit('card-detail-close')").item Zavřít
 
         .card-content-container
 
@@ -13,7 +13,7 @@
               .meta.meta-address
 
             .actions
-              a(href=`/objekt/{object.properties.slug}/`).item.item-link
+              a(:href="thisObjectPermalink").item.item-link
                 <svg xmlns="http://www.w3.org/2000/svg" width="14.941" height="23.98" viewBox="0 0 14.941 23.98">
                   <g id="icon_link" data-name="icon link" transform="translate(0 0)">
                     <path id="Path_340" data-name="Path 340" d="M1229.615,200.784v2.142a3.82,3.82,0,0,1,3.683,3.813v4.843a3.815,3.815,0,0,1-7.63,0v-4.843a3.818,3.818,0,0,1,.122-.954c-.01-.052-.019-.1-.029-.156s-.02-.1-.028-.154c-.013-.075-.022-.15-.032-.225-.007-.049-.014-.1-.019-.147-.009-.083-.015-.166-.022-.249,0-.041-.007-.083-.01-.124q-.01-.187-.011-.373v-2.168a5.918,5.918,0,0,0-2.112,4.55v4.843a5.956,5.956,0,1,0,11.912,0v-4.843a5.969,5.969,0,0,0-.153-1.337h0A5.922,5.922,0,0,0,1229.615,200.784Z" transform="translate(-1223.527 -193.558)"/>
@@ -405,6 +405,13 @@ export default {
   props: ['ThisObject'],
 
   computed: {
+
+    thisObjectPermalink() {
+
+
+      return this.$route.fullPath;
+
+    },
 
 
     datumZacatek() {

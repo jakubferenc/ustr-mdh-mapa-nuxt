@@ -4,7 +4,7 @@
 
     .main-container(data-component="map-detail-view")
 
-      FilterObjects(:Typy="mapaTypy" :Kategorie="mapaKategorie" :TypyAktivni="mapaTypyAktivniPlainNameOnly" :KategorieAktivni="mapaKategorieAktivniPlainNameOnly")
+      FilterObjects(ref="sidebarFilter" :Typy="mapaTypy" :Kategorie="mapaKategorie" :TypyAktivni="mapaTypyAktivniPlainNameOnly" :KategorieAktivni="mapaKategorieAktivniPlainNameOnly")
 
       .main-content(data-component="list-objects-container")
 
@@ -22,7 +22,7 @@
 
           .cards-container
 
-            ObjectThumb(v-if="objektyPresFiltr && objektyPresFiltr.length" v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" @click.native="cardDetailOpen(thisObject)")
+            ObjectThumb(v-if="objektyPresFiltr && objektyPresFiltr.length" v-for="(thisObject, index) in objektyPresFiltr" :key="index" :ThisObject="thisObject" :data-objectid="thisObject.id" @click.native="cardDetailOpen(thisObject)")
 
       client-only
         .mapbox(v-if="objektyPresFiltr && objektyPresFiltr.length" id="mapbox"  data-component="mapbox")
@@ -294,8 +294,6 @@
       font-weight: bold
 
 
-
-
 </style>
 
 <script>
@@ -388,7 +386,6 @@ export default {
           objekty = objekty.filter(item => activeCategories.includes(item.layer));
           objekty = objekty.filter(item => activeTypes.includes(item.type));
 
-
         }
 
         return objekty;
@@ -459,6 +456,9 @@ export default {
 
         $listViewContainer.scrollTop = this.scrollTopPositionBeforeDetailOpen;
 
+        this.$router.push({path: this.$route.path, query: { }})
+
+
 
         // enableAllInactiveMarkers();
         // disableAllActiveMarkers();
@@ -476,14 +476,21 @@ export default {
 
         /// save scroll position so that we can return back to it once detail is closed
         this.scrollTopPositionBeforeDetailOpen = $listViewContainer.scrollTop;
+
         $listViewContainer.scrollTop = 0;
 
         // prepare list view container for showing the object detail
         $listViewContainer.classList.add('inactive');
 
 
-        this.$refs.mapbox.mapObject.flyTo([parseFloat(thisObject.y), parseFloat(thisObject.x)], this.$config.appConfig.mapbox.zoomNumberOnDetail);
+        this.$nextTick(() => {
+          // to make sure we are calling the map when DOM is ready
+          this.$refs.mapbox.mapObject.flyTo([parseFloat(thisObject.y), parseFloat(thisObject.x)], this.$config.appConfig.mapbox.zoomNumberOnDetail);
 
+        });
+
+
+        this.$router.push({path: this.$route.path, query: { objectId: thisObject.id }})
 
 
       },
@@ -497,6 +504,52 @@ export default {
     },
 
     mounted() {
+
+      const $body = document.body;
+
+
+      // view Switch links
+      ////////////////////////////////////////////////////////////
+      const $viewSwitchActionDefault = document.querySelector('[rel="default"]');
+      const $viewSwitchActionObjects = document.querySelector('[rel="objects"]');
+
+      const windowResizeObserver = new ResizeObserver(entries => {
+        for (let entry of entries) {
+
+          if (window.innerWidth < this.$config.responsive.breakpoints.widescreen) {
+
+            const modesToSwitch = [undefined, 'default'];
+
+            if (modesToSwitch.indexOf($mapDetailView.dataset.mode) > -1) {
+
+              $viewSwitchActionObjects.click();
+
+              // hide filter
+              this.$refs.sidebarFilter.closeFilter();
+
+
+            }
+
+          }
+
+        }
+      });
+      windowResizeObserver.observe($body);
+
+      const urlObjectId = parseInt(this.$route.query.objectId);
+
+      if (urlObjectId) {
+
+        // we are searching for the id in an already filtered set of objects. That's good because we care only about filtered objects only.
+        const getObjectBasedOnURL = this.objektyPresFiltr.filter(obj => obj.id == urlObjectId);
+
+        if (getObjectBasedOnURL.length && getObjectBasedOnURL.length > 0) {
+
+          this.cardDetailOpen(getObjectBasedOnURL[0], false);
+
+        }
+
+      }
 
       const $mapDetailView = document.querySelector('[data-component="map-detail-view"]');
 
@@ -553,6 +606,10 @@ export default {
 
       };
 
+
+    },
+
+    created() {
 
     },
 
