@@ -68,6 +68,14 @@ const getAllMapsFactory = async ($firebaseDb) => {
 
       objekt.mapSlug = maps[key].slug;
 
+      // console.log("------------------------");
+      // console.log(objekt.mapSlug);
+      // console.log(objekt.id);
+      // console.log(objekt.name);
+      // console.log(objekt.layer);
+      // console.log("categoryObject", categoryObject);
+      // console.log("------------------------");
+
 
       // if (objekt.date_start) {
       //   const newDateStart = new Date(objekt.date_start);

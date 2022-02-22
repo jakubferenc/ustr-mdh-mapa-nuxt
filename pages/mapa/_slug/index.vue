@@ -99,7 +99,7 @@
 
               .layer(v-for="(category, index) in kategorie" :key="index" :style="`background-color: ${category.color};`")
                 .title {{category.name}}
-                .text {{category.desc}}
+                .text(v-html="category.desc")
 
 
 
