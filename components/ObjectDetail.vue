@@ -62,7 +62,13 @@
                         span(v-if="datumZacatek") od {{datumZacatek}}&nbsp;
                         span(v-if="datumKonec") do {{datumKonec}}
 
+                .item-meta(v-if="puvodce")
 
+                  .item-meta-content
+                    .item-meta--heading Původce
+                    .item-meta--content
+
+                      span {{puvodce}}
 
                 .item-meta(v-if="ThisObject.subtype")
 
@@ -406,6 +412,12 @@ export default {
 
   computed: {
 
+    puvodce() {
+
+      return this.ThisObject['původce'];
+
+    },
+
     thisObjectPermalink() {
 
 
@@ -416,13 +428,13 @@ export default {
 
     datumZacatek() {
 
-      return (this.ThisObject.date_start && this.ThisObject.date_start !== undefined) ? this.ThisObject.date_start : false;
+      return (this.ThisObject.date_start && this.ThisObject.date_start !== undefined) ? this.ThisObject.date_start.toString() : false;
 
     },
 
     datumKonec() {
 
-      return (this.ThisObject.date_end && this.ThisObject.date_end !== undefined) ? this.ThisObject.date_end : false;
+      return (this.ThisObject.date_end && this.ThisObject.date_end !== undefined) ? this.ThisObject.date_end.toString() : false;
 
     }
 

@@ -4,7 +4,7 @@
 
     section.section.section-padding(data-component="section")
 
-      h1.typo-section-title.is-section-title VŠECHNY MAPY mdh
+      h1.typo-section-title.is-section-title VŠECHNY MAPY
 
       h2.typo-subtitle.is-section-title {{$config.obsah.mapy.sectionTitle}}
 
