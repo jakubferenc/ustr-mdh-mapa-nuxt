@@ -17,14 +17,14 @@
         img(src="~/assets/images/dummy/article-detail-dummy-figure.jpg" alt="Julius Fučík - Lorem ipsum dolor sit ")
 
 
-      .social-buttons.social-share-buttons(data-component="social-share-buttons")
+      //- .social-buttons.social-share-buttons(data-component="social-share-buttons")
 
-        span.nav-title SDÍLEJTE ČLÁNEK S PŘÁTELI
-        nav.social-buttons-nav
-          a.item(href="#")
-            img(src="~/assets/images/icons/icon-social-facebook.svg" alt="Facebook")
-          a.item(href="#")
-            img(src="~/assets/images/icons/icon-social-twitter.svg" alt="Twitter")
+      //-   span.nav-title SDÍLEJTE ČLÁNEK S PŘÁTELI
+      //-   nav.social-buttons-nav
+      //-     a.item(href="#")
+      //-       img(src="~/assets/images/icons/icon-social-facebook.svg" alt="Facebook")
+      //-     a.item(href="#")
+      //-       img(src="~/assets/images/icons/icon-social-twitter.svg" alt="Twitter")
 
 
 
