@@ -27,58 +27,5 @@
             img(src="~/assets/images/icons/icon-social-twitter.svg" alt="Twitter")
 
 
-      //- h2.authors-title.typo-section-title.has-spacing-top Tým projektu
-
-      //- .authors
-
-      //-   .authors-list.columns.is-multiline
-
-      //-     .author.column.is-full.is-half-tablet.is-one-third-desktop
-      //-       .author-image
-      //-         img(src="~/assets/images/dummy/profile-image-dummy-male.png" alt="Jméno")
-      //-       .author-bio
-      //-         .name Mgr. Bohumil Melichar
-      //-         .what-they-did Texty, tvorba mapy
-      //-         .institution Ústav pro studium totalitních režimů
-
-      //-     .author.column.is-full.is-half-tablet.is-one-third-desktop
-      //-       .author-image
-      //-         img(src="~/assets/images/dummy/profile-image-dummy-male.png" alt="Jméno")
-      //-       .author-bio
-      //-         .name Mgr. Bohumil Melichar
-      //-         .what-they-did Texty, tvorba mapy
-      //-         .institution Ústav pro studium totalitních režimů
-
-      //-     .author.column.is-full.is-half-tablet.is-one-third-desktop
-      //-       .author-image
-      //-         img(src="~/assets/images/dummy/profile-image-dummy-male.png" alt="Jméno")
-      //-       .author-bio
-      //-         .name Mgr. Bohumil Melichar
-      //-         .what-they-did Texty, tvorba mapy
-      //-         .institution Ústav pro studium totalitních režimů
-
-      //-     .author.column.is-full.is-half-tablet.is-one-third-desktop
-      //-       .author-image
-      //-         img(src="~/assets/images/dummy/profile-image-dummy-male.png" alt="Jméno")
-      //-       .author-bio
-      //-         .name Mgr. Bohumil Melichar
-      //-         .what-they-did Texty, tvorba mapy
-      //-         .institution Ústav pro studium totalitních režimů
-
-      //-     .author.column.is-full.is-half-tablet.is-one-third-desktop
-      //-       .author-image
-      //-         img(src="~/assets/images/dummy/profile-image-dummy-male.png" alt="Jméno")
-      //-       .author-bio
-      //-         .name Mgr. Bohumil Melichar
-      //-         .what-they-did Texty, tvorba mapy
-      //-         .institution Ústav pro studium totalitních režimů
-
-      //-     .author.column.is-full.is-half-tablet.is-one-third-desktop
-      //-       .author-image
-      //-         img(src="~/assets/images/dummy/profile-image-dummy-male.png" alt="Jméno")
-      //-       .author-bio
-      //-         .name Mgr. Bohumil Melichar
-      //-         .what-they-did Texty, tvorba mapy
-      //-         .institution Ústav pro studium totalitních režimů
 
 </template>
