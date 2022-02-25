@@ -39,7 +39,7 @@
 <style lang="sass">
 
   .object-image-desc
-    @extend %typo-hero-box-subtitle
+    @extend %typo-text
     margin-bottom: 1em
     line-height: 1.1
 

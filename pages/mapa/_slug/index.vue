@@ -31,8 +31,8 @@
 
               h1.typo-main-title.main-title {{mapa.name}}
 
-              .section-content-text
-                p {{mapa.description}}
+              .section-content-text(v-html="mapa.description")
+
 
 
           NuxtLink.header-button(to="detail/")
@@ -68,9 +68,11 @@
 
 
         .section.section-text-info(v-if="mapa.goals && mapa.goals.length && mapa.goals.length > 0")
+
           h2 Cíle mapy
+
           .section-text-info-content
-            p {{mapa.goals}}
+            p(v-html="mapa.goals")
 
 
         .section.section-text-info
@@ -228,7 +230,7 @@
         border-radius: 100%
         height: 100px
         width: 100px
-        background-color: red
+        background-color: gray
         overflow: hidden
         margin-bottom: 1rem
         img

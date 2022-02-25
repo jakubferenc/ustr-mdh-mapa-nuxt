@@ -184,10 +184,10 @@
       &.active,
       &:hover
         svg *
-          fill: #000
+          fill: royalblue
 
         .icon-text
-          color: #000
+          color: royalblue
 
 
     .item[rel="default"]

@@ -142,17 +142,19 @@
 
       font-size: 1.3rem;
 
+
+
       @include from($tablet) {
 
       }
 
       @include from($widescreen) {
 
+        font-size: 1vw;
+
+
       }
 
-      @include from($fullhd) {
-
-      }
 
     }
 
@@ -258,7 +260,7 @@
 
 
     h2 {font-size: 32px;}
-    .section-text-info-content p {font-size: 1.3125rem;}
+    .section-text-info-content {font-size: 1.3125rem;}
 
     @include from($widescreen) {
       h2 {
