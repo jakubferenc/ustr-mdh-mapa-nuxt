@@ -7,7 +7,7 @@ const fullhd = 1344 + 2 * gap;
 const mobile = tablet-1;
 
 export default {
-  globalTitle: 'Muzeum dělnického hnutí — Mapa',
+  globalTitle: 'Mapa Muzea dělnického hnutí v 21. století',
   appSlug: 'mdh-mapa',
   firebaseConfig: {
     config: {
