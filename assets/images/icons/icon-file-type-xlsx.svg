@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="45" height="70.362" viewBox="0 0 45 70.362">
-  <g id="icon-file-type-pdf" transform="translate(-815.989 -1648.819)">
+  <g id="icon-file-type-xlsx" transform="translate(-815.989 -1648.819)">
     <g id="Group_1152" data-name="Group 1152" transform="translate(-70.011 -50.9)">
       <g id="icon-file-type-docx" transform="translate(886 1699.72)">
         <path id="Path_325" data-name="Path 325" d="M526.886-376.074v15.723h15.724Z" transform="translate(-499.714 378.168)"/>
@@ -11,6 +11,6 @@
       </g>
       <rect id="Rectangle_545" data-name="Rectangle 545" width="42" height="17" transform="translate(889 1751)"/>
     </g>
-    <text id="PDF" transform="translate(819 1714)" fill="#fff" font-size="17" font-family="RobotoCondensed-Regular, Roboto Condensed"><tspan x="0" y="0">PDF</tspan></text>
+    <text id="XLSX" transform="translate(819 1714)" fill="#fff" font-size="17" font-family="RobotoCondensed-Regular, Roboto Condensed"><tspan x="0" y="0">XLSX</tspan></text>
   </g>
 </svg>

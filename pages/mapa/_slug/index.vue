@@ -81,9 +81,11 @@
           .section-text-info-content
 
             .attachments
-              a.attachment(v-for="(file, index) in soubory" :key="index" href="#")
+              a.attachment(v-for="(file, index) in soubory" :key="index" :href="`/soubory/${file.url}`")
                 .icon
-                  img(src="~assets/images/icons/icon-file-type-pdf.svg" )
+                    img(v-if="file.type == 'DOCX'" src="~assets/images/icons/icon-file-type-docx.svg" )
+                    img(v-if="file.type == 'XLSX'" src="~assets/images/icons/icon-file-type-xlsx.svg" )
+
                 .text
                   div.cta-download Stáhnout
                   div.title
