@@ -83,6 +83,7 @@
             .attachments
               a.attachment(v-for="(file, index) in soubory" :key="index" :href="`/soubory/${file.url}`")
                 .icon
+                    img(v-if="file.type == 'PDF'" src="~assets/images/icons/icon-file-type-pdf.svg" )
                     img(v-if="file.type == 'DOCX'" src="~assets/images/icons/icon-file-type-docx.svg" )
                     img(v-if="file.type == 'XLSX'" src="~assets/images/icons/icon-file-type-xlsx.svg" )
 
