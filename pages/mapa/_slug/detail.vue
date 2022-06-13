@@ -48,6 +48,7 @@
 
                           .footer-bar
                             .meta.meta-address
+                              div.meta-address-real(v-if="item.address_real && item.address_real !== '' ") Adresa: {{item.address_real}}
                               div(v-if="item.exists === false")
                                 s GPS: {{item.y}}, {{item.x}}
                               div(v-else)
@@ -211,7 +212,8 @@
     background-size: 15px auto
     transition: width, heigh, border-radius 0.25s ease-in-out
 
-
+  .meta-address-real
+    margin-bottom: .5em
 
   .leaflet-marker-icon
 
