@@ -36,11 +36,17 @@
                       s GPS souřadnice
                     .item-meta--content
                       s y: {{ThisObject.y}}, x: {{ThisObject.x}}
+
                 .item-meta(v-else)
                   .item-meta-content
                     .item-meta--heading
                       | GPS souřadnice
                     .item-meta--content y: {{ThisObject.y}}, x: {{ThisObject.x}}
+
+                .item-meta(v-if="ThisObject.address_real && ThisObject.address_real !== '' ")
+                  .item-meta-content
+                    .item-meta--heading Adresa
+                    .item-meta--content {{ThisObject.address_real}}
 
                 .item-meta(v-if="ThisObject.type")
 
