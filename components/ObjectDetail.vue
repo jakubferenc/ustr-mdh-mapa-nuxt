@@ -84,15 +84,6 @@
 
                       span {{ThisObject.subtype}}
 
-
-                .item-meta(v-if="ThisObject.id")
-
-                  .item-meta-content
-                    .item-meta--heading ID objektu
-                    .item-meta--content
-                      span {{ThisObject.id}}
-
-
               .card-content--description
                 p.description(v-html="ThisObject.description")
                 p.source(v-if="ThisObject.source") Zdroje k textu: {{ThisObject.source}}
