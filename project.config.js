@@ -30,7 +30,7 @@ export default {
   apiURL: undefined,
   obsah: {
     mapy: {
-      projectText: 'Tato sada interaktivních map je výsledkem bádání ve fondech tzv. muzea dělnického hnutí a v dalších archivních fondech. Jednotlivé mapy vizualizují dějinná témata, jež byla podstatná pro kulturní politiku v Československu v období 1948-1989. Kromě jednotlivých muzeí, památníků a artefaktů mapy zachycují i dynamiku našeho vzpomínání. Objevujte s námi místa paměti, na která postupně zapomínáme.',
+      projectText: '',
       sectionTitle: 'Na jednotlivých interaktivních mapách najdete objekty, které lze třídit pomocí typu a kategorie. Můžete si zobrazit všechny objekty najednou, nebo si vytřídit ty, které chcete. Mapy dále pro uživatele nabízí tři způsoby pohledu na data. Lze si zobrazit pouze objekty, pouze mapu, anebo vše dohromady.',
       aboutText: 'Mapa vznikla v rámci projektu Ministerstva kultury ČR NAKI II (DG18P02OVV045) – Muzeum dělnického hnutí v&nbsp;21. století. Prezentace práce s&nbsp;muzejní sbírkou doby státního socialismu a&nbsp;způsoby užití jejího materiálu k&nbsp;potřebám odborné a široké veřejnosti.',
     },

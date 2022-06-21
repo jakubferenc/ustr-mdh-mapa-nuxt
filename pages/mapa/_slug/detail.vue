@@ -34,7 +34,7 @@
                 attribution="Mapová data ÚSTR | Podkladová mapa &copy; <a href='//www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='//creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
                 url="https://api.mapbox.com/styles/v1/jakubferenc/ckfnqth7411u319o31xieiy4n/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw"
               )
-              v-marker-cluster(ref="clusterRef" :options="{showCoverageOnHover: false, zoomToBoundsOnClick: true, maxClusterRadius:8, removeOutsideVisibleBounds: true}")
+              v-marker-cluster(ref="clusterRef" :options="{chunkedLoading: true, showCoverageOnHover: false, zoomToBoundsOnClick: true, maxClusterRadius:8, removeOutsideVisibleBounds: true}")
                 l-marker(v-for="item in objektyPresFiltr" :ref="`marker-${item.id}`" :key="item.id" :lat-lng="item.LatLng" @click="markerClickHandler(item, $event)")
 
                   l-icon(:icon-anchor="[0,0]" :icon-size="[40, 40]" )
@@ -54,7 +54,7 @@
                               div(v-else)
                                 | GPS: {{item.y}}, {{item.x}}
 
-                      .mdh-map-icon.map-thumb-icon(aria-label="" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `")
+                    .mdh-map-icon.map-thumb-icon(aria-label="" :data-date-start="item.date_start" :data-icon-type="item.type" :data-marker-layer="item.layer" :data-marker-title="item.name" :style="`background-color: ${item.categoryColor} `")
 
       .view-switch(data-component="view-switch")
         .heading.is-sr-only Zobrazení mapy

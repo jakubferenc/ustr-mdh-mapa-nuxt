@@ -124,6 +124,10 @@
     align-items: center;
   }
 
+  .typo-subtitle.list-map-item-title {
+    a {text-decoration: none;}
+  }
+
   @include until($tablet) {
 
   }

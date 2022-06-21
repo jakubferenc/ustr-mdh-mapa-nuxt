@@ -11,7 +11,7 @@
           p.app-subtitle Muzea dělnického hnutí v 21. století
 
         .column.is-half-desktop
-          p.typo-subtitle(v-html="$config.obsah.mapy.projectText")
+          p.typo-subtitle Tato sada interaktivních map je výsledkem bádání ve fondech <a href="https://www.mdh21.cz/stranka/o-sbirce-mdh/">Sbírky Muzea dělnického hnutí v Národním muzeu</a>. Jednotlivé mapy vizualizují dějinná témata, jež byla podstatná pro kulturní politiku v Československu v období 1948-1989. Kromě jednotlivých muzeí, památníků a artefaktů mapy zachycují i dynamiku našeho vzpomínání. Objevujte s námi místa paměti, na která postupně zapomínáme.
 
       .footer-container
 
