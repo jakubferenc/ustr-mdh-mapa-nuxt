@@ -7,14 +7,15 @@
   justify-content: space-between;
   padding-left: $base-mobile-side-margin;
   padding-right: $base-mobile-side-margin;
-  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 0.729166667vw, 0.729166667vw);
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
   position: relative;
   z-index: 10;
+  height: 2.1875vw;
 }
 
 .logo-nav {
-  width: 450px;
+  min-width: 450px;
   .item {
     color: $active-gray;
   }

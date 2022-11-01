@@ -54,8 +54,8 @@
             //- each object in objects
 
             //-   +object-card(object, {safeSlug: object.mapSafeSlug, mapSettings: object.mapSettings})
-
-          a.button.button-more(href="#") Načíst další objekty (neaktivní)
+          .button-more-container
+            a.button.button-more(href="#") Načíst další objekty (neaktivní)
 
 
 

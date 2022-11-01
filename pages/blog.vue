@@ -29,8 +29,8 @@
           //-   class: 'column is-full is-half-tablet',
           //-   url: 'article-detail.html'
           //- })
-
-        a.button.button-more(href="#") Všechny aktuality
+        .button-more-container
+          a.button.button-more(href="#") Všechny aktuality
 
 </template>
 <script lang="ts">

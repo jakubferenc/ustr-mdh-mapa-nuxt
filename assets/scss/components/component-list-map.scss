@@ -51,7 +51,8 @@
 
   figure {
     position: relative;
-    height: 322px;
+    height: clamp(322px, 15vw, 550px);
+
 
     img {
       object-fit: cover;

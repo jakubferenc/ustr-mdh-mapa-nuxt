@@ -13,19 +13,13 @@
   line-height: 1.1
 
 
-.typo-subtitle
-
-  font-size: $subtitleFontSize
-
-
-
 .typo-hero-box-subtitle
 
-  font-size: 1.75rem
+  font-size: clamp(1.75rem, 1.45833333vw, 1.45833333vw)
 
 .typo-section-title
 
-  font-size: 3rem
+  font-size: clamp(3rem, 2.08333333vw, 2.08333333vw)
   letter-spacing: 0.1em
   line-height: 1.1
   text-transform: uppercase
@@ -57,7 +51,7 @@
 
 .typo-subtitle
 
-  font-size: 1.375rem
+  font-size: $subtitleFontSize
   line-height: 1.4
 
   a
@@ -68,7 +62,7 @@
     text-align: center
 
     +from($desktop)
-      max-width: 675px
+      max-width: clamp(675px, 35.15625vw, 35.15625vw)
       margin-left: auto
       margin-right: auto
 

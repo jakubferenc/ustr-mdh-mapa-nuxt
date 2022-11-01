@@ -170,7 +170,6 @@
 
 
     @include from($widescreen)
-      max-width: $max-content-full-width
       margin-left: auto
       margin-right: auto
 

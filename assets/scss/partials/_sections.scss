@@ -452,7 +452,7 @@
     }
 
     .content, .content p {
-      font-size: 16px;
+      font-size: clamp(1rem, 0.833333333vw, 0.833333333vw)
     }
 
 
