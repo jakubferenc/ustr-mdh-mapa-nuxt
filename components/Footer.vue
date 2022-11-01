@@ -57,17 +57,17 @@
 
               .logo
                 .image
-                  <a href="https://nm.cz">
+                  <a href="#">
                     img(src="~/assets/images/icons/logo-nm.svg" alt="Logo Národního muzeua")
                   </a>
-                .text <a href="https://nm.cz">Národní muzeum</a>
+                .text <a href="#">Národní muzeum</a>
 
               .logo
                 .image
-                  <a href="https://ustrcr.cz">
+                  <a href="#">
                     img(src="~/assets/images/icons/logo-ustr.svg" alt="Logo Ústavu pro studium totalitních režim")
                   </a>
-                .text <a href="https://ustrcr.cz">Ústav pro studium totalitních režimů</a>
+                .text <a href="#">Ústav pro studium totalitních režimů</a>
 
 
         .col
@@ -75,9 +75,9 @@
 
             .title Důležité odkazy
             .content
-              p.item <a href="https://mdh21.cz">Muzeum dělnického hnutí v 21. století</a>
-              p.item <a href="https://nm.cz">Národní muzeum</a>
-              p.item <a href="https://ustrcr.cz">Ústav pro studium totalitních režimů</a>
+              p.item <a href="#">Muzeum dělnického hnutí v 21. století</a>
+              p.item <a href="#">Národní muzeum</a>
+              p.item <a href="#">Ústav pro studium totalitních režimů</a>
 
 
 </template>
