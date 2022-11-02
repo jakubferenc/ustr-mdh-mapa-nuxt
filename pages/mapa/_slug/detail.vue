@@ -31,7 +31,7 @@
               l-tile-layer(
                 id='',
                 accessToken='pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw',
-                attribution="Mapová data ÚSTR | Podkladová mapa &copy; <a href='//www.openstreetmap.org/'>OpenStreetMap</a> contributors, <a href='//creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, Imagery © <a href='https://www.mapbox.com/'>Mapbox</a>"
+                attribution="Mapová data ÚSTR | Podkladová mapa &copy; <a href='#'>OpenStreetMap</a> contributors, <a href='#'>CC-BY-SA</a>, Imagery © <a href='#'>Mapbox</a>"
                 url="https://api.mapbox.com/styles/v1/jakubferenc/ckfnqth7411u319o31xieiy4n/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiamFrdWJmZXJlbmMiLCJhIjoiY2tjbTNjbDI2MW01NzJ5czUzNGc0Y3FwNyJ9.bTpq3aGIwEIUqRkxlMOvCw"
               )
               v-marker-cluster(ref="clusterRef" :options="{chunkedLoading: true, showCoverageOnHover: false, zoomToBoundsOnClick: true, maxClusterRadius:8, removeOutsideVisibleBounds: true}")

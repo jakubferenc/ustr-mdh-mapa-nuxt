@@ -21,17 +21,17 @@
         .section-content
 
           .social-icons-list
-            a.social-icon(href="https://www.facebook.com/dejepis" title="Facebookový profil Dějepisu 21")
+            a.social-icon(href="#" title="Facebookový profil Dějepisu 21")
               .icon
                 img(src="~/assets/images/icons/social-facebook.svg" alt="")
               .text Facebook
 
-            a.social-icon(href="https://www.instagram.com/ustr_cr/" title="Instagramový profil ÚSTR ČR")
+            a.social-icon(href="#" title="Instagramový profil ÚSTR ČR")
               .icon
                 img(src="~/assets/images/icons/social-instagram.svg" alt="")
               .text Instagram
 
-            a.social-icon(href="https://www.youtube.com/channel/UCdtql9Bo-CR8n3QRfFr_KKQ/featured" title="YouTube kanál Oddělení vzdělávání ÚSTR")
+            a.social-icon(href="#" title="YouTube kanál Oddělení vzdělávání ÚSTR")
               .icon
                 img(src="~/assets/images/icons/social-youtube.svg" alt="")
               .text Youtube
